@@ -862,7 +862,6 @@ pre {
   .highlight table,
   .highlight tr,
   .highlight td {
-    width: 100%;
     border-collapse: collapse;
     padding: 0;
     margin: 0; }
