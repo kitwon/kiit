@@ -1,0 +1,17 @@
+extends partial/layout
+
+block header
+	include partial/header
+block container
+	div.wrap.translate-wrap
+		div.circle-cover
+			svg#pathSvg(width='100%', viewBox='0, 0, 500, 150', preserveAspectRatio='none', version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink')
+				path#mainPath(d='M0, 0 C 100 60, 400 60, 500 0 V 150 L 0, 500 Z', style='fill: #fff;')
+		div.white-container
+			div.container
+				div.row
+					div.col-md-8.content
+						include mixins/post
+						+posts()
+block script
+	script(src=url_for('js/index.min.js'))

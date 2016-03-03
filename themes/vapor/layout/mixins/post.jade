@@ -1,0 +1,48 @@
+mixin categorie(categories) 
+	- categories.each(function(categorie) {
+		a(href=url_for(categorie.path))
+			!= categorie.name
+	- })
+
+mixin tag(tags) 
+	- tags.each(function(tag) {
+		a(href=url_for(tag.path))
+			!= tag.name
+	- })
+
+mixin posts()
+	- page.posts.each(function(item) {
+		article.post
+			header.header
+				h2
+					a(href=url_for(item.path))
+						!= item.title
+			section.excerpt
+				a(href=url_for(item.path))
+					!= item.excerpt
+			footer.footer
+				span.user-img
+					img.img-responsive(src=url_for('img/daniel.jpg'))
+				span Kit
+				span.dot-sep  · 
+				+categorie(item.categories)
+				span.dot-sep  · 
+				time
+					!= full_date(item.date, 'll')
+	- })
+
+mixin post(item) 
+	main.post-container
+		.post
+			header.post-header
+				h1.post-title
+					!= item.title
+				section.post-meta
+					time.post-date
+						i.ion-ios-clock-outline
+						!= full_date(item.date, 'll')
+					span.dot-sep ·
+					i.ion-ios-pricetags-outline
+					+tag(item.tags)
+		article.content
+			!= item.content

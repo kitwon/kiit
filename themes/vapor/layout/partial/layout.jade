@@ -1,0 +1,17 @@
+doctype html
+html
+	head
+		meta(charset='UTF-8')
+		meta(content='width=device-width, initial-scale=1.0,  user-scalable=0', name='viewport')
+		script(src=url_for('js/vendor/modernizr-2.6.2.min.js'))
+		block style
+			link(rel='stylesheet', href=url_for('css/index.min.css'))
+	body
+		include nav
+		block header
+		block container
+		block footer
+
+		script(src='http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js')
+		script window.jQuery || document.write('<script src="js/vendor/jquery-1.9.0.min.js"><\/script>')
+		block script
