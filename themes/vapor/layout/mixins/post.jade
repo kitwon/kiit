@@ -38,8 +38,8 @@ mixin post(item)
 				h1.post-title
 					!= item.title
 				section.post-meta
+					i.ion-ios-clock-outline
 					time.post-date
-						i.ion-ios-clock-outline
 						!= full_date(item.date, 'll')
 					span.dot-sep ·
 					i.ion-ios-pricetags-outline

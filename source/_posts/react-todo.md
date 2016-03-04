@@ -161,7 +161,7 @@ React主流思想就是父组件控制state，然后通过props传递给子组�
 
 然后取一小段渲染组件代码（上面代码）就可发现，父组件向ItemMain这个组件传了4个属性，其中itemList为state，只要todoItem一更新，react就会重新渲染这个组件，其他三个为方法，方法更新也会重新渲染组件。
 
-##### 组件方法
+
 {% codeblock ItemMain.js lang:js %}
 
 var React = require('React');

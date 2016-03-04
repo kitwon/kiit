@@ -1,7 +1,15 @@
 extends partial/layout
 
+block nav
+	include partial/nav
+
+block sidebar
+	include mixins/sidebar
+	+mainSideBar()
+
 block header
 	include partial/header
+
 block container
 	div.wrap.translate-wrap
 		div.circle-cover
@@ -13,5 +21,6 @@ block container
 					div.col-md-8.content
 						include mixins/post
 						+posts()
+						
 block script
-	script(src=url_for('js/index.js'))
+	script(src=url_for('js/index.min.js'))

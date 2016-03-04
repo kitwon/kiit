@@ -183,7 +183,6 @@ th {
 @media (min-width: 320px) {
   html {
     font-size: 14px; } }
-
 @media (min-width: 992px) {
   html {
     font-size: 16px; } }
@@ -231,7 +230,6 @@ article.content h3, article.content .h3 {
   article.content h3 .small, article.content .h3 small,
   article.content .h3 .small {
     font-size: 65%; }
-
 article.content h4, article.content .h4,
 article.content h5, article.content .h5,
 article.content h6, article.content .h6 {
@@ -638,119 +636,169 @@ address {
 @media (min-width: 992px) {
   .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
     float: left; }
+
   .col-md-1 {
     width: 8.33333%; }
+
   .col-md-2 {
     width: 16.66667%; }
+
   .col-md-3 {
     width: 25%; }
+
   .col-md-4 {
     width: 33.33333%; }
+
   .col-md-5 {
     width: 41.66667%; }
+
   .col-md-6 {
     width: 50%; }
+
   .col-md-7 {
     width: 58.33333%; }
+
   .col-md-8 {
     width: 66.66667%; }
+
   .col-md-9 {
     width: 75%; }
+
   .col-md-10 {
     width: 83.33333%; }
+
   .col-md-11 {
     width: 91.66667%; }
+
   .col-md-12 {
     width: 100%; }
+
   .col-md-pull-0 {
     right: auto; }
+
   .col-md-pull-1 {
     right: 8.33333%; }
+
   .col-md-pull-2 {
     right: 16.66667%; }
+
   .col-md-pull-3 {
     right: 25%; }
+
   .col-md-pull-4 {
     right: 33.33333%; }
+
   .col-md-pull-5 {
     right: 41.66667%; }
+
   .col-md-pull-6 {
     right: 50%; }
+
   .col-md-pull-7 {
     right: 58.33333%; }
+
   .col-md-pull-8 {
     right: 66.66667%; }
+
   .col-md-pull-9 {
     right: 75%; }
+
   .col-md-pull-10 {
     right: 83.33333%; }
+
   .col-md-pull-11 {
     right: 91.66667%; }
+
   .col-md-pull-12 {
     right: 100%; }
+
   .col-md-push-0 {
     left: auto; }
+
   .col-md-push-1 {
     left: 8.33333%; }
+
   .col-md-push-2 {
     left: 16.66667%; }
+
   .col-md-push-3 {
     left: 25%; }
+
   .col-md-push-4 {
     left: 33.33333%; }
+
   .col-md-push-5 {
     left: 41.66667%; }
+
   .col-md-push-6 {
     left: 50%; }
+
   .col-md-push-7 {
     left: 58.33333%; }
+
   .col-md-push-8 {
     left: 66.66667%; }
+
   .col-md-push-9 {
     left: 75%; }
+
   .col-md-push-10 {
     left: 83.33333%; }
+
   .col-md-push-11 {
     left: 91.66667%; }
+
   .col-md-push-12 {
     left: 100%; }
+
   .col-md-offset-0 {
     margin-left: 0%; }
+
   .col-md-offset-1 {
     margin-left: 8.33333%; }
+
   .col-md-offset-2 {
     margin-left: 16.66667%; }
+
   .col-md-offset-3 {
     margin-left: 25%; }
+
   .col-md-offset-4 {
     margin-left: 33.33333%; }
+
   .col-md-offset-5 {
     margin-left: 41.66667%; }
+
   .col-md-offset-6 {
     margin-left: 50%; }
+
   .col-md-offset-7 {
     margin-left: 58.33333%; }
+
   .col-md-offset-8 {
     margin-left: 66.66667%; }
+
   .col-md-offset-9 {
     margin-left: 75%; }
+
   .col-md-offset-10 {
     margin-left: 83.33333%; }
+
   .col-md-offset-11 {
     margin-left: 91.66667%; }
+
   .col-md-offset-12 {
     margin-left: 100%; } }
-
 /*!
   Ionicons, v2.0.0
   Created by Ben Sperry for the Ionic Framework, http://ionicons.com/
   https://twitter.com/benjsperry  https://twitter.com/ionicframework
   MIT License: https://github.com/driftyco/ionicons
 
-  Android-style icons originally built by Google’s
+  Android-style icons originally built by Google鈥檚
   Material Design Icons: https://github.com/google/material-design-icons
   used under CC BY http://creativecommons.org/licenses/by/4.0/
-  Modified icons to fit ionicon’s grid from original.
+  Modified icons to fit ionicon鈥檚 grid from original.
 */
 @font-face {
   font-family: "Ionicons";
@@ -758,7 +806,6 @@ address {
   src: url("../fonts/ionicons.eot?v=2.0.0#iefix") format("embedded-opentype"), url("../fonts/ionicons.ttf?v=2.0.0") format("truetype"), url("../fonts/ionicons.woff?v=2.0.0") format("woff"), url("../fonts/ionicons.svg?v=2.0.0#Ionicons") format("svg");
   font-weight: normal;
   font-style: normal; }
-
 .ion, .ionicons,
 .ion-alert:before,
 .ion-alert-circled:before,
@@ -3707,7 +3754,6 @@ address {
 .clearfix:before, .clearfix:after {
   content: " ";
   display: table; }
-
 .clearfix:after {
   clear: both; }
 
@@ -4110,28 +4156,23 @@ pre {
   -o-transition: all 0.3s;
   transition: all 0.3s;
   display: inline-block; }
-
 .nav-list a {
   color: #fff;
   -webkit-transform: translate(0, -55px);
   -ms-transform: translate(0, -55px);
   -o-transform: translate(0, -55px);
   transform: translate(0, -55px); }
-
 .nav-list a:hover {
   color: white;
   margin: 0 15px; }
-
 .nav-list.active a {
   -webkit-transform: translate(0, 0);
   -ms-transform: translate(0, 0);
   -o-transform: translate(0, 0);
   transform: translate(0, 0); }
-
 .nav-list.active a:nth-child(2) {
   -webkit-transition-delay: 0.1s;
   transition-delay: 0.1s; }
-
 .nav-list.active a:nth-child(3) {
   -webkit-transition-delay: 0.2s;
   transition-delay: 0.2s; }
@@ -4208,19 +4249,15 @@ pre {
   padding-bottom: 30px;
   margin-bottom: 30px;
   border-bottom: 1px solid #e5e9eb; }
-
 .content .header * {
   font-weight: 800;
   color: #4a4a4a; }
-
 .content .header a:hover {
   color: #000; }
-
 .content .excerpt {
   margin-bottom: 20px; }
   .content .excerpt a {
     color: #4a4a4a; }
-
 .content .footer {
   font-size: 1rem; }
   .content .footer > * {
@@ -4727,7 +4764,6 @@ pre {
     -webkit-animation: rotate 4s linear infinite;
     -o-animation: rotate 4s linear infinite;
     animation: rotate 4s linear infinite; }
-
 @keyframes rotate {
   from {
     -webkit-transform: rotate(0);
@@ -4739,7 +4775,6 @@ pre {
     -ms-transform: rotate(360deg);
     -o-transform: rotate(360deg);
     transform: rotate(360deg); } }
-
 @-webkit-keyframes rotate {
   from {
     -webkit-transform: rotate(0);
@@ -4751,7 +4786,6 @@ pre {
     -ms-transform: rotate(360deg);
     -o-transform: rotate(360deg);
     transform: rotate(360deg); } }
-
 @-moz-keyframes rotate {
   from {
     -webkit-transform: rotate(0);
@@ -4763,7 +4797,6 @@ pre {
     -ms-transform: rotate(360deg);
     -o-transform: rotate(360deg);
     transform: rotate(360deg); } }
-
 .main-sun {
   margin: 0;
   display: none; }

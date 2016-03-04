@@ -1,0 +1,29 @@
+mixin mainSideBar()
+	.side-bar
+		ul.col-xs-6.col-md-4
+			li
+				div.head
+					img.img-responsive(src=url_for('img/head.jpg'))
+			li
+				a.item(href='/Circle_Talk')
+					i.ion-help-buoy
+					span Home
+				a.item.m(href='/Circle_Talk/archives')
+					i.ion-nuclear
+					span Archives
+				a.item(href='//github.com/kitwon')
+					i.ion-social-github
+					span Github
+			li
+				div.cp
+					div ©   2015 - 2016   Kit
+					div
+						span power by 
+						span
+							a(href='//hexo.io') hexo.
+						span Design By Kit.
+		.black-cover
+
+mixin postSideBar()
+	.post-side-bar
+		!= toc(page.content, { "class": "nav", list_number: false })
