@@ -58,8 +58,6 @@ var app = {
 		document.body.onmousewheel = function(e) {
 			window.cancelAnimationFrame(_this.loop);
 
-
-
 			e = event || window.event;
 			if (e.wheelDelta < 0 && e.wheelDelta !== 0 && !_this.data.scrollDown) {
 				if (_this.getScrollTop() === 0) {
@@ -74,6 +72,23 @@ var app = {
 				}
 			}
 		}
+
+		//firfox
+		document.body.addEventListener('DOMMouseScroll', function(event) {
+			window.cancelAnimationFrame(_this.loop);
+			if (event.detail > 0 && event.detail !== 0 && !_this.data.scrollDown) {
+				if (_this.getScrollTop() === 0) {
+					_this.animate(0);
+					_this.data.scrollDown = true;
+				}
+			}
+			if (event.detail < 0 && event.detail !== 0 && _this.data.scrollDown) {
+				if (_this.getScrollTop() === 0) {
+					_this.animate(transitonPos);
+					_this.data.scrollDown = false;
+				}
+			}
+		})
 
 		$('body').on('touchstart', function(e) {
 			e.preventDefault();
@@ -144,12 +159,12 @@ var app = {
 		if (translateVal === 0) {
 			setTimeout("$('body').css('overflow-y', 'auto')", _this.data.transitionTime);
 			$('.main-sun').css(_this.prefixCss('translate3d(' + _this.data.btnTransX + 'px, ' + _this.data.btnTtransY + 'px, 0) scale(0.7, 0.7)'));
-			$('.nav-button').css('-webkit-transform', 'scaleX(1)');
+			$('.nav-button').css(_this.prefixCss('scaleX(1)'));
 			requestFrame.call(window, _this.loopPath);
 		} else {
 			$('body').css('overflow-y', 'hidden')
 			$('.main-sun').css(_this.prefixCss('translate3d(' + _this.data.boxTransX + 'px, ' + _this.data.boxTtransY + 'px, 0) scale(1, 1)'));
-			$('.nav-button').css('-webkit-transform', 'scaleX(0)');
+			$('.nav-button').css(_this.prefixCss('scaleX(0)'));
 			requestFrame.call(window, _this.loopPath);
 		}
 
