@@ -832,7 +832,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 0;
+    z-index: 198;
     background-color: #000;
     @include opacity(0.5);
     display: none;
@@ -952,7 +952,7 @@
 }
 
 //post media xs
-@media (min-width: $screen-xs-min) {
+@media (max-width: $screen-sm-min) {
     .post-container {
         margin: 0 auto;
     }

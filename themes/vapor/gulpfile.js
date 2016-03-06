@@ -40,7 +40,7 @@ gulp.task('rimraf', function() {
 //运行gulp\监听文件
 gulp.task('develop', function() {
 	gulp.start('sass', 'css', 'javascripts');
-	gulp.watch(['./source/scss/*', './source/scss/**/*'], ['sass', 'css']);
+	gulp.watch(['./source/scss/*', './source/scss/**/*'], ['sass']);
 	gulp.watch(['./source/css/index.css'], ['css']);
 	gulp.watch(['./source/js/index.js', './source/js/post.js'], ['javascripts']);
 })

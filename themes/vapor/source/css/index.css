@@ -4722,7 +4722,7 @@ pre {
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 0;
+  z-index: 198;
   background-color: #000;
   opacity: 0.5;
   filter: alpha(opacity=50);
@@ -4821,7 +4821,7 @@ pre {
   -o-animation: fadeInUp 0.5s forwards;
   animation: fadeInUp 0.5s forwards; }
 
-@media (min-width: 320px) {
+@media (max-width: 768px) {
   .post-container {
     margin: 0 auto; }
   .post-side-bar {
