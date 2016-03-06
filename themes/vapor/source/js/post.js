@@ -14,15 +14,16 @@ var app = {
 		$('.menu').bind('click', function() {
 			// $(this).toggleClass('active');
 			$(this).next('.nav-list').toggleClass('active');
-
-			$('.side-bar').show();
-			setTimeout('$(".side-bar").addClass("active")', 30);
+			
+			$('.post-side-bar').show().next('.post-black-cover').show();;
+			setTimeout('$(".post-side-bar").addClass("active")', 30);
 			
 		});
 
-		$('.side-bar .black-cover').bind('click', function() {
-			$('.side-bar').removeClass('active');
-			setTimeout('$(".side-bar").hide()', 600);
+		$('.post-side-bar').next('.post-black-cover').bind('click', function() {
+			$(this).hide();
+			$('.post-side-bar').removeClass('active');
+			setTimeout('$(".post-side-bar").hide()', 600);
 		});
 
 		$('.tab-btn').find('button').on('click', function() {

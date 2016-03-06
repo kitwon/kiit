@@ -270,30 +270,29 @@
     @include container-fixed;
     margin-left: $postSideBar-md-width;
     .post-pagination {
-    	width: 80%;
+        width: 80%;
         margin: 0 auto;
         text-align: center;
         padding: 30px 0;
         border-top: 1px solid #ddd;
         a {
-        	display: inline-block;
-        	color: #fff;
-        	background-color: darken($brand-primary, 15%);
-        	font-size: $font-size-small;
-        	padding: 0.2em 0.75em;
-        	border-radius: $border-radius-large;
-        	box-shadow: 0 5px 0 darken($brand-primary, 25%);
-			@include transition(.3s all);
-
-        	&:hover {
-				background-color: darken($brand-primary, 10%);
-        	}
-        	&:active {
-        		background-color: darken($brand-primary, 15%);
-        		color: darken($brand-primary, 30%);
-        		text-shadow: 0 1px rgba(255, 255, 255, 0.4);
-        		box-shadow: 0 2px 0 darken($brand-primary, 25%);
-        	}
+            display: inline-block;
+            color: #fff;
+            background-color: darken($brand-primary, 15%);
+            font-size: $font-size-small;
+            padding: 0.2em 0.75em;
+            border-radius: $border-radius-large;
+            box-shadow: 0 5px 0 darken($brand-primary, 25%);
+            @include transition(.3s all);
+            &:hover {
+                background-color: darken($brand-primary, 10%);
+            }
+            &:active {
+                background-color: darken($brand-primary, 15%);
+                color: darken($brand-primary, 30%);
+                text-shadow: 0 1px rgba(255, 255, 255, 0.4);
+                box-shadow: 0 2px 0 darken($brand-primary, 25%);
+            }
         }
     }
 }
@@ -801,8 +800,10 @@
     position: fixed;
     top: 0;
     bottom: 0;
+    z-index: 199;
     color: $postSideBar-font-color;
     font-size: $font-size-small;
+    @include transition($main-transition);
     a {
         color: $postSideBar-font-color;
         &:hover {
@@ -823,6 +824,18 @@
             }
         }
     }
+}
+
+.post-black-cover {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 0;
+    background-color: #000;
+    @include opacity(0.5);
+    display: none;
 }
 
 .tab-content {
@@ -936,4 +949,25 @@
 
 .fadeInUp {
     @include animation(fadeInUp .5s forwards);
+}
+
+//post media xs
+@media (min-width: $screen-xs-min) {
+    .post-container {
+        margin: 0 auto;
+    }
+    .post-side-bar {
+        display: none;
+        @include translate3d(-100%, 0, 0);
+        width: $postSideBar-xs-width;
+        &.active {
+            @include translate3d(0, 0, 0);
+        }
+    }
+    .page-footer {
+        margin: 0 auto;
+    }
+    .main-nav {
+        padding: 10px;
+    }
 }

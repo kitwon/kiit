@@ -1,5 +1,8 @@
 extends partial/layout
 
+block nav
+	include partial/nav
+
 block sidebar
 	include mixins/sidebar
 	+postSideBar(page)
