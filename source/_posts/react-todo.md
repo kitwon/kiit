@@ -15,7 +15,7 @@ tags:
 
 ### 小科普
 什么是React? 按官方解释，框架属于MVC中的view层，由于其设计思想独特，性能出众，逻辑简单，所以上年开始越来越多人关注。
-至于Webpack，各位官人从名字应该可以猜出，是个打包工具，但又不止是个打包工具，是一个支持模块化的打包工具，两个字就可以形容它的优点了，就是暴力，纠结有多暴力，下面demo就为各位官人揭晓！
+至于Webpack，各位官人从名字应该可以猜出，是个打包工具，但又不止是个打包工具，是一个支持模块化的打包工具，两个字就可以形容它的优点了，就是暴力，究竟有多暴力，下面demo就为各位官人揭晓！
 
 
 ### Demo功能需求
@@ -30,7 +30,7 @@ tags:
 
 ### 开始
 开始需要npm安装一下等下要用的packages，如果是checkout我的demo，就动动手指头，install一下，我的demo地址是[https://github.com/kitwon/react-todo](https://github.com/kitwon/react-todo)
-{% codeblock lang:jsx %}
+{% codeblock lang:bash %}
 $npm install
 {% endcodeblock %}
 
@@ -189,7 +189,7 @@ module.exports = ItemMain;
 {% endcodeblock %}
 
 看这里估计有点蒙，我自己看的时候也有点蒙，因为太久的代码了哈哈哈。
-这个js只有一个循环Item的逻辑，首先看看{...todo}这个prop，这个是把itemList[i]中的[数组对象解构](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)，然后传到item里面，如果没有...这个字符，则需要
+这个js只有一个循环Item的逻辑，首先看看`{...todo}`这个prop，这个是把itemList[i]中的[数组对象解构](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)，然后传到item里面，如果没有...这个字符，则需要
 {% codeblock lang:js %}
 	<Items text={props.text} isDone={props.isDone} key={index} index={index} changeTodoState={proprs.changeTodoState} deleteTodo={props.deleteTodo} />
 {% endcodeblock %}

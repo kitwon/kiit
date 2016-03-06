@@ -11,7 +11,7 @@ var app = {
 		_this.bind();
 	},
 	bind : function() {
-		$('.menu').click(function() {
+		$('.menu').bind('click', function() {
 			// $(this).toggleClass('active');
 			$(this).next('.nav-list').toggleClass('active');
 
@@ -20,10 +20,20 @@ var app = {
 			
 		});
 
-		$('.side-bar .black-cover').bind('click', function(event) {
+		$('.side-bar .black-cover').bind('click', function() {
 			$('.side-bar').removeClass('active');
 			setTimeout('$(".side-bar").hide()', 600);
 		});
+
+		$('.tab-btn').find('button').on('click', function() {
+			app.btn_i = $(this).index() + 1;
+			$('.tab-btn').find('button').removeClass('active');
+			$(this).addClass('active');
+			
+			console.log(app.btn_i);
+			$('#panel' + app.btn_i).siblings().addClass('fadeInUp').removeClass('fadeInDown');
+			setTimeout('$("#panel" + app.btn_i).siblings().removeClass("active fadeInUp");$("#panel" + app.btn_i).addClass("active");$("#panel" + app.btn_i).addClass("fadeInDown")', 600);
+		})
 	}
 };
 app.init();

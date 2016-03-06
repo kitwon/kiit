@@ -1,0 +1,10 @@
+mixin postPagination()
+	.post-pagination
+		- if(page.prev != undefine || page.prev != null)
+			a(href=url_for(page.prev.path))
+				i.ion-arrow-left-c
+				!= page.prev.title
+		- if(page.next)
+			a(href=url_for(page.next.path))
+				!= page.next.title
+				i.ion-arrow-right-c

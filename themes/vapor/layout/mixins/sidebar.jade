@@ -26,4 +26,44 @@ mixin mainSideBar()
 
 mixin postSideBar()
 	.post-side-bar
-		!= toc(page.content, { "class": "nav", list_number: false })
+		.tab-btn
+			button.active 文章目录
+			button 站点导航
+		.tab-content
+			#panel1.side-bar-panel.active
+				!= toc(page.content, { 'class': 'nav', 'list_number': true })
+			#panel2.side-bar-panel
+				ul.post-side-list
+					li
+						div.head
+							img.img-responsive(src=url_for('img/head.jpg'))
+					li.overview
+						a
+							div
+								!= site.posts.length
+							div 日志
+						a.m
+							div
+								!= site.categories.length
+							div 分类
+						a
+							div
+								!= site.tags.length
+							div 标签
+					li
+						a.item(href='/Circle_Talk')
+							i.ion-help-buoy
+							span Home
+						a.item.m(href='/Circle_Talk/archives')
+							i.ion-nuclear
+							span Archives
+						a.item(href='//github.com/kitwon')
+							i.ion-social-github
+							span Github
+		div.cp
+			div ©   2015 - 2016   Kit
+			div
+				span power by 
+				span
+					a(href='//hexo.io') hexo.
+				span Design By Kit.
