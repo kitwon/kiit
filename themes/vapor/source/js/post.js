@@ -31,7 +31,6 @@ var app = {
 			$('.tab-btn').find('button').removeClass('active');
 			$(this).addClass('active');
 			
-			console.log(app.btn_i);
 			$('#panel' + app.btn_i).siblings().addClass('fadeInUp').removeClass('fadeInDown');
 			setTimeout('$("#panel" + app.btn_i).siblings().removeClass("active fadeInUp");$("#panel" + app.btn_i).addClass("active");$("#panel" + app.btn_i).addClass("fadeInDown")', 600);
 		})
