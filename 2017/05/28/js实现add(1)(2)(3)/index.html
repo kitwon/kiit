@@ -1,0 +1,37 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta content="width=device-width, initial-scale=1.0,  user-scalable=0" name="viewport"><link rel="stylesheet" href="/kiit/css/index.min.css"></head><body><nav class="nav-button-list"><div class="btn menu show-canvas"><span class="icon-bar"></span></div><div class="btn top btn-go-top"><i class="ion-ios-arrow-up"></i></div></nav><div class="off-canvas-wrap"><div class="off-canvas-content"><main class="post-container"><div class="post"><header class="post-header"><h1 class="post-title">js实现add(1)(2)(3)</h1><section class="post-meta"><i class="ion-ios-clock-outline"></i><time class="post-date">May 28, 2017</time><span class="dot-sep">·</span><i class="ion-ios-pricetags-outline"></i></section></header><article data-spy="scroll" data-target="panel1" class="content"><p>之前在YY面试的时候遇到过的一题: 实现add(1)(2)(3)，返回6，注意可拓展性。<br>当时第一反应就是用递归实现</p>
+<p></p><p class="code-caption" data-lang="javascript" data-line_number="backend" data-trim_indent="backend" data-label_position="outer" data-labels_left="Code" data-labels_right=":" data-labels_copy="Copy Code"><span class="code-caption-label"></span></p><p></p>
+<pre><code class="javascript">function add(x) {
+    var fn = function(y) {
+        return add(x + y);
+    }
+
+    return fn;
+}
+
+console.log(add(1)(2)(3))
+</code></pre>
+<p>这样写是可以实现调用方式，但是怎么<code>return x</code>呢，回来想还是一脸懵逼，于是上网找了点其他人的实现方式，发现他们是重写了<code>object</code>的<code>valueOf</code>和<code>toString</code>的方法。然后再跑了一遍。</p>
+<p></p><p class="code-caption" data-lang="javascript" data-line_number="backend" data-trim_indent="backend" data-label_position="outer" data-labels_left="Code" data-labels_right=":" data-labels_copy="Copy Code"><span class="code-caption-label"></span></p><p></p>
+<pre><code class="javascript">function add(x) {
+    var fn = function(y) {
+        return add(x + y);
+    }
+
+    fn.toString = function() {
+        return x;
+    }
+
+    return fn;
+}
+
+
+// chrome  function 6
+// firefox function add/fn
+// node    { [Number: 6] toString: [Function], valueOf: [Function] }
+console.log(add(1)(2)(3))
+
+console.log(add(1)(2)(3).toString()) // 6
+</code></pre>
+<p>由此看出在不同客户端下返回的结果并不一样，并不是完美的结果，但是查阅了其他资料并没有其他十分好的解决办法，估计这道题的考查点是关于js深度的，比如原生对象里面的基本方法和<code>alert</code>, <code>console</code>会自动执行toString等方法。</p>
+<p>另外，<code>valueOf</code>和<code>toString</code>方法其实是差不多的，返回的结果基本都是相同的，但是试了一下定义了两个不同的方法，发现总是会返回valueOf的值先，所以觉得toString应该是应用于valueOf的结果。</p>
+</article></div></main><div class="page-footer"><div class="post-pagination"><a href="/kiit/2017/05/17/Promise的简单实现/">Promise的简单实现<i class="ion-arrow-right-c"></i></a></div></div><div class="cp"><div>©   2015 - 2016   Kit</div><div><span>power by </span><span><a href="//hexo.io">hexo.</a></span><span>Design By Kit.</span></div></div></div><div class="off-canvas"><div id="post-side-bar" class="post-side-bar"><div class="tab-btn"><button class="tab-item active">文章目录</button><button class="tab-item">站点导航</button></div><div class="tab-content"><div id="panel1" class="side-bar-panel active"></div><div id="panel2" class="side-bar-panel"><ul class="post-side-list"><li><div class="head"><img src="/kiit/img/head.jpg" class="img-responsive"></div></li><li class="overview"><a><div>6</div><div>日志</div></a><a class="m"><div>3</div><div>分类</div></a><a><div>5</div><div>标签</div></a></li><li><a href="/Circle_Talk" class="item"><i class="ion-help-buoy"></i><span>Home</span></a><a href="/Circle_Talk/archives" class="item m"><i class="ion-nuclear"></i><span>Archives</span></a><a href="//github.com/kitwon" class="item"><i class="ion-social-github"></i><span>Github</span></a></li></ul></div></div></div></div></div><script src="/kiit/js/vendor.min.js"></script><script src="/kiit/js/post.min.js"></script></body></html>
