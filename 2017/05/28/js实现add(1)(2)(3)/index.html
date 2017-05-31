@@ -10,6 +10,7 @@
 
 console.log(add(1)(2)(3))
 </code></pre>
+<a id="more"></a>
 <p>这样写是可以实现调用方式，但是怎么<code>return x</code>呢，回来想还是一脸懵逼，于是上网找了点其他人的实现方式，发现他们是重写了<code>object</code>的<code>valueOf</code>和<code>toString</code>的方法。然后再跑了一遍。</p>
 <p></p><p class="code-caption" data-lang="javascript" data-line_number="backend" data-trim_indent="backend" data-label_position="outer" data-labels_left="Code" data-labels_right=":" data-labels_copy="Copy Code"><span class="code-caption-label"></span></p><p></p>
 <pre><code class="javascript">function add(x) {
