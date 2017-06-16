@@ -1,0 +1,171 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta content="width=device-width, initial-scale=1.0,  user-scalable=0" name="viewport"><title>KIT</title><link rel="stylesheet" href="/css/index.min.css"></head><body><nav class="nav-button-list"><div class="btn menu show-canvas"><span class="icon-bar"></span></div><div class="btn top btn-go-top"><i class="ion-ios-arrow-up"></i></div></nav><div class="off-canvas-wrap"><div class="off-canvas-content"><main class="post-container"><div class="post"><header class="post-header"><h1 class="post-title">深入学习javascript-闭包</h1><section class="post-meta"><i class="ion-ios-clock-outline"></i><time class="post-date">Jun 14, 2017</time><span class="dot-sep">·</span><i class="ion-ios-pricetags-outline"></i><a href="/tags/javascript/">javascript</a></section></header><article data-spy="scroll" data-target="panel1" class="content"><h1 id="什么是闭包"><a href="#什么是闭包" class="headerlink" title="什么是闭包"></a>什么是闭包</h1><p>记得刚开始用js的时候就听过闭包这个概念，一开始觉得只是一个语言特性，没有太深入了解，网上查资料的解释一般是：函数有权访问另一个函数作用域中变量的函数，最容易生成闭包的方式一般是函数里面套函数。</p>
+<blockquote>
+<p>当函数可以记住并访问所在的词法作用域时，就产生了闭包，即使函数是在当前词法作用域外执行。<br>— 你不知道的javascript（上卷）</p>
+</blockquote>
+<a id="more"></a>
+<p>然后看个例子</p>
+<p></p><p class="code-caption" data-lang="javascript" data-line_number="backend" data-trim_indent="backend" data-label_position="outer" data-labels_left="Code" data-labels_right=":" data-labels_copy="Copy Code"><span class="code-caption-label"></span></p><p></p>
+<pre><code class="javascript">function foo() {
+    var a = 2;
+
+    funtion bar() {
+        console.log(a);
+    }
+
+    bar();
+}
+
+foo();
+</code></pre>
+<p>如果按上面第一条的定义，这里一定是生成了闭包，但是<strong>确切的说并不是</strong>，这里最准确的说是<code>bar</code>对<code>a</code>的引用方式是词法作用域的查找规则，而这些只是<strong>闭包</strong>的一部分。然后再看清晰闭包的例子</p>
+<p></p><p class="code-caption" data-lang="javascript" data-line_number="backend" data-trim_indent="backend" data-label_position="outer" data-labels_left="Code" data-labels_right=":" data-labels_copy="Copy Code"><span class="code-caption-label"></span></p><p></p>
+<pre><code class="javascript">fucntion foo() {
+    var a = 2;
+
+    function bar() {
+        console.log(a)
+    }
+
+    return bar;
+}
+
+var baz = foo()；
+
+baz(); // 这就是闭包效果
+</code></pre>
+<p>在这例子中，<code>bar</code>也是在<code>foo</code>的作用域内，但是不是直接执行，而是作为返回值返回。<br><code>foo()</code>执行后，返回值<code>bar</code>赋值给<code>baz</code>并执行<code>baz()</code>，在这里，<code>bar()</code>显然可以正常执行，它在自己定义的词法作用域<strong>以外</strong>的地方。</p>
+<p>在<code>foo()</code>执行之后，按js的垃圾回收机制，应该会对其进行回收，而闭包的神奇之处就是可以阻止这事情发生，因此<code>baz()</code>在执行的时候依然可以访问<code>a</code>。在此一看，原来平时写的大多数代码都是闭包啊。</p>
+<p></p><p class="code-caption" data-lang="javascript" data-line_number="backend" data-trim_indent="backend" data-label_position="outer" data-labels_left="Code" data-labels_right=":" data-labels_copy="Copy Code"><span class="code-caption-label"></span></p><p></p>
+<pre><code class="javascript">function foo() {
+    var a = 2;
+
+    function bar() {
+        console.log(a);
+    }
+
+    baz(bar);
+}
+
+function baz(fn) {
+    fn &amp;&amp; fn(); // 这里也是闭包
+}
+</code></pre>
+<h1 id="闭包与变量"><a href="#闭包与变量" class="headerlink" title="闭包与变量"></a>闭包与变量</h1><p>要说明闭包，for循环也是一个很好的例子</p>
+<p></p><p class="code-caption" data-lang="javascript" data-line_number="backend" data-trim_indent="backend" data-label_position="outer" data-labels_left="Code" data-labels_right=":" data-labels_copy="Copy Code"><span class="code-caption-label"></span></p><p></p>
+<pre><code class="javascript">for(var i = 1; i &lt;= 10; i++) {
+    setTimeout(function timer() {
+        console.log(i)
+    }, i * 1000)
+}
+</code></pre>
+<p>正常情况下，我们会预期的认为这段会每秒输出1～10，但实际，这段代码会<strong>每秒输出10次11</strong>。</p>
+<p>首先<strong>11</strong>是那里来的，这个循环应该是在<code>i=11</code>的时候符合终止条件，所以代码输出的是循环结束时<strong>i</strong>的最终值。</p>
+<p>细想一下，答案其实显而易见，<strong>setTimeout</strong>会推到栈底部执行，所以会在循环结束后才开始执行，所以每次都是输出<strong>11</strong>。但是什么问题造成这样的结果呢。</p>
+<p>虽然<strong>setTimeout</strong>都是在每个迭代时候分别定义的，但是根据作用域原理，其实几个函数都是都是<strong>保存在一个封闭的作用域中</strong>，因此它们引用都是同一个<strong>来自全局的i</strong>。</p>
+<p>所以解决方法也很简单，我们需要每次循环都新建一个作用域，然后把迭代的值传入作用域中，所以我们可以用<strong>IIFE</strong>（上一篇作用域有介绍，IIFE是一个匿名函数，每次调用都会创建作用域）来解决</p>
+<p></p><p class="code-caption" data-lang="javascript" data-line_number="backend" data-trim_indent="backend" data-label_position="outer" data-labels_left="Code" data-labels_right=":" data-labels_copy="Copy Code"><span class="code-caption-label"></span></p><p></p>
+<pre><code class="javascript">for(var i = 1; i &lt;= 10; i++) {
+    (function(j) {
+        setTimeout(function timer() {
+            console.log(j)
+        }, j * 1000)
+    })(i)
+}
+
+// 换成ES6中的let也可以
+for(let i = 1; i &lt;= 10; i++) {
+    setTimeout(function timer() {
+        console.log(i)
+    }, i * 1000)
+}
+</code></pre>
+<h1 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h1><p>闭包除了平时实现的回调功能外，还可以实现另外一个强大的功能，<strong>模块</strong>。<br>旧的模块实现方式，如jQuery就可以使用闭包实现</p>
+<p></p><p class="code-caption" data-lang="javascript" data-line_number="backend" data-trim_indent="backend" data-label_position="outer" data-labels_left="Code" data-labels_right=":" data-labels_copy="Copy Code"><span class="code-caption-label"></span></p><p></p>
+<pre><code class="javascript">var $ = jQuery = (function Module(id) {
+    var a = 2;
+
+    function doSomething() {
+        console.log(a);
+    }
+
+    function identify1() {
+        console.log(id);
+    }
+
+    function identify2() {
+        console.log(id.toUpperCase());
+    }
+
+    function change() {
+        public.identify = identify2;
+    }
+
+    var public = {
+        doSomething: doSomething,
+        identify: identify1,
+        change: change
+    }
+
+    return public;
+})(&#39;hello&#39;)
+
+$.doSomething() // 2
+$.identify() // hello
+$.change()
+$.identify() // HELLO
+</code></pre>
+<p>如果不用单例的话不用<strong>IIFE</strong>即可，通过在模块内保留对公共API的引用，可以从<strong>内部</strong>对模块实例进行修改，包括添加，删除，修改属性或者方法。</p>
+<h2 id="现代的模块机制"><a href="#现代的模块机制" class="headerlink" title="现代的模块机制"></a>现代的模块机制</h2><p>现在大部分的模块加载器本质上都是将这种模块定义封装进API中，如下代码</p>
+<p></p><p class="code-caption" data-lang="javascript" data-line_number="backend" data-trim_indent="backend" data-label_position="outer" data-labels_left="Code" data-labels_right=":" data-labels_copy="Copy Code"><span class="code-caption-label"></span></p><p></p>
+<pre><code class="javascript">var Module = (function Manager() {
+    var modules = {};
+
+    function define(name, deps, impl) {
+        for(var i = 0; i &lt; deps.length; i++) {
+            // 在modules中寻找名字为deps[i]的模块
+            deps[i] = modules[deps[i]];
+        }
+        // 将依赖的模块作为arguments传入module中
+        modules[name] = impl.apply(impl, deps);
+    }
+
+    function require(name) {
+        return modules[name];
+    }
+
+    return {
+        define: define,
+        require: require
+    }
+})()
+</code></pre>
+<p>这段代码核心在<code>module[name] = impl.apply(impl, deps)</code>中，模块都按名字保存在<code>modules</code>变量中，每次都能根据获取相关模块。下面看看使用方式。</p>
+<p></p><p class="code-caption" data-lang="javascript" data-line_number="backend" data-trim_indent="backend" data-label_position="outer" data-labels_left="Code" data-labels_right=":" data-labels_copy="Copy Code"><span class="code-caption-label"></span></p><p></p>
+<pre><code class="javascript">Module.define(&#39;foo&#39;, [], function() {
+    function hello(who) {
+        return &#39;Hello &#39; + who;    
+    }
+
+    return {
+        hello: hello
+    }
+})
+
+Module.define(&#39;bar&#39;, [&#39;foo&#39;], function(foo) {
+    function awsome() {
+        return foo.hello(&#39;kit&#39;).toUpperCase();
+    }
+
+    return {
+        awsome: awsome
+    }
+})
+
+var foo = Module.require(&#39;foo&#39;),
+    bar = Module.require(&#39;bar&#39;);
+
+foo.hello(&#39;kit&#39;); // Hello kit
+bar.awsome() // HELLO KIT
+</code></pre>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>从上面可以知道，平时写的js大部分代码都使用了闭包，通过了解闭包和作用域的运行方式，能够减少平时使用的出现的错误。也能通过闭包，使用js实现模块化等其他更多的功能。</p>
+</article></div></main><div class="page-footer"><div class="post-pagination"><a href="/2017/06/11/用python写一个简单爬虫/">用python写一个简单爬虫<i class="ion-arrow-right-c"></i></a></div></div><div class="cp"><div>©   2015 - 2016   Kit</div><div><span>power by </span><span><a href="//hexo.io">hexo.</a></span><span>Design By Kit.</span></div></div></div><div class="off-canvas"><div id="post-side-bar" class="post-side-bar"><div class="tab-btn"><button class="tab-item active">文章目录</button><button class="tab-item">站点导航</button></div><div class="tab-content"><div id="panel1" class="side-bar-panel active"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是闭包"><span class="nav-number">1.</span> <span class="nav-text">什么是闭包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#闭包与变量"><span class="nav-number">2.</span> <span class="nav-text">闭包与变量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模块"><span class="nav-number">3.</span> <span class="nav-text">模块</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#现代的模块机制"><span class="nav-number">3.1.</span> <span class="nav-text">现代的模块机制</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div><div id="panel2" class="side-bar-panel"><ul class="post-side-list"><li><div class="head"><img src="/img/head.jpg" class="img-responsive"></div></li><li class="overview"><a><div>9</div><div>日志</div></a><a class="m unopen"><div>4</div><div>分类</div></a><a><div>7</div><div>标签</div></a></li><li><a href="/" class="item"><i class="ion-help-buoy"></i><span>Home</span></a><a href="/archives" class="item m"><i class="ion-nuclear"></i><span>Archives</span></a><a href="//github.com/kitwon" class="item"><i class="ion-social-github"></i><span>Github</span></a></li></ul></div></div></div></div></div><script src="/js/vendor.min.js"></script><script src="/js/post.min.js"></script></body></html>
