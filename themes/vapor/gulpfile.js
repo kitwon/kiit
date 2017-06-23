@@ -1,48 +1,91 @@
-var gulp = require('gulp');
+const gulp = require('gulp'),
+	path = require('path');
 
 //加载所需插件
-var rimraf = require('gulp-rimraf'),
-	cssnano = require('gulp-cssnano'),
+const cssnano = require('gulp-cssnano'),
 	rename = require('gulp-rename'),
 	concat = require('gulp-concat'),
-	copy = require('gulp-copy'),
+	include = require('gulp-include'),
 	uglify = require('gulp-uglify'),
+	prefix = require('gulp-autoprefixer'),
+	plumber = require('gulp-plumber'),
 	sass = require('gulp-sass');
+
+const glob = require('glob');
+
+const filepath = {
+	scss: path.join(__dirname, 'src/scss/*(index|bootstrap).scss'),
+	js: path.join(__dirname, 'src/js/*.js'),
+	plugin: path.join(__dirname, 'src/js/plugins/*.js'),
+	// vendor: path.join(__dirname, 'src/js/vendor/*.js'),
+	vendor: function() {
+		var filepath = [];
+		var arr = glob.sync(path.join(__dirname, 'src/js/vendor/*.js'))
+
+		for(let i = arr.length-1; i >= 0; i--) {
+			if(arr[i].indexOf('jquery') !== -1) {
+				filepath.unshift(arr[i])
+			}else {
+				filepath.push(arr[i])
+			}
+		}
+		return filepath;
+	}
+}
 
 // mac task: sass编译
 gulp.task('sass', function() {
-	gulp.src('./source/scss/index.scss')
-	.pipe(sass())
-	.pipe(gulp.dest('./source/css/'))
-})
-
-
-gulp.task('css', function() {
-	gulp.src('./source/css/index.css')
+	gulp.src(filepath.scss)
+		.pipe(plumber())
+		.pipe(sass())
+		.pipe(prefix('last 3 version'))
 		.pipe(rename({suffix: '.min'}))
 		.pipe(cssnano())
 		.pipe(gulp.dest('./source/css'))
 })
 
+
+// gulp.task('css', function() {
+// 	gulp.src('./source/css/index.css')
+// 		.pipe(rename({suffix: '.min'}))
+// 		.pipe(cssnano())
+// 		.pipe(gulp.dest('./source/css'))
+// })
+
 gulp.task('javascripts', function() {
-	gulp.src(['./source/js/index.js', './source/js/post.js'])
-		.pipe(rename({suffix: '.min'}))
+	gulp.src(filepath.js)
+		.pipe(plumber())
+		.pipe(include())
+		// .pipe(concat('main.js'))
 		.pipe(uglify())
+		.pipe(rename({suffix: '.min'}))
+		.pipe(gulp.dest('./source/js'))
+})
+gulp.task('vendorJs', function() {
+	gulp.src(filepath.vendor())
+        .pipe(include())
+		.pipe(concat('vendor.js'))
+		.pipe(uglify())
+		.pipe(rename({suffix: '.min'}))
+		.pipe(gulp.dest('./source/js'))
+})
+gulp.task('pluginJs', function() {
+	gulp.src(filepath.plugin)
+		.pipe(rename({suffix: '.min'}))
+		.pipe(concat('plugin.js'))
+		// .pipe(uglify())
 		.pipe(gulp.dest('./source/js'))
 })
 
-//清除文档
-gulp.task('rimraf', function() {
-	// return gulp.src(['./source/css/＊.css'], {read: false})
-	// .pipe(rimraf({force: true}))
-})
 
 //运行gulp\监听文件
 gulp.task('develop', function() {
-	gulp.start('sass', 'css', 'javascripts');
-	gulp.watch(['./source/scss/*', './source/scss/**/*'], ['sass']);
-	gulp.watch(['./source/css/index.css'], ['css']);
-	gulp.watch(['./source/js/index.js', './source/js/post.js'], ['javascripts']);
+	gulp.start('sass', 'javascripts', 'vendorJs');
+
+	gulp.watch(path.join(__dirname, 'src/scss/**/**/*'), ['sass']);
+	gulp.watch([filepath.js], ['javascripts']);
+	gulp.watch([filepath.vendor()], ['vendorJs']);
+	// gulp.watch([filepath.plugin], ['pluginJs']);
 })
 
-gulp.task('default',['rimraf', 'develop']);
+gulp.task('default',['develop']);

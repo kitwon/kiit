@@ -2,9 +2,7 @@
 
 menu:
     Home: /
-    Archives: /archives/
-    About: /about/
-    Copyright: /copyright/
+    Archives: /archives
     github: https://github.com/kitwon
 
 rss: /atom.xml

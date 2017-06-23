@@ -1,6 +1,6 @@
 title: React-todo demo
 date: 2016-03-02 16:07:12
-categories: 
+category: 
 - 前端
 tags:
 - React
@@ -30,14 +30,14 @@ tags:
 
 ### 开始
 开始需要npm安装一下等下要用的packages，如果是checkout我的demo，就动动手指头，install一下，我的demo地址是[https://github.com/kitwon/react-todo](https://github.com/kitwon/react-todo)
-{% codeblock lang:bash %}
+``` bash
 $npm install
-{% endcodeblock %}
+```
 
 
 #### 配置webpack
 所有东西安装完成之后首先就是配置[webpack](http://webpack.github.io/docs/)
-{% codeblock lang:js %}
+``` javascript
 var path = require('path');
 
 module.exports = {
@@ -59,14 +59,14 @@ module.exports = {
 		]
 	}
 }
-{% endcodeblock %}
+```
 
 从上面可以看到，webpack的入口文件是entry.js，打包输出的文件是bundle.js，external属性是告诉webpack，当API已经存在的时候，使用全局变量，并不作任何操作。
 
 loader的话没啥，看文档就知道，各种编译打包。具体使用方法可以看官方文档。
 
 #### 上代码
-{% codeblock App.js lang:js %}
+``` javascript
 var React = require('React'),
 	ReactDOM = require('react-dom');
 
@@ -147,7 +147,7 @@ var App = React.createClass ({
 })
 
 ReactDOM.render(<App/>, document.getElementById("app"));  //渲染
-{% endcodeblock %}
+```
 
 从代码上面可以看到各种require，没加载commonjs、seajs或其他模块化工具，为什么能直接require呢，而且还有require less，没错，webpack就是那么暴力！js后面都会打包好一个文件，样式都会加载到html里面，做spa时候，和react简直绝配。
 
@@ -155,15 +155,15 @@ ReactDOM.render(<App/>, document.getElementById("app"));  //渲染
 React主流思想就是父组件控制state，然后通过props传递给子组建，所以简单来说界面就像状态机，只要更新state，然后根据新的state重新渲染界面，不需要操作dom，所以react高性能原因也是因为这个。
 从最上代码就可以看出父组件中的定义的方法基本是整个todo的功能了，然后render方法即渲染html和组件。
 
-{% codeblock lang:js %}
+``` javascript
 <ItemMain itemList={this.state.todoItem} changeTodoState={this.changeTodoState} deleteTodo={this.deleteTodo} />
-{% endcodeblock %}
+```
 
 然后取一小段渲染组件代码（上面代码）就可发现，父组件向ItemMain这个组件传了4个属性，其中itemList为state，只要todoItem一更新，react就会重新渲染这个组件，其他三个为方法，方法更新也会重新渲染组件。
 
 
-{% codeblock ItemMain.js lang:js %}
-
+``` javascript
+// ItemMain.js
 var React = require('React');
 var Items = require('./Items');
 
@@ -186,17 +186,17 @@ var ItemMain = React.createClass({
 })
 
 module.exports = ItemMain;
-{% endcodeblock %}
+```
 
 看这里估计有点蒙，我自己看的时候也有点蒙，因为太久的代码了哈哈哈。
 这个js只有一个循环Item的逻辑，首先看看`{...todo}`这个prop，这个是把itemList[i]中的[数组对象解构](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)，然后传到item里面，如果没有...这个字符，则需要
-{% codeblock lang:js %}
+``` javascript
 	<Items text={props.text} isDone={props.isDone} key={index} index={index} changeTodoState={proprs.changeTodoState} deleteTodo={props.deleteTodo} />
-{% endcodeblock %}
+```
 具体数据大家可以在代码里面console打印一下，这样印象会更深。
 
-{% codeblock Item.js lang:js %}
-
+``` javascript
+// item.js
 var React = require('React');
 
 var Items = React.createClass({
@@ -221,17 +221,18 @@ var Items = React.createClass({
 
 module.exports = Items;
 
-{% endcodeblock %}
+```
 
 这个就是js里面有两个方法，一个是改变状态，一个是删除当前todo，这这能发现，两个方法都是执行了又父组件传过来的方法，如下
-{% codeblock lang:js %}
+``` javascript
 this.props.changeTodoState(this.props.index, isDone);
-{% endcodeblock %}
+```
 
 执行这个函数，state就会更新，react就会根据状态重新渲染组件
 
 #### 其他组件
-{% codeblock AppHeader.js lang:js %}
+``` javascript
+// AppHeader.js
 var React = require('React');
 
 var AppHeader = React.createClass({
@@ -277,10 +278,11 @@ var AppHeader = React.createClass({
 })
 
 module.exports = AppHeader;
-{% endcodeblock %}
+```
 
 
-{% codeblock AppHeader.js lang:js %}
+``` javascript
+// AppHeader.js
 var React = require('React');
 
 var AppFooter = React.createClass({
@@ -304,7 +306,7 @@ var AppFooter = React.createClass({
 })
 
 module.exports = AppFooter;
-{% endcodeblock %}
+```
 
 Header Footer的方法都是大同小异，输入改变state，然后存起来，执行相应操作时候通过props的方法传给父组件，然后重新渲染界面。
 

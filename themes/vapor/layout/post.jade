@@ -1,20 +1,19 @@
 extends partial/layout
 
-block nav
-	include partial/nav
 
-block sidebar
-	include mixins/sidebar
-	+postSideBar(page)
 
-block container
-	include mixins/post
-	+post(page)
-	include mixins/pagination
+block left-sidebar
+    include mixins/cards
+    +directory-card(page.content)
 
-block footer
-	.page-footer
-		+postPagination(page)
+block main-content
+    .post-detail-wrap.content-wrap
+        include mixins/post
+        +post(page)
+            
+        .page-footer
+            include mixins/pagination
+            +postPagination(page)
 
 block script
-	script(src=url_for('js/post.min.js'))
+    script(src=url_for("js/post.min.js"))

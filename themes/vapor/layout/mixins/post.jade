@@ -12,37 +12,39 @@ mixin tag(tags)
 
 mixin posts()
 	- page.posts.each(function(item) {
-		article.post
+		article.post.post-list
 			header.header
-				h2
-					a(href=url_for(item.path))
-						!= item.title
-			section.excerpt
 				a(href=url_for(item.path))
-					!= item.excerpt
-			footer.footer
-				span.user-img
-					img.img-responsive(src=url_for('img/daniel.jpg'))
-				span Kit
-				span.dot-sep  · 
-				+categorie(item.categories)
-				span.dot-sep  · 
-				time
-					!= full_date(item.date, 'll')
+					!= item.title
+
+			section.info
+				div.item
+					i.ion-android-calendar
+					span 发表于 #{full_date(item.date, 'll')}
+				div.item
+					i.ion-android-folder-open
+					span 分类于 
+						+categorie(item.categories)
+				
+			section.excerpt
+				!= item.excerpt
+
+			a.readmore(href=url_for(item.path)) read more
 	- })
 
+
 mixin post(item) 
-	main.post-container
-		.post
-			header.post-header
-				h1.post-title
-					!= item.title
-				section.post-meta
-					i.ion-ios-clock-outline
-					time.post-date
-						!= full_date(item.date, 'll')
-					span.dot-sep ·
-					i.ion-ios-pricetags-outline
-					+tag(item.tags)
-			article.content
-				!= item.content
+	main.post.post-detail
+		.post-header
+			.header
+				!= item.title
+			section.info
+				div.item
+					i.ion-android-calendar
+					span 发表于 #{full_date(item.date, 'll')}
+				div.item
+					i.ion-android-folder-open
+					span 分类于 
+						+categorie(item.categories)
+		article.content(data-spy='scroll', data-target='panel1')
+			!= item.content

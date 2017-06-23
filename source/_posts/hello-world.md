@@ -1,8 +1,6 @@
 title: Hello World!
 categories: 
 - 其他
-tags:
-- 闲话
 ---
 
 由于本人写作水平还停在高中阶段，写得不好的话，你来打我啊。

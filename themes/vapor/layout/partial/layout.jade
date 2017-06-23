@@ -1,18 +1,33 @@
 doctype html
 html
-	head
-		meta(charset='UTF-8')
-		meta(content='width=device-width, initial-scale=1.0,  user-scalable=0', name='viewport')
-		script(src=url_for('js/vendor/modernizr-2.6.2.min.js'))
-		block style
-			link(rel='stylesheet', href=url_for('css/index.min.css'))
-	body
-		block nav
-		block sidebar
-		block header
-		block container
-		block footer
+    head
+        meta(charset='UTF-8')
+        meta(content='width=device-width, initial-scale=1.0,  user-scalable=0', name='viewport')
+        title KIT
+        
+        block style
+            link(rel='stylesheet', href=url_for('css/bootstrap.min.css'))
+            link(rel='stylesheet', href=url_for('css/index.min.css'))
+    body
+        block nav-button
+            include nav-button
+            
+        block page-head
+        
+        div.main-wrap
+            div.container
+                div.row
+                    div.col-lg-3.side-bar-left
+                        div.sidebar-content
+                            include ../mixins/sidebar
+                            +mainSideBar()
+                            block left-sidebar
 
-		script(src='http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js')
-		script window.jQuery || document.write('<script src="js/vendor/jquery-1.9.0.min.js"><\/script>')
-		block script
+                    div.col-lg-9.main-content
+                        block main-content
+
+            block footer
+                include footer
+                
+        script(src=url_for('js/vendor.min.js'))
+        block script
