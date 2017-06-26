@@ -2,7 +2,6 @@
 <h1 id="从webpack1中迁移"><a href="#从webpack1中迁移" class="headerlink" title="从webpack1中迁移"></a>从webpack1中迁移</h1><p>官方已经给出了详细的<a href="https://webpack.js.org/guides/migrating/" target="_blank" rel="external">迁移指南</a>，改动并不是很大，但是优化却蛮多的，如编译速度，代码优化等。如果你的项目正在用webpack，那么这个新版本还是挺值得迁移的。</p>
 <h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>如果升级webpack之后直接运行命令的话应该会看到一片红的，可以看出配置项有改动，下面整理一下经常使用地方的改动。</p>
 <h3 id="module-loaders变成module-rules"><a href="#module-loaders变成module-rules" class="headerlink" title="module.loaders变成module.rules"></a><code>module.loaders</code>变成<code>module.rules</code></h3><p>旧的<code>module.loader</code>被<code>module.rules</code>取代，后者允许配置<code>loader</code>更多选项，具体查看文档<a href="https://webpack.js.org/configuration/module/#module-rules" target="_blank" rel="external">module.rules</a></p>
-<a id="more"></a>
 <p></p><p class="code-caption" data-lang="javascript" data-line_number="backend" data-trim_indent="backend" data-label_position="outer" data-labels_left="Code" data-labels_right=":" data-labels_copy="Copy Code"><span class="code-caption-label"></span></p><p></p>
 <pre><code class="javascript">// ...
 mdoule: {
@@ -28,6 +27,8 @@ mdoule: {
 }
 // ...
 </code></pre>
+<a id="more"></a>
+<p></p><p class="code-caption" data-lang="javascript" data-line_number="backend" data-trim_indent="backend" data-label_position="outer" data-labels_left="Code" data-labels_right=":" data-labels_copy="Copy Code"><span class="code-caption-label"></span></p><p></p>
 <pre><code class="javascript">// ...
 module: {
     rules: {
@@ -36,7 +37,6 @@ module: {
     }
 }
 // ...
-&lt;p class=&quot;code-caption&quot; data-lang=&quot;&quot; data-line_number=&quot;backend&quot; data-trim_indent=&quot;backend&quot; data-label_position=&quot;outer&quot; data-labels_left=&quot;Code&quot; data-labels_right=&quot;:&quot; data-labels_copy=&quot;Copy Code&quot;&gt;&lt;span class=&quot;code-caption-label&quot;&gt;&lt;/span&gt;&lt;/p&gt;
 </code></pre>
 <p>除上面两项外还有</p>
 <ul>
@@ -50,6 +50,7 @@ module: {
 <li><code>UglifyJsPlugin</code>的<code>compress.warnings</code>配置项现在默认为<code>false</code>而不是<code>true</code>。</li>
 </ul>
 <h3 id="ExtractTextWebpackPlugin"><a href="#ExtractTextWebpackPlugin" class="headerlink" title="ExtractTextWebpackPlugin"></a><code>ExtractTextWebpackPlugin</code></h3><p>插件变化主要体现在语法上，又原来的单个参数传变成了对象，现在的配置方式如下</p>
+<p></p><p class="code-caption" data-lang="javascript" data-line_number="backend" data-trim_indent="backend" data-label_position="outer" data-labels_left="Code" data-labels_right=":" data-labels_copy="Copy Code"><span class="code-caption-label"></span></p><p></p>
 <pre><code class="javascript">// ExtractTextPlugin.extract
 module: {
     rules: [
