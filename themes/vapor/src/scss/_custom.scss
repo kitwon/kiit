@@ -566,7 +566,7 @@ blockquote {
 
 		.nav-item {
 			&.active {
-				.nav-link {
+				> .nav-link {
 					color: $brand-primary;
 					text-decoration: underline;
 				}
@@ -574,6 +574,9 @@ blockquote {
 			}
 		}
 
+        .nav-child {
+            padding-left: 1rem;
+        }
 
 		> ol {
 			padding: 0;

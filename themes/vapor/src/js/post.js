@@ -9,21 +9,23 @@
 			// 	active: $('.directory').find('.nav-link').length > 1
 			// })
 
-			$('body').scrollspy({
-				target: '.directory'
-			})
 
+            $('body').scrollspy({
+				target: '.directory',
+                offset: 150
+			})
 			self.pinCard();
 
 			self.bind();
 		},
 		scrollToPos: function(elm) {
-			window.onload = function() {
+			setTimeout(function() {
 				if(typeof elm === 'object') {
 					elm.each(function(k, v) {
 						var target = $(this).attr('href')
 						var pos = $(target)[0].offsetTop;
 
+                        console.log(pos)
 
 						$(this).on('click', function(e) {
 							$('html,body').animate({scrollTop: pos}, 500);
@@ -31,7 +33,7 @@
 						})
 					})
 				}
-			}
+			}, 0)
 		},
 		pinCard: function() {
 			var card = $('.directory-card');
