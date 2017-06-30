@@ -1,4 +1,32 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta content="width=device-width, initial-scale=1.0,  user-scalable=0" name="viewport"><title>KIT</title><link rel="stylesheet" href="/css/bootstrap.min.css"><link rel="stylesheet" href="/css/index.min.css"></head><body><nav class="nav-button-list"><div class="btn menu show-canvas"><span class="icon-bar"></span></div><div class="btn top btn-go-top"><i class="ion-arrow-up-c"></i><span class="scroll-percentage">0%</span></div></nav><div class="container-fluid page-header"><div class="header"><p class="first">hi Babe</p><p class="second">look at this kingdom. i conquered for thee.</p><span class="third">kit's note</span></div><div class="background"></div></div><div class="main-wrap"><div class="container"><div class="row"><div class="col-lg-3 side-bar-left"><div class="sidebar-content"><div class="main-side-bar"><div class="header"><p>爱好上班，特长加班</p><p>求职中</p><p>catslove28@163.com</p></div><nav class="side-bar-nav"><a href="/" class="item"><span>首页</span></a><a href="/archives" class="item m"><span>归档</span></a><a href="/tags" class="item last unopen"><span>标签</span></a></nav></div><div class="card user-card"><div class="user-image"><img src="/img/head.jpeg" class="img-fluid"></div><div class="user-info"><div class="user-name">kitwang chan</div><div class="user-other">frontend/UI designer</div></div><div class="overview"><span><i>10</i><br/> 日志</span><span class="m"><i>4</i><br/> 分类</span><span><i>8</i><br/> 标签</span></div></div></div></div><div class="col-lg-9 main-content"><div class="post-wrap content-wrap index-post-wrap"><article class="post post-list"><header class="header"><a href="/2017/06/24/webpack2新特性&amp;迁移/">webpack2新特性&迁移</a></header><section class="info"><div class="item"><i class="ion-android-calendar"></i><span>发表于 2017年6月24日</span></div><div class="item"><i class="ion-android-folder-open"></i><span>分类于 </span></div></section><section class="excerpt"><p>webpack2已经发布了好一段时间了。但是因为之前工作的关系没有好好研究一下，后面工作应该会用得上，而且趁着这段时间有空，还有在熟悉vim，就顺便拿这来练练手了。</p>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta content="width=device-width, initial-scale=1.0,  user-scalable=0" name="viewport"><title>KIT</title><link rel="stylesheet" href="/css/bootstrap.min.css"><link rel="stylesheet" href="/css/index.min.css"></head><body><nav class="nav-button-list"><div class="btn menu show-canvas"><span class="icon-bar"></span></div><div class="btn top btn-go-top"><i class="ion-arrow-up-c"></i><span class="scroll-percentage">0%</span></div></nav><div class="container-fluid page-header"><div class="header"><p class="first">hi Babe</p><p class="second">look at this kingdom. i conquered for thee.</p><span class="third">kit's note</span></div><div class="background"></div></div><div class="main-wrap"><div class="container"><div class="row"><div class="col-lg-3 side-bar-left"><div class="sidebar-content"><div class="main-side-bar"><div class="header"><p>爱好上班，特长加班</p><p>求职中</p><p>catslove28@163.com</p></div><nav class="side-bar-nav"><a href="/" class="item"><span>首页</span></a><a href="/archives" class="item m"><span>归档</span></a><a href="/tags" class="item last unopen"><span>标签</span></a></nav></div><div class="card user-card"><div class="user-image"><img src="/img/head.jpeg" class="img-fluid"></div><div class="user-info"><div class="user-name">kitwang chan</div><div class="user-other">frontend/UI designer</div></div><div class="overview"><span><i>11</i><br/> 日志</span><span class="m"><i>6</i><br/> 分类</span><span><i>8</i><br/> 标签</span></div></div></div></div><div class="col-lg-9 main-content"><div class="post-wrap content-wrap index-post-wrap"><article class="post post-list"><header class="header"><a href="/2017/06/27/深入学习javascript-this/">深入学习javascript - this</a></header><section class="info"><div class="item"><i class="ion-android-calendar"></i><span>发表于 2017年6月27日</span></div><div class="item"><i class="ion-android-folder-open"></i><span>分类于 <a href="/categories/javascript/">javascript</a></span></div></section><section class="excerpt"><h1 id="关于this"><a href="#关于this" class="headerlink" title="关于this"></a>关于this</h1><p><code>this</code>应该是javascript中一个比较复杂的机制了，在日常工作中我们可能有意无意都会使用到这个机制，但是<code>this</code>的工作机制真正了解的可能只有皮毛，通过学习这一机制，能够提高对js代码的理解和阅读能力，还有对js程序设计模式有着更深的理解。</p>
+<h1 id="this的指向"><a href="#this的指向" class="headerlink" title="this的指向"></a>this的指向</h1><p>this是运行时进行绑定的，而不是编写时绑定的，它的上下文取决于函数调用时的各种条件。this的绑定和函数声明的位置没有任何关系，只取决于函数的调用方式。</p>
+<p>通过分析调用位置，就能知道this到底引用的是什么。所以，寻找调用位置就能弄清上面的问题，通过一个例子，就能很好地理解这个问题：</p>
+<p></p><p class="code-caption" data-lang="javascript" data-line_number="backend" data-trim_indent="backend" data-label_position="outer" data-labels_left="Code" data-labels_right=":" data-labels_copy="Copy Code"><span class="code-caption-label"></span></p><p></p>
+<pre><code class="javascript">function baz() {
+  // 当前调用栈是 baz
+  // 当前调用位置是全局作用域
+
+  console.log(&#39;baz&#39;);
+  bar(); // bar的调用位置
+}
+
+function bar() {
+  // 当前的调用栈是 baz -&gt; bar
+  // 当前的调用位置是baz
+
+  console.log(&#39;bar&#39;);
+  foo();
+}
+
+function foo() {
+  // 当前的调用栈是 baz -&gt; bar -&gt; foo
+  // 当前的调用位置是bar
+
+  console.log(&#39;foo&#39;);
+}
+
+baz();
+</code></pre></section><a href="/2017/06/27/深入学习javascript-this/" class="readmore">read more</a></article><article class="post post-list"><header class="header"><a href="/2017/06/24/webpack2新特性&amp;迁移/">webpack2新特性&迁移</a></header><section class="info"><div class="item"><i class="ion-android-calendar"></i><span>发表于 2017年6月24日</span></div><div class="item"><i class="ion-android-folder-open"></i><span>分类于 <a href="/categories/前端工具/">前端工具</a></span></div></section><section class="excerpt"><p>webpack2已经发布了好一段时间了。但是因为之前工作的关系没有好好研究一下，后面工作应该会用得上，而且趁着这段时间有空，还有在熟悉vim，就顺便拿这来练练手了。</p>
 <h1 id="从webpack1中迁移"><a href="#从webpack1中迁移" class="headerlink" title="从webpack1中迁移"></a>从webpack1中迁移</h1><p>官方已经给出了详细的<a href="https://webpack.js.org/guides/migrating/" target="_blank" rel="external">迁移指南</a>，改动并不是很大，但是优化却蛮多的，如编译速度，代码优化等。如果你的项目正在用webpack，那么这个新版本还是挺值得迁移的。</p>
 <h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>如果升级webpack之后直接运行命令的话应该会看到一片红的，可以看出配置项有改动，下面整理一下经常使用地方的改动。</p>
 <h3 id="module-loaders变成module-rules"><a href="#module-loaders变成module-rules" class="headerlink" title="module.loaders变成module.rules"></a><code>module.loaders</code>变成<code>module.rules</code></h3><p>旧的<code>module.loader</code>被<code>module.rules</code>取代，后者允许配置<code>loader</code>更多选项，具体查看文档<a href="https://webpack.js.org/configuration/module/#module-rules" target="_blank" rel="external">module.rules</a></p>
@@ -74,37 +102,4 @@ baz(); // 这就是闭包效果
 <li>遇到var a，编译器会在<strong>作用域</strong>中查找是有已经存在有该名称的变量。如果是，编译器会忽略这一声明，继续编译；否则，会要求作用域在当前作用域集合中声明一个新变量，并命名为a。</li>
 <li>接下来，编译器会为<strong>引擎</strong>生成运行时所需的代码，代码用来处理<code>a = 2</code>这个赋值操作。引擎运行时会首先询问<strong>作用域</strong>当前作用集合是否有一个<code>a</code>的变量。如果是，<strong>引擎</strong>就会使用这个变量；如果不是，引擎会继续查找该变量。如果<strong>引擎</strong>找到<code>a</code>变量，就会赋值2。否则，<strong>引擎</strong>会抛出一个异常。</li>
 </ol>
-<p><strong>总结</strong>：变量赋值分别有两个动作，<strong>编译器</strong>会在当前<strong>作用域</strong>中声明一个变量（如果之前没有声明过），然后在运行时引擎会在<strong>作用域</strong>中查找该变量，如果能找到就对变量进行赋值。</p></section><a href="/2017/05/31/深入学习javascript-作用域/" class="readmore">read more</a></article><article class="post post-list"><header class="header"><a href="/2017/05/28/js实现add(1)(2)(3)/">js实现add(1)(2)(3)</a></header><section class="info"><div class="item"><i class="ion-android-calendar"></i><span>发表于 2017年5月28日</span></div><div class="item"><i class="ion-android-folder-open"></i><span>分类于 <a href="/categories/javascript/">javascript</a></span></div></section><section class="excerpt"><p>之前在YY面试的时候遇到过的一题: 实现add(1)(2)(3)，返回6，注意可拓展性。<br>当时第一反应就是用递归实现</p>
-<p></p><p class="code-caption" data-lang="javascript" data-line_number="backend" data-trim_indent="backend" data-label_position="outer" data-labels_left="Code" data-labels_right=":" data-labels_copy="Copy Code"><span class="code-caption-label"></span></p><p></p>
-<pre><code class="javascript">function add(x) {
-    var fn = function(y) {
-        return add(x + y);
-    }
-
-    return fn;
-}
-
-console.log(add(1)(2)(3))
-</code></pre>
-<p>这样写是可以实现调用方式，但是怎么<code>return x</code>呢，回来想还是一脸懵逼，于是上网找了点其他人的实现方式，发现他们是重写了<code>object</code>的<code>valueOf</code>和<code>toString</code>的方法。然后再跑了一遍。</p>
-<p></p><p class="code-caption" data-lang="javascript" data-line_number="backend" data-trim_indent="backend" data-label_position="outer" data-labels_left="Code" data-labels_right=":" data-labels_copy="Copy Code"><span class="code-caption-label"></span></p><p></p>
-<pre><code class="javascript">function add(x) {
-    var fn = function(y) {
-        return add(x + y);
-    }
-
-    fn.toString = function() {
-        return x;
-    }
-
-    return fn;
-}
-
-
-// chrome  function 6
-// firefox function add/fn
-// node    { [Number: 6] toString: [Function], valueOf: [Function] }
-console.log(add(1)(2)(3))
-
-console.log(add(1)(2)(3).toString()) // 6
-</code></pre></section><a href="/2017/05/28/js实现add(1)(2)(3)/" class="readmore">read more</a></article><nav class="pagination index-pagination"><a href="/" class="item active">1</a><a href="/page/2/" class="item">2</a><a href="/page/2/" class="item"><i class="ion-ios-arrow-right"></i></a></nav></div></div></div></div><div class="container-fluid copyright"><div> <span>©   2015 - 2016</span><i class="icon ion-ios-nutrition"></i><span>Kit</span></div><div><span>power by </span><span><a href="//hexo.io">hexo.</a></span><span>Design By Kit.</span></div></div></div><script src="/js/vendor.min.js"></script><script src="/js/index.min.js"></script></body></html>
+<p><strong>总结</strong>：变量赋值分别有两个动作，<strong>编译器</strong>会在当前<strong>作用域</strong>中声明一个变量（如果之前没有声明过），然后在运行时引擎会在<strong>作用域</strong>中查找该变量，如果能找到就对变量进行赋值。</p></section><a href="/2017/05/31/深入学习javascript-作用域/" class="readmore">read more</a></article><nav class="pagination index-pagination"><a href="/" class="item active">1</a><a href="/page/2/" class="item">2</a><a href="/page/3/" class="item">3</a><a href="/page/2/" class="item"><i class="ion-ios-arrow-right"></i></a></nav></div></div></div></div><div class="container-fluid copyright"><div> <span>©   2015 - 2016</span><i class="icon ion-ios-nutrition"></i><span>Kit</span></div><div><span>power by </span><span><a href="//hexo.io">hexo.</a></span><span>Design By Kit.</span></div></div></div><script src="/js/vendor.min.js"></script><script src="/js/index.min.js"></script></body></html>
