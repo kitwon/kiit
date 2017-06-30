@@ -348,8 +348,8 @@ if(!Function.prototype.softBind) {
 ```
 这个函数首先检查调用时候的this，如果this绑定到全局或者undefined中，那就把指定的默认对象`obj`绑定到this，否则不修改this。**ES5中的bind()已经实现此部分功能**。
 
-# 箭头函数 
-前面接受的[四条规则](#绑定顺序)可以包含所有正常函数。但是ES6中的**箭头函数**则无法使用这些规则。
+# 箭头函数
+前面接受的[四条规则](#绑定优先级)可以包含所有正常函数。但是ES6中的**箭头函数**则无法使用这些规则。
 ```javascript
 function foo() {
   return (a) => {
@@ -370,3 +370,21 @@ var bar = foo.call(obj1);
 bar.call(obj2); // 2，不是3
 ```
 `foo()`内部的箭头函数会捕获调用`foo()`时的this。由于`foo()`的this绑定到`obj1`,`bar`的this也会绑定到`obj1`，箭头函数的绑定无法被修改。(new也不行)
+
+在ES6出现之前我们经常写的一种模式与箭头函数是几乎相同的：
+```javascript
+function foo() {
+    var self = this;
+    setTimeout(function() {
+        console.log(self.a);
+    }, 100);
+}
+
+var obj = {
+    a: 2
+};
+
+foo.call(obj); // 2
+```
+
+`var self = this`和箭头函数从本质来说是想取代this的机制，如果代码中大多数使用`var self = this;`，那么应该完全使用词法作用域或箭头函数，抛弃this风格的代码。相反，如果使用this，则可以上方的绑定机制。
