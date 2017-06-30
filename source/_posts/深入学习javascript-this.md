@@ -348,7 +348,7 @@ if(!Function.prototype.softBind) {
 ```
 这个函数首先检查调用时候的this，如果this绑定到全局或者undefined中，那就把指定的默认对象`obj`绑定到this，否则不修改this。**ES5中的bind()已经实现此部分功能**。
 
-# this词法
+# 箭头函数 
 前面接受的[四条规则](#绑定顺序)可以包含所有正常函数。但是ES6中的**箭头函数**则无法使用这些规则。
 ```javascript
 function foo() {
