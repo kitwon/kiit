@@ -115,4 +115,4 @@ var requestFrame = window.requestAnimationFrame ||
 	})()
 
 	common.init()
-})(jQuery)
+})(jQuery);

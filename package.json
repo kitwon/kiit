@@ -3,13 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "hexo": {
-    "version": "3.3.5"
+    "version": "3.3.7"
   },
   "scripts": {
     "dev": "nodemon --watch themes/vapor/layout --exec hexo server"
   },
   "dependencies": {
-    "hexo": "^3.2.0",
+    "hexo": "^3.3.7",
     "hexo-deployer-git": "^0.1.0",
     "hexo-filter-highlight": "0.0.3",
     "hexo-generator-archive": "^0.1.4",

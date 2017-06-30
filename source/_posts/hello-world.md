@@ -1,4 +1,6 @@
+---
 title: Hello World!
+date: 2016-03-01 17:00:00
 categories: 
 - 其他
 ---
