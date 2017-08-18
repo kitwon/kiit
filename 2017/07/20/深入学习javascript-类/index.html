@@ -1,0 +1,97 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta content="width=device-width, initial-scale=1.0,  user-scalable=0" name="viewport"><title>KIT</title><link rel="stylesheet" href="/css/bootstrap.min.css"><link rel="stylesheet" href="/css/index.min.css"></head><body><nav class="nav-button-list"><div class="btn menu show-canvas"><span class="icon-bar"></span></div><div class="btn top btn-go-top"><i class="ion-arrow-up-c"></i><span class="scroll-percentage">0%</span></div></nav><div class="main-wrap"><div class="container"><div class="row"><div class="col-lg-3 side-bar-left"><div class="sidebar-content"><div class="main-side-bar"><div class="header"><p>这里好像会有个搜索</p></div><nav class="side-bar-nav"><a href="/" class="item"><span>首页</span></a><a href="/archives" class="item m"><span>归档</span></a><a href="/tags" class="item last unopen"><span>标签</span></a></nav></div><div class="card directory-card"><div class="header">文章目录</div><div class="directory"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#类理论"><span class="nav-number">1.</span> <span class="nav-text">类理论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#js中实现类复制-混入"><span class="nav-number">1.1.</span> <span class="nav-text">js中实现类复制(混入)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#显式混入"><span class="nav-number">1.1.1.</span> <span class="nav-text">显式混入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#隐式混入"><span class="nav-number">1.1.2.</span> <span class="nav-text">隐式混入</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#prototype-原型"><span class="nav-number">2.</span> <span class="nav-text">prototype-原型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何工作"><span class="nav-number">2.1.</span> <span class="nav-text">如何工作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小结"><span class="nav-number">3.</span> <span class="nav-text">小结</span></a></li></ol></div></div></div></div><div class="col-lg-9 main-content"><div class="post-detail-wrap content-wrap"><main class="post post-detail"><div class="post-header"><div class="header">深入学习javascript-类</div><section class="info"><div class="item"><i class="ion-android-calendar"></i><span>发表于 2017年7月20日</span></div><div class="item"><i class="ion-android-folder-open"></i><span>分类于 </span></div></section></div><article data-spy="scroll" data-target="panel1" class="content"><h1 id="类理论"><a href="#类理论" class="headerlink" title="类理论"></a>类理论</h1><p>类／继承描述了一种代码的组织结构形式，这个理论在软件设计中一直作为一个主导的角色。通过学习类理论，能为更好地学习js中的设计模式和对js中原型链的理解打下基础。</p>
+<p>类是在软件中对真实世界问题领域的建模方法。如一个经常看见的交通例子。<strong>汽车</strong>可以被看作<strong>交通工具中的一种</strong>，所以在软件开发时可以定义一个<code>Vehicle</code>类，<code>Vehicle</code>中包含推进器（引擎）、载人能力等方法。定义<code>Car</code>时，只要声明它继承或者拓展<code>Vehicle</code>这个基础定义就行了，其他交通工具如船、飞机也可以继承<code>Vehicle</code>。<strong>这就是类的实例化与继承</strong>。</p>
+<p>类的另外一个核心概念是<strong>多态</strong>，这个概念是说夫类的通用行为可以被子类更特殊的行为重写。</p>
+<p>javascript中也有类中的<code>new</code>和<code>instanceof</code>，还有ES6中的<code>class</code>关键字，但这些并不是说明js中有<strong>类</strong>的。javascript中只是为了满足类的设计需求而提供一些类似的语法。</p>
+<h2 id="js中实现类复制-混入"><a href="#js中实现类复制-混入" class="headerlink" title="js中实现类复制(混入)"></a>js中实现类复制(混入)</h2><p>javascript中的对象机制并不会自动执行复制行为，简单来说javascript中只有对象，并不存在可以实例的类。一个对象并不会复制一个对象，只会把它关联起来(prototype)。</p>
+<a id="more"></a>
+<h3 id="显式混入"><a href="#显式混入" class="headerlink" title="显式混入"></a>显式混入</h3><p>显示混入在其他库或者框架中一般被称为<code>extend</code>，在这方便理解会使用<code>mixin</code>。</p>
+<p></p><p class="code-caption" data-lang="javascript" data-line_number="backend" data-trim_indent="backend" data-label_position="outer" data-labels_left="Code" data-labels_right=":" data-labels_copy="Copy Code"><span class="code-caption-label"></span></p><p></p>
+<pre><code class="javascript">// 前面的Vehicle和car的例子
+function mixin(sourceObj, targetObj) {
+  for(var i in sourceObj) {
+    if(!(i in targetObj)) {
+      targetObj[i] = sourceObj[i];
+    }
+  }
+
+  return targetObj;
+}
+
+var Vehicle = {
+  engines: 1,
+  ignition: function() {
+    console.log(&#39;Turning on my engines.&#39;);    
+  },
+  drive: function() {
+    this.ignition();
+    console.log(&#39;Steering and moving forward.&#39;);
+  }
+}
+
+var Car = mixin(Vehicle, {
+  wheels: 4,
+  drive: function() {
+    Vehicle.drive.call(this);
+    console.log(&#39;Rolling on all&#39; + this.wheels + &#39;wheels!&#39;);
+  }
+})
+</code></pre>
+<p>还有一种显示混入的变体叫<strong>寄生继承</strong></p>
+<p></p><p class="code-caption" data-lang="javascript" data-line_number="backend" data-trim_indent="backend" data-label_position="outer" data-labels_left="Code" data-labels_right=":" data-labels_copy="Copy Code"><span class="code-caption-label"></span></p><p></p>
+<pre><code class="javascript">function Vehicle() {
+  this.engines = 1;
+}
+Vehicle.prototype.ignition = function() {
+  console.log(&#39;Turning on my engines.&#39;);
+}
+Vehicle.prototype.drive = function() {
+  this.ignition();
+  console.log(&#39;Steering and moving forward.&#39;);
+}
+
+// 寄生类 car
+function Car() {
+  var car  = new Vehicle();
+
+  car.wheels = 4;
+  var vehDrive = car.drive;
+
+  car.drive = function() {
+    Vehicle.call(this);
+    console.log(&#39;Rolling on all&#39; + this.wheels + &#39;wheels!&#39;);
+  }
+
+  return car;
+}
+
+var myCar = new Car();
+myCar.drive();
+</code></pre>
+<h3 id="隐式混入"><a href="#隐式混入" class="headerlink" title="隐式混入"></a>隐式混入</h3><p>隐式混入就是改变在一个函数体内执行另外另一个函数的方法。</p>
+<p></p><p class="code-caption" data-lang="javascript" data-line_number="backend" data-trim_indent="backend" data-label_position="outer" data-labels_left="Code" data-labels_right=":" data-labels_copy="Copy Code"><span class="code-caption-label"></span></p><p></p>
+<pre><code class="javascript">var foo = {
+  cool: function() {
+    this.count = this.count ? this.count++ : 1;
+    console.log(this.count);
+  }
+}
+
+foo.cool(); // 1
+
+var bar = {
+  cool: function() {
+    foo.cool.call(this);
+  }
+}
+
+bar.cool(); // 1, 数据不共享
+</code></pre>
+<h1 id="prototype-原型"><a href="#prototype-原型" class="headerlink" title="prototype-原型"></a>prototype-原型</h1><p>JS中，当试图引用对象属性时候就会触发<code>[[GET]]</code>操作，如果在对象属性中没有找到，就会使用对象的<code>[[prototype]]</code>链。JS大部分复杂类型都是<code>object</code>，所以<code>[[prototype]]</code>“尽头”应该是<code>Object.prototype</code>，里面包含了许多原生方法，如<code>toString</code>或<code>valueOf</code>。</p>
+<h2 id="如何工作"><a href="#如何工作" class="headerlink" title="如何工作"></a>如何工作</h2><p>JS和其他OO语言并不同，JS中并没有类作为对象的抽象模式，JS中只有对象，所以当new一个对象时候，并不是复制一个类函数，而是将目标对象的<code>prototype</code>关联到新对象的<code>prototype</code>中。</p>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p><code>prototype</code>部分书本总结得比较清楚，想知道更多细节的同学可以参考<strong>you dont know javascript</strong>的5.1-5.4章节。</p>
+<ul>
+<li>访问对象时候都会触发对象的[[GET]]操作，如果没有找到属性的话会继续找[[Prototype]]链。</li>
+<li>普通对象的原型链顶端都是<code>Object.prototype</code></li>
+<li><code>new</code>调用函数时只会关系到对象，而不会复制</li>
+</ul>
+</article></main><div class="page-footer"><div class="post-pagination"><a href="/2017/06/27/深入学习javascript-this/">深入学习javascript - this  <i class="ion-arrow-right-c"></i></a></div></div></div></div></div></div><div class="container-fluid copyright"><div> <span>©   2015 - 2016</span><i class="icon ion-ios-nutrition"></i><span>Kit</span></div><div><span>power by </span><span><a href="//hexo.io">hexo.</a></span><span>Design By Kit.</span></div></div></div><script src="/js/vendor.min.js"></script><script src="/js/post.min.js"></script></body></html>
