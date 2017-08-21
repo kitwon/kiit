@@ -12,13 +12,11 @@ tags:
 在之前已经写过一篇关于前端单元测试的文章，相关概念就不作阐述了，有兴趣或者有需求的同学可以在往期找一下。然后这里简单介绍一下[jest](http://facebook.github.io/jest/)，这是一个[Facebook OpenSource](https://code.facebook.com/projects/)的一个开源项目。项目已经集成好了一些测试相关的框架的代码，主打的是零配置测试平台（react中应该算是零配置，其他项目还是要手动配置一下的），里面一个比较好地方是支持**快照测试**(为dom结构生成一个快照，每次测试都对比dom结构)。其他一些好用的地方可以自己查看文档，有中文。
 
 # 配置
-首先是安装jest
-```javascript
-// jset-vue-preprocessor是jest的一个插件，用来解析'.vue'文件的。
-npm install jest jest-vue-preprocessor --save-dev
+首先是安装jest, jset-vue-preprocessor(jest的一个插件，用来解析'.vue'文件的)。
+```shell
+$npm install jest jest-vue-preprocessor --save-dev
 
-// use yarn
-yarn add jest jest-vue-preprocessor --save
+$yarn add jest jest-vue-preprocessor --save
 ```
 
 ## package.json
@@ -220,5 +218,6 @@ Tests:       2 passed, 2 total
 Snapshots:   3 added, 3 total
 Time:        2.295
 ```
-这时候就看到测试通过了
 
+# last
+jest给我们提供了一个便捷的测试环境，简单的几个配置项，即可完成编译，不像mocha或jasmine需要其他`node module`配合完成测试的工作。个人认为fb还是做到了他希望的，让测试变得简单，让开发者有更多的时间去开发。至于自动化测试的好处这里就不再赘述了，有兴趣的朋友可以自行baidu、google。
