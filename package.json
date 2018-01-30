@@ -1,6 +1,7 @@
 {
-  "name": "gatsby-starter-hello-world",
-  "description": "Gatsby hello world starter",
+  "name": "kiit",
+  "description": "Blog power by Gatsby",
+  "version": "0.0.01",
   "license": "MIT",
   "scripts": {
     "develop": "gatsby develop",
