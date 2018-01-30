@@ -104,4 +104,4 @@ for (let i = 0; i < elms.length; i++) {
 1. 社区中比较常见的`transform: translate3d(0, 0, 0)`、`transform: translateZ(0)`。虽然会有一些性能的浪费，但是好像是现在比较好的解决方法了。
 2. 使用css新属性[`will-change: transform`](https://developer.mozilla.org/en-US/docs/Web/CSS/will-change)，浏览器支持度一般般。
 
-能够看完整篇的同学估计耐性都不错。通过一些基本的介绍，基本可以了解怎么查看和修复app的渲染性能问题了，不过使用现代的开发框架如**react**、**vue**、**angular**都很少会出现**FSL**的问题了，因为很大部分的**layout**动作都被**virtual dom**现在在某些生命周期里面了，但是一些比较旧的用dom操作些的APP或多或少都会出现上面的问题。大家可以看看自己的APP有没有达到要求。不说了，我去改代码了。
+能够看完整篇的同学估计耐性都不错。通过一些基本的介绍，基本可以了解怎么查看和修复app的渲染性能问题了，不过使用现代的开发框架如**react**、**vue**、**angular**都很少会出现**FSL**的问题了，因为很大部分的**layout**动作都直接被`rerender`，但是一些比较旧的用dom操作些的APP或多或少都会出现上面的问题。大家可以看看自己的APP有没有达到要求。不说了，我去改代码了。
