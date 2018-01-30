@@ -1,0 +1,15 @@
+backend:
+  name: github
+  repo: kitwon/kiit
+
+media_folder: static/assets
+
+collections:
+  - name: blog
+    label: Blog
+    folder: _posts
+    create: true
+    fields:
+      - { name: path, label: Path }
+      - { name: date, label: Date, widget: date }
+      - { name: title, label: Title }
