@@ -1,11 +1,7 @@
 ---
+path: js-class
+date: 2017-07-20T14:47:47.000Z
 title: 深入学习javascript-类
-date: 2017-07-20 14:47:47
-categeoies:
-- javascirpt
-tags:
-- 编程
-- javascript
 ---
 
 # 类理论
