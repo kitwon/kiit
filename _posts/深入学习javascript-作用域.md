@@ -1,10 +1,7 @@
 ---
+path: scoped
+date: 2017-05-31T23:11:26.000Z
 title: 深入学习javascript--作用域
-date: 2017-05-31 23:11:26
-category:
-- javascript
-tags:
-- javascript
 ---
 
 # 前言
