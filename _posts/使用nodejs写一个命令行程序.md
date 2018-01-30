@@ -1,4 +1,5 @@
 ---
+path: post/node-command-app
 title: 使用nodejs写一个命令行程序
 date: 2017-05-16 15:58:29
 category:
@@ -224,7 +225,7 @@ const sendEmail = function(to, from, subject) {
     const sender = chalk.green(`${from.name}(${from.email})`)
     const receiver = chalk.green(`${to.name}(${to.email})`)
     const theme = chalk.blue(subject)
-    
+
     console.log(`${sender} send a mail to ${receiver} and the subject of the email is ${theme}`)
 }
 

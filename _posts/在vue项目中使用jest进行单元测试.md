@@ -1,7 +1,8 @@
 ---
+path: post/vue-jest-test
 title: 在vue项目中使用jest进行单元测试
 date: 2017-08-18 17:10:36
-category: 
+category:
 - 前端工具
 tags:
 - unit test

@@ -1,5 +1,5 @@
 ---
-path: js-class
+path: post/js-class
 date: 2017-07-20T14:47:47.000Z
 title: 深入学习javascript-类
 ---
@@ -35,7 +35,7 @@ function mixin(sourceObj, targetObj) {
 var Vehicle = {
   engines: 1,
   ignition: function() {
-    console.log('Turning on my engines.');    
+    console.log('Turning on my engines.');
   },
   drive: function() {
     this.ignition();

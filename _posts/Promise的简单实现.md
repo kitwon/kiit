@@ -1,4 +1,5 @@
 ---
+path: post/js-promise
 title: Promise的简单实现
 date: 2017-05-17 21:54:08
 category:

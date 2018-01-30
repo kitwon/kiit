@@ -1,5 +1,5 @@
 ---
-path: python-crawler
+path: post/python-crawler
 date: 2017-06-11T11:52:53.000Z
 title: 用python写一个简单爬虫
 ---
@@ -49,7 +49,7 @@ class SpiderMain(object):
 				count = count + 1
 			except:
 				# 使用sys抛出其他函数错误
-				info=sys.exc_info()  
+				info=sys.exc_info()
 				print info[0],":",info[1]
 
 				print 'crawl failed'
@@ -84,7 +84,7 @@ class UrlManager(object):
 			return
 
 		for url in urls:
-			self.add_new_url(url)  
+			self.add_new_url(url)
 
 	# 是否有代爬取地址
 	def has_new_url(self):
