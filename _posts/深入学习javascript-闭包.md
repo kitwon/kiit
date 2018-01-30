@@ -1,10 +1,7 @@
 ---
+path: closures
+date: 2017-06-14T21:54:18.000Z
 title: 深入学习javascript-闭包
-date: 2017-06-14 21:54:18
-category:
-- javascript
-tags:
-- javascript
 ---
 
 # 什么是闭包

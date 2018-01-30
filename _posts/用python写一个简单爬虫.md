@@ -1,10 +1,7 @@
 ---
+path: python-crawler
+date: 2017-06-11T11:52:53.000Z
 title: 用python写一个简单爬虫
-date: 2017-06-11 11:52:53
-category:
-- python
-tags:
-- python
 ---
 
 之前一直有学习python，但是一直都是在学一些比较基础的东西，所在在这段空闲的时间打算系统学一下python。在这会使用python写一个爬百科的简单爬虫，首先分析下爬虫的需求。
