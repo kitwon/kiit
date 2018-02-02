@@ -1,5 +1,5 @@
 ---
-path: post/js-this
+path: /post/js-this
 date: 2017-06-27T15:20:02.000Z
 title: 深入学习javascript - this
 ---

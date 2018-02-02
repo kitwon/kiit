@@ -1,5 +1,5 @@
 ---
-path: post/60fps-web-app
+path: /post/60fps-web-app
 title: 构建60fps-web-app
 date: 2017-09-13 10:22:02
 category:

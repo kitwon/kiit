@@ -1,5 +1,5 @@
 ---
-path: post/python-crawler
+path: /post/python-crawler
 date: 2017-06-11T11:52:53.000Z
 title: 用python写一个简单爬虫
 ---

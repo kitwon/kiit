@@ -1,5 +1,5 @@
 ---
-path: post/add-chain
+path: /post/add-chain
 title: js实现add(1)(2)(3)
 date: 2017-05-28 14:25:44
 tags:

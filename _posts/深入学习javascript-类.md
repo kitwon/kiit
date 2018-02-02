@@ -1,5 +1,5 @@
 ---
-path: post/js-class
+path: /post/js-class
 date: 2017-07-20T14:47:47.000Z
 title: 深入学习javascript-类
 ---
