@@ -1,9 +1,11 @@
 const path = require("path");
+const { createPaginationPages } = require('gatsby-pagination');
 
 exports.createPages = ({ boundActionCreators, graphql }) => {
   const { createPage } = boundActionCreators;
 
-  const blogPostTemplate = path.resolve(`src/templates/post.js`);
+  const blogPostPage = path.resolve(`src/pages/post.js`);
+  const indexPage = path.resolve('src/pages/index.js');
 
   return graphql(`
     {
@@ -14,8 +16,15 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
         edges {
           node {
             frontmatter {
+              title,
+              date(formatString: "YYYY-MM-DD"),
+              category,
+              tags,
               path
-            }
+            },
+            excerpt,
+            htmlExcerpt,
+            html
           }
         }
       }
@@ -25,11 +34,21 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
       return Promise.reject(result.errors);
     }
 
-    result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+    const { edges } = result.data.allMarkdownRemark
+    console.log(edges.htmlExcerpt);
+
+    createPaginationPages({
+      edges,
+      createPage,
+      component: indexPage,
+      limit: 5,
+      pathFormatter: path => `/blog/${path}`
+    });
+
+    edges.forEach(({ node }) => {
       createPage({
         path: node.frontmatter.path,
-        component: blogPostTemplate,
-        context: {}, // additional data can be passed via context
+        component: blogPostPage,
       });
     });
   });

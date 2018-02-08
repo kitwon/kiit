@@ -34,7 +34,14 @@ const RightContent = styled.div`
 `;
 
 export default class Index extends React.Component {
+  constructor(props) {
+    super(props);
+    console.log(this.props);
+  }
+
   render() {
+    const { nodes } = this.props.pathContext;
+
     return (
       <div>
         <Header />
@@ -48,7 +55,7 @@ export default class Index extends React.Component {
               </LeftBar>
 
               <RightContent>
-                <PostList />
+                <PostList postEdges={nodes}/>
               </RightContent>
             </Row>
           </Container>

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -70,20 +71,23 @@ const ReadMoreBtn = styled.a`
 
 export default class PostItem extends React.Component {
   render() {
+    const { postData } = this.props;
+    console.log(postData);
+    const data = postData.frontmatter;
     return (
       <Wrapper>
-        <Header><a href="">构建60fps-web-app</a></Header>
+        <Header><a href={data.path}>{data.title}</a></Header>
 
         <InfoWrap>
           <InfoItem>
             <i className="ion-android-calendar" />
-            <span>发表于 2017年9月13日</span>
+            <span>发表于 {data.date}</span>
           </InfoItem>
           <InfoItem>
             <i className="ion-android-calendar" />
-            <span>发表于 2017年9月13日</span>
+            <span>发表于 {data.category}</span>
           </InfoItem>
-          <div className="excerpt">tsetaetasdfasfsefassdfasef</div>
+          <div className="excerpt" dangerouslySetInnerHTML={{__html: postData.htmlExcerpt}}></div>
 
         </InfoWrap>
       </Wrapper>
@@ -91,6 +95,9 @@ export default class PostItem extends React.Component {
   }
 }
 
+PostItem.propTypes = {
+  postData: PropTypes.object
+}
 // export const pageQuery = graphql`
 
 // `;

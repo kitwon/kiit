@@ -8,7 +8,13 @@ module.exports = {
         name: "markdown-pages",
       },
     },
-    `gatsby-transformer-remark`,
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        excerpt_separator: `<!-- more -->`
+      }
+    },
+    `gatsby-transformer-html-excerpt`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-sass`,
     `gatsby-remark-emoji`
