@@ -32,6 +32,7 @@ const Header = styled.p`
   font-weight: 400;
   font-size: 26px;
   text-align: center;
+  margin: 0;
 `;
 
 const InfoWrap = styled.div`
@@ -51,6 +52,26 @@ const InfoItem = styled.div`
   display: inline-block;
   padding: 0 10px;
   vertical-align: middle;
+  font-size: 13px;
+
+  i {
+    position: relative;
+    bottom: -1px;
+    margin-right: 3px;
+    font-size: 16px;
+  }
+
+  &:first-child {
+    &:after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 50%;
+      margin-top: -.4em;
+      height: 1em;
+      border-right: 1px solid #9ea4a6;
+    }
+  }
 `;
 
 const ReadMoreBtn = styled.a`
@@ -84,7 +105,7 @@ export default class PostItem extends React.Component {
             <span>发表于 {data.date}</span>
           </InfoItem>
           <InfoItem>
-            <i className="ion-android-calendar" />
+            <i className="ion-android-folder-open" />
             <span>发表于 {data.category}</span>
           </InfoItem>
           <div className="excerpt" dangerouslySetInnerHTML={{__html: postData.htmlExcerpt}}></div>

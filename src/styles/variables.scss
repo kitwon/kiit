@@ -39,7 +39,7 @@ $gray-lighter:              #eceeef !default;
 $gray-lightest:             #f7f7f9 !default;
 
 // Reassign color vars to semantic color scheme
-$brand-primary:             $blue !default;
+$brand-primary:             darken(#47c9e5, 20%) !default;
 $brand-success:             $green !default;
 $brand-info:                $teal !default;
 $brand-warning:             $orange !default;
@@ -106,7 +106,13 @@ $border-width: 1px !default;
 // Fonts
 //
 // Font, line-height, and color for body text, headings, and more.
-@import url('https://fonts.googleapis.com/css?family=Monda|Roboto+Slab');
+// @import url('https://fonts.googleapis.com/css?family=Monda|Roboto+Slab');
+@font-face {
+  font-family: 'Monda';
+  font-style: normal;
+  font-weight: 400;
+  src: url(./fonts/Monda-Regular.ttf), url(./fonts/Monda.woff2) format('woff2');
+}
 $font-family-sans-serif: Monda, PingFang SC, Microsoft YaHei, sans-serif !default;
 $font-family-serif:      Georgia, "Times New Roman", Times, serif !default;
 $font-family-monospace:  Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
@@ -123,14 +129,14 @@ $font-weight-bold: bold !default;
 $font-weight-base: $font-weight-normal !default;
 $line-height-base: 1.5 !default;
 
-$font-size-h1: 2.5rem !default;
-$font-size-h2: 2rem !default;
-$font-size-h3: 1.75rem !default;
-$font-size-h4: 1.5rem !default;
+$font-size-h1: 1rem * 1.55 !default;
+$font-size-h2: 1rem * 1.4 !default;
+$font-size-h3: 1rem * 1.2 !default;
+$font-size-h4: 1rem * 1.1 !default;
 $font-size-h5: 1.25rem !default;
 $font-size-h6: 1rem !default;
 
-$headings-margin-bottom: ($spacer / 2) !default;
+$headings-margin-bottom: ($spacer / 1.5) !default;
 $headings-font-family:   'Roboto Slab', 'Monda', "PingFang SC", "Microsoft YaHei", sans-serif !default;
 $headings-font-weight:   600 !default;
 $headings-line-height:   1.1 !default;
@@ -157,8 +163,8 @@ $text-muted: $gray-light !default;
 $abbr-border-color: $gray-light !default;
 
 $blockquote-small-color:  $gray-light !default;
-$blockquote-font-size:    ($font-size-base * 1.25) !default;
-$blockquote-border-color: $gray-lighter !default;
+$blockquote-font-size:    $font-size-base !default;
+$blockquote-border-color: $brand-primary !default;
 $blockquote-border-width: .25rem !default;
 
 $hr-border-color: rgba($black,.1) !default;
@@ -211,3 +217,30 @@ $pre-bg:                      $gray-lightest !default;
 $pre-color:                   $gray-dark !default;
 $pre-border-color:            #ccc !default;
 $pre-scrollable-max-height:   340px !default;
+
+
+// Tables
+//
+// Customizes the `.table` component with basic values, each used across all table variations.
+
+$table-cell-padding:            .75rem !default;
+$table-sm-cell-padding:         .3rem !default;
+
+$table-bg:                      transparent !default;
+
+$table-inverse-bg:              $gray-dark !default;
+$table-inverse-color:           $body-bg !default;
+
+$table-bg-accent:               rgba($black,.05) !default;
+$table-bg-hover:                rgba($black,.075) !default;
+$table-bg-active:               $table-bg-hover !default;
+
+$table-head-bg:                 $gray-lighter !default;
+$table-head-color:              $gray !default;
+
+$table-border-width:            $border-width !default;
+$table-border-color:            $gray-lighter !default;
+
+
+$cursor-disabled:                not-allowed !default;
+
