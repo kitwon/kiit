@@ -1,0 +1,13 @@
+{
+  "cms.js": "bundle-for-css.js",
+  "main.css": "styles.css",
+  "main.js": "render-page.js",
+  "main.js.map": "render-page.js.map",
+  "static/Monda-Regular.ttf": "static/Monda-Regular.f3aeb912.ttf",
+  "static/Monda.woff2": "static/Monda.b745ac26.woff2",
+  "static/head.jpeg": "static/head.cdcbd020.jpeg",
+  "static/ionicons.eot?v=2.0.0": "static/ionicons.2c2ae068.eot",
+  "static/ionicons.svg?v=2.0.0": "static/ionicons.621bd386.svg",
+  "static/ionicons.ttf?v=2.0.0": "static/ionicons.24712f6c.ttf",
+  "static/ionicons.woff?v=2.0.0": "static/ionicons.05acfdb5.woff"
+}
