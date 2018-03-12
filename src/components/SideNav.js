@@ -82,12 +82,16 @@ const Item = styled.a`
 `;
 
 export default class SideNav extends React.Component {
+  unComplete() {
+    alert('此功能暂未开放~');
+  }
+
   render() {
     return (
       <Nav>
         <Item href="/blog/1"><span>首页</span></Item>
         <Item href="/archive/1"><span>归档</span></Item>
-        <Item href=""><span>标签</span></Item>
+        <Item href="javascript:;" onClick={this.unComplete}><span>标签</span></Item>
       </Nav>
     );
   }
