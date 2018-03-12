@@ -93,7 +93,6 @@ const ReadMoreBtn = styled.a`
 export default class PostItem extends React.Component {
   render() {
     const { postData } = this.props;
-    console.log(postData);
     const data = postData.frontmatter;
     return (
       <Wrapper>

@@ -20,6 +20,8 @@ $npm install jest jest-vue-preprocessor --save-dev
 $yarn add jest jest-vue-preprocessor --save
 ```
 
+<!-- more -->
+
 ## package.json
 下面的配置都在**package.json**文件中配置。
 

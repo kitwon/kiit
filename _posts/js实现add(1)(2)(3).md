@@ -7,6 +7,7 @@ category:
 - javascript
 ---
 
+# 题目
 之前在YY面试的时候遇到过的一题: 实现add(1)(2)(3)，返回6，注意可拓展性。
 当时第一反应就是用递归实现
 ```javascript
@@ -21,6 +22,9 @@ function add(x) {
 console.log(add(1)(2)(3))
 ```
 
+<!-- more -->
+
+# 实现方法
 这样写是可以实现调用方式，但是怎么`return x`呢，回来想还是一脸懵逼，于是上网找了点其他人的实现方式，发现他们是重写了`object`的`valueOf`和`toString`的方法。然后再跑了一遍。
 ```javascript
 function add(x) {
@@ -43,8 +47,6 @@ console.log(add(1)(2)(3))
 
 console.log(add(1)(2)(3).toString()) // 6
 ```
-
-<!-- more -->
 
 由此看出在不同客户端下返回的结果并不一样，并不是完美的结果，但是查阅了其他资料并没有其他十分好的解决办法，估计这道题的考查点是关于js深度的，比如原生对象里面的基本方法和`alert`, `console`会自动执行toString等方法。
 

@@ -19,7 +19,9 @@ export default class Footer extends React.Component {
       <Wrapper>
         <div>
           <span>© 2015 - 2018</span>
+          &nbsp;
           <i className="icon ion-ios-nutrition" />
+          &nbsp;
           <span>Kit</span>
         </div>
         <div>

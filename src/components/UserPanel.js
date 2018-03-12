@@ -59,6 +59,9 @@ const InfoWrap = styled.div`
 
 export default class UserPanel extends React.Component {
   render() {
+    if (!this.props.len) return null;
+    const { edgesLen, tagsLen, categoryLen } = this.props.len;
+
     return (
       <Wrapper className={this.props.className}>
         <Image><img src={HeadImg} alt="kit"/></Image>
@@ -70,16 +73,16 @@ export default class UserPanel extends React.Component {
 
         <InfoWrap>
           <div>
-            <div className="num">10</div>
+            <div className="num">{edgesLen}</div>
             <div>日志</div>
           </div>
           <div className="m">
-            <div className="num">13</div>
-            <div>日志</div>
+            <div className="num">{categoryLen}</div>
+            <div>分类</div>
           </div>
           <div>
-            <div className="num">10</div>
-            <div>日志</div>
+            <div className="num">{tagsLen}</div>
+            <div>标签</div>
           </div>
         </InfoWrap>
       </Wrapper>

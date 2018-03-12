@@ -1,6 +1,15 @@
 module.exports = {
   plugins: [
-    `gatsby-plugin-netlify-cms`,
+    {
+      resolve: `gatsby-plugin-netlify`,
+      options: {
+        headers: {
+          '/*':[
+            `cache-control: public, max-age=0, must-revalidate`
+          ]
+        }, // option to add more headers. `Link` headers are transformed by the below criteria
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -17,6 +26,7 @@ module.exports = {
     `gatsby-transformer-html-excerpt`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-sass`,
-    `gatsby-remark-emoji`
+    `gatsby-remark-emoji`,
+    `gatsby-plugin-lodash`
   ],
 };

@@ -16,6 +16,7 @@ const Item = styled.a`
   font-size: 13px;
   color: #6b7174;
   box-sizing: border-box;
+  line-height: 1;
 
   &:before {
     right: -1px;
@@ -36,15 +37,57 @@ const Item = styled.a`
     height: 1.8em;
     border-left: 1px solid #fff;
   }
+
+  span {
+    position: relative;
+
+    &:after,
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -0.4em;
+      height: 0.8em;
+      border-left: 1px solid #8addee;
+      opacity: 0;
+      transition: all .3s cubic-bezier(.55,0,.1,1);
+    }
+  }
+
+  &:after {
+    left: -1px;
+  }
+
+  &:before {
+    right: -1px;
+  }
+
+  &:hover {
+    text-decoration: none;
+    color: inherit;
+
+    span {
+      &:after {
+        transform: translate3d(1.6em, 0, 0) rotate(30deg);
+        opacity: 1;
+      }
+      &:before {
+        transform: translate3d(-1.6em, 0, 0) rotate(30deg);
+        opacity: 1;
+      }
+    }
+  }
 `;
 
 export default class SideNav extends React.Component {
   render() {
     return (
       <Nav>
-        <Item href="">首页</Item>
-        <Item>归档</Item>
-        <Item>标签</Item>
+        <Item href="/blog/1"><span>首页</span></Item>
+        <Item href="/archive/1"><span>归档</span></Item>
+        <Item href=""><span>标签</span></Item>
       </Nav>
     );
   }

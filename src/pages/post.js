@@ -1,32 +1,170 @@
 import React from "react";
+import styled from 'styled-components';
 
-export default function Template({ data }) {
-  const { markdownRemark } = data; // data.markdownRemark holds our post data
-  const { frontmatter, html } = markdownRemark;
+import HeadList from '../components/post/HeadList';
+import TopBtn from '../components/TopBtn';
+import SideNav from '../components/SideNav';
+import Pagination from '../components/post/Pagination';
 
-  return (
-    <div className="blog-post-container">
-      <div className="blog-post">
-        <h1>{frontmatter.title}</h1>
-        <h2>{frontmatter.date}</h2>
-        <div
-          className="blog-post-content"
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
-      </div>
-    </div>
-  );
+import Footer from '../layout/Footer';
+
+const Wrapper = styled.div`
+  width: 960px;
+  margin: 0 auto;
+  color: #5a5f61;
+  line-height: 2;
+
+  img {
+    max-width: 100%;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 40px;
+    margin-bottom: 25px;
+  }
+
+  h1 {
+    margin-top: 60px;
+  }
+`
+const Row = styled.div`
+  display: flex;
+  margin: 0 -15px;
+`
+const LeftCol = styled.div`
+  flex: 0 0 25%;
+  max-width: 25%;
+  padding: 0 15px;
+
+  #leftCover {
+    padding-top: 60px;
+  }
+`
+const RightCol = styled.div`
+  flex: 0 0 75%;
+  max-width: 75%;
+  padding: 50px 15px 150px 55px;
+`
+const PostHeader = styled.div`
+  text-align: center;
+  font-weight: 400;
+  font-size: 1.55rem;
+`
+const InfoWrap = styled.div`
+  margin-top: 5px;
+  margin-bottom: 80px;
+  /* font-style: 13px; */
+  color: #6b7174;
+  text-align: center;
+
+  .excerpt {
+    text-align: left;
+    margin: 60px 0 50px;
+  }
+`;
+
+const InfoItem = styled.div`
+  position: relative;
+  display: inline-block;
+  padding: 0 10px;
+  vertical-align: middle;
+  font-size: 13px;
+
+  i {
+    position: relative;
+    bottom: -1px;
+    margin-right: 3px;
+    font-size: 16px;
+  }
+
+  &:first-child {
+    &:after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 50%;
+      margin-top: -.4em;
+      height: 1em;
+      border-right: 1px solid #9ea4a6;
+    }
+  }
+`;
+
+function escape2Html(str) {
+  var arrEntities={'lt':'<','gt':'>','nbsp':' ','amp':'&','quot':'"'};
+  return str.replace(/&(lt|gt|nbsp|amp|quot);/ig,function(all,t){return arrEntities[t];});
+}
+
+export default class PostDetail extends React.Component {
+  componentDidMount() {
+    for (let i = 1; i <= 5; i++) {
+      let el = document.getElementsByTagName(`h${i}`);
+
+      for (let j = 0; j < el.length; j++) {
+        el[j].setAttribute('id', escape2Html(el[j].innerHTML));
+        el[j].dataset.offset = el[j].offsetTop;
+      }
+    }
+
+    const leftCover = document.getElementById('leftCover');
+    leftCover.style.width = `${leftCover.offsetWidth}px`;
+    leftCover.style.position = 'fixed';
+    leftCover.style.top = 0;
+    leftCover.style.left = leftCover.offsetLeft;
+  }
+
+  render() {
+    if (!this.props.data.markdownRemark) return null;
+
+    const { headings, html, frontmatter} = this.props.data.markdownRemark;
+    const { title, date, category } = frontmatter;
+    const { pathContext } = this.props;
+
+    return (
+      <Wrapper>
+        <Row>
+          <LeftCol>
+            <div id="leftCover">
+              <SideNav />
+              <HeadList listData={headings} />
+            </div>
+          </LeftCol>
+          <RightCol>
+            <PostHeader>{ title }</PostHeader>
+            <InfoWrap>
+              <InfoItem>
+                <i className="ion-android-calendar" />
+                <span>发表于 {date}</span>
+              </InfoItem>
+              <InfoItem>
+                <i className="ion-android-folder-open" />
+                <span>发表于 {category}</span>
+              </InfoItem>
+            </InfoWrap>
+            <div dangerouslySetInnerHTML={{__html: html}} />
+            <Pagination prev={pathContext.prev} next={pathContext.next} />
+          </RightCol>
+        </Row>
+        <Footer className="post-footer" />
+        <TopBtn delay={2000}/>
+      </Wrapper>
+    );
+  }
 }
 
 export const pageQuery = graphql`
-  query BlogPostByPath($path: String!) {
+  query BlogPostByPath($path: String) {
     markdownRemark(frontmatter: { path: { eq: $path } }) {
       html
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
         path
         title
-      }
+      },
+      headings {
+        depth
+        value
+      },
     }
   }
-`;
+`
