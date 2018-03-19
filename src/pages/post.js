@@ -90,6 +90,31 @@ const InfoItem = styled.div`
   }
 `;
 
+const Copyright = styled.ul`
+  padding: 10px 10px 10px 20px;
+  margin: 50px 0 0;
+  list-style: none;
+  color: #666;
+  border-left: .25rem solid #f0ad4e;
+  background: #fbfcfc;
+  font-size: 14px;
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+
+    &:hover {
+      color: #333;
+    }
+  }
+
+  .title {
+    display: inline-block;
+    font-weight: bold;
+    margin-right: 1em;
+  }
+`
+
 function escape2Html(str) {
   var arrEntities={'lt':'<','gt':'>','nbsp':' ','amp':'&','quot':'"'};
   return str.replace(/&(lt|gt|nbsp|amp|quot);/ig,function(all,t){return arrEntities[t];});
@@ -119,6 +144,7 @@ export default class PostDetail extends React.Component {
     const { headings, html, frontmatter} = this.props.data.markdownRemark;
     const { title, date, category } = frontmatter;
     const { pathContext } = this.props;
+    const postPath = `http://kiit.wang${this.props.location.pathname}`;
 
     return (
       <Wrapper>
@@ -142,6 +168,20 @@ export default class PostDetail extends React.Component {
               </InfoItem>
             </InfoWrap>
             <div dangerouslySetInnerHTML={{__html: html}} />
+            <Copyright>
+              <li>
+                <span className="title">本文作者: </span>
+                <span>Kitwang Chen</span>
+              </li>
+              <li>
+                <span className="title">本文链接: </span>
+                <span><a href={postPath}>{postPath}</a></span>
+              </li>
+              <li>
+                <span className="title">版权声明: </span>
+                <span>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/">CC BY-NC-SA 3.0 CN</a> 许可协议。转载请注明出处！</span>
+              </li>
+            </Copyright>
             <Pagination prev={pathContext.prev} next={pathContext.next} />
           </RightCol>
         </Row>

@@ -10,6 +10,7 @@ category:
 # 题目
 之前在YY面试的时候遇到过的一题: 实现add(1)(2)(3)，返回6，注意可拓展性。
 当时第一反应就是用递归实现
+
 ```javascript
 function add(x) {
 	var fn = function(y) {

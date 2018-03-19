@@ -70,11 +70,11 @@ const Item = styled.a`
 
     span {
       &:after {
-        transform: translate3d(1.6em, 0, 0) rotate(30deg);
+        transform: translate3d(2.0em, 0, 0) rotate(30deg);
         opacity: 1;
       }
       &:before {
-        transform: translate3d(-1.6em, 0, 0) rotate(30deg);
+        transform: translate3d(-2.0em, 0, 0) rotate(30deg);
         opacity: 1;
       }
     }
@@ -91,7 +91,8 @@ export default class SideNav extends React.Component {
       <Nav>
         <Item href="/blog/1"><span>首页</span></Item>
         <Item href="/archive/1"><span>归档</span></Item>
-        <Item href="javascript:;" onClick={this.unComplete}><span>标签</span></Item>
+        <Item href="https://github.com/kitwon"><span>Github</span></Item>
+        {/* <Item href="javascript:;" onClick={this.unComplete}><span>标签</span></Item> */}
       </Nav>
     );
   }
