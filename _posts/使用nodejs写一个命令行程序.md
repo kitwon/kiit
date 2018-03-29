@@ -154,7 +154,7 @@ Stanley Hudson stanley.hudson@dundermifflin.com
 下面的demo会通过inquirer接收邮件发送人的名字，email还有邮件主题。
 ```javascript
 // broadcast.js
-...
+// ...
 const inquirer = require('inquirer')
 const questions = [
   {
@@ -215,7 +215,7 @@ $ node broadcast -l input/employees.csv
 由于原文使用的`sendgrid`没有跑通，所以只组装了一下数据模拟了发送邮件。原本的第五部分也在这里一起用上了。
 ```javascript
 // broadcast.js
-...
+// ...
 program
     .version('0.0.1')
     .option('-l, --list [list]', 'list of customers in CSV file')
@@ -264,7 +264,7 @@ const stream = fs.createReadStream(program.list)
 // broadcast.js
 const program = require("commander")
 const inquirer = require("inquirer")
-...
+// ...
 ```
 然后再配置一下`package.json`使代码可运行
 ```json

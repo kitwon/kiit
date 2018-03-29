@@ -20,7 +20,10 @@ module.exports = {
     {
       resolve: `gatsby-transformer-remark`,
       options: {
-        excerpt_separator: `<!-- more -->`
+        excerpt_separator: `<!-- more -->`,
+        plugins: [
+          `gatsby-remark-prismjs`
+        ]
       }
     },
     `gatsby-transformer-html-excerpt`,

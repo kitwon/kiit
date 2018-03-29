@@ -1,6 +1,7 @@
+import '../styles';
+
 import React from 'react';
 import styled from 'styled-components';
-import hljs from 'highlightjs';
 
 import Header from '../layout/header';
 import Footer from '../layout/Footer';
@@ -11,7 +12,6 @@ import PostList from '../components/post/post-list';
 import Pagination from '../components/Pagination';
 import TopBtn from '../components/TopBtn';
 
-import '../styles';
 
 const Row = styled.div`
   display: flex;
@@ -37,10 +37,6 @@ const RightContent = styled.div`
 `;
 
 export default class Index extends React.Component {
-  componentDidMount() {
-    hljs.initHighlightingOnLoad();
-  }
-
   render() {
     if (!this.props.pathContext.edgesLen) return null;
     const { nodes, next, prev, page, pages, total, tagsLen, edgesLen, categoryLen } = this.props.pathContext;

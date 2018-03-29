@@ -140,8 +140,6 @@ export default class PostDetail extends React.Component {
     leftCover.style.position = 'fixed';
     leftCover.style.top = 0;
     leftCover.style.left = leftCover.offsetLeft;
-
-    hljs.initHighlightingOnLoad();
   }
 
   render() {

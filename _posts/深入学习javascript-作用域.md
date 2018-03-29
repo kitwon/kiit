@@ -96,15 +96,17 @@ function foo() {
 
 foo();
 ```
+
 可以看到，函数声明会被提升到最顶部，但是函数表达式却不会被提升
-```
+```javascript
 foo(); // TypeError
 bar(); // ReferenceError
 
 var foo = function bar() {
-	...
+	// ...
 }
 ```
+
 在这里要注意，把foo分配到具名函数下，但是具名函数下也无法在所在作用域中运行。上面函数的执行方式应该如下
 ```javascript
 var foo;
@@ -152,11 +154,11 @@ var a = true;
 
 if(a) {
 	function foo() {
-		...
+		// ...
 	}
 }else {
 	function bar() {
-		...
+		// ...
 	}
 }
 ```
@@ -164,6 +166,7 @@ if(a) {
 
 ## 作用域嵌套
 当一个块或者函数嵌套在另一个块或者函数中，就称为作用域嵌套。在当前作用域没有找到某个变量时，**引擎**就会在外层的作用域继续查找，直到找到该变量，或者抵达最外层（全局）作用域为止。
+
 ```javascript
 function foo(a) {
 	// b在函数中尚未定义，所以在上一个作用域中查找

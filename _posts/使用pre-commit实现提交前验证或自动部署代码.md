@@ -105,7 +105,7 @@ $ npm install eslint-plugin-prettier eslint-config-prettier --save-dev
 
 ```javascript
 {
-  ...
+  // ...
   "script": {
     "unit": "jest --config test/jest.conf.js --findRelatedTests",
     "lint": "eslint --fix --ext .js,.vue",

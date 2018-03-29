@@ -1,3 +1,4 @@
+const visit = require(`unist-util-visit`);
 const { GraphQLString } = require('graphql');
 const remark = require('remark');
 var recommended = require('remark-preset-lint-recommended');
@@ -16,7 +17,7 @@ exports.setFieldsOnGraphQLNodeType = ({ type, store, pathPrefix, getNode, cache 
         .process(markdownNode, (err, file) => {
           if (err) reject(err || file);
 
-          resolve(String(file));
+          resolve(file);
         })
     });
   }
