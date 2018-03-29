@@ -10,7 +10,7 @@
 /blog/1
   Link: </commons-ad680c09de7d7ed6b850.js>; rel=preload; as=script
   Link: </app-a25fecbca86e72fb9911.js>; rel=preload; as=script
-  Link: </path---blog-1-7395af6966a150a0e5d9.js>; rel=preload; as=script
+  Link: </path---blog-1-55690b67cf6bf19dc170.js>; rel=preload; as=script
   Link: </component---src-pages-index-js-e8b210cf4ce2ee59ff2f.js>; rel=preload; as=script
 /blog/2
   Link: </commons-ad680c09de7d7ed6b850.js>; rel=preload; as=script
@@ -30,12 +30,12 @@
 /archive/1
   Link: </commons-ad680c09de7d7ed6b850.js>; rel=preload; as=script
   Link: </app-a25fecbca86e72fb9911.js>; rel=preload; as=script
-  Link: </path---archive-1-03f43c12a7539f69b425.js>; rel=preload; as=script
+  Link: </path---archive-1-927e103347be7d8ba19c.js>; rel=preload; as=script
   Link: </component---src-pages-archive-js-cfed224c4952d07717a1.js>; rel=preload; as=script
 /post/pre-commit-hook
   Link: </commons-ad680c09de7d7ed6b850.js>; rel=preload; as=script
   Link: </app-a25fecbca86e72fb9911.js>; rel=preload; as=script
-  Link: </path---post-pre-commit-hook-d2622c2fc0036705c3a3.js>; rel=preload; as=script
+  Link: </path---post-pre-commit-hook-b1b4e0d7202ede84ff0b.js>; rel=preload; as=script
   Link: </component---src-pages-post-js-5ef27e635ec6cb19b5d2.js>; rel=preload; as=script
 /post/10tips-for-console
   Link: </commons-ad680c09de7d7ed6b850.js>; rel=preload; as=script
