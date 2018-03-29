@@ -1,12 +1,16 @@
+import '../styles';
+
 import React from "react";
 import styled from 'styled-components';
 
+import hljs from 'highlightjs';
 import HeadList from '../components/post/HeadList';
 import TopBtn from '../components/TopBtn';
 import SideNav from '../components/SideNav';
 import Pagination from '../components/post/Pagination';
 
 import Footer from '../layout/Footer';
+
 
 const Wrapper = styled.div`
   width: 960px;
@@ -19,12 +23,12 @@ const Wrapper = styled.div`
   }
 
   h1, h2, h3, h4, h5, h6 {
-    margin-top: 40px;
-    margin-bottom: 25px;
+    margin-top: 60px;
+    margin-bottom: 35px;
   }
 
   h1 {
-    margin-top: 60px;
+    margin-top: 80px;
   }
 `
 const Row = styled.div`
@@ -136,6 +140,8 @@ export default class PostDetail extends React.Component {
     leftCover.style.position = 'fixed';
     leftCover.style.top = 0;
     leftCover.style.left = leftCover.offsetLeft;
+
+    hljs.initHighlightingOnLoad();
   }
 
   render() {

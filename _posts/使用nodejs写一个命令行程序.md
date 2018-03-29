@@ -28,7 +28,7 @@ tags:
 
 ## “Hello World”
 开始前，首先你得有node，如果没有，请自行安装下。node中自带npm，使用[npm](https://www.npmjs.com/)能安装许多开源的node模块。首先，使用npm创建一个node项目
-```shell
+```bash
 $ npm init
 name: broadcast
 version: 0.0.1
@@ -43,7 +43,7 @@ entry point: broadcast.js
 console.log('Hello World!')
 ```
 然后在terminal中执行
-```shell
+```bash
 $ node broadcast
 Hello World!
 ```
@@ -53,7 +53,7 @@ well done, 根据[package.json文档](https://docs.npmjs.com/files/package.json)
     "name": "broadcast",
     "version": "0.0.1",
     "description": "CLI utility to broadcast emails",
-    "main": "broadcast.js",
+    "main": "broadcast.js"
     "license": "MIT",
     "dependencies": {
         "chalk": "^1.1.3",
@@ -67,7 +67,7 @@ well done, 根据[package.json文档](https://docs.npmjs.com/files/package.json)
 
 ## 处理命令行参数
 node原生也有读取命令行的函数[`process.argv`](https://nodejs.org/docs/latest/api/process.html)，但是解析参数是个繁琐的工作，所以我们会使用[Commander](https://github.com/tj/commander.js)去替代这些工作。Commande的另外一个好处就是不用额外的去写一个`--help`函数，只要定义了其他参数，`--help`函数就会自动生成。首先安装一下Commander和其他package
-```shell
+```bash
 $ npm install commander chalk csv inquirer --save
 ```
 然后修改`broadcast.js`
@@ -83,17 +83,17 @@ program
 console.log(program.list)
 ```
 从上面可以看出，处理一个参数是十分简单的。我们定义了一个`--list`的参数，现在我们就能通过`--list`参数获取到命令行传过来的值。在这程序中，list应该是接收一个csv的地址参数，然后打印在console中。
-```shell
+```bash
 $ node broadcast --list ./test.csv
 ./test.csv
 ```
 从js中可以看到还有一个`version`参数，所以我们可以使用`--version`读取版本号。
-```shell
+```bash
 $ node broadcast --version
 0.0.1
 ```
 又或者能使用`--help`获取app能接收的参数
-```shell
+```bash
 $ node broadcast --help
 
   Usage: broadcast [options]
@@ -139,7 +139,7 @@ stream
     })
 ```
 除csv模块外，还使用了node的[File System](https://nodejs.org/dist/latest-v7.x/docs/api/fs.html)模块读取文件内容，csv的`parse`方法把列数据解析为数组，然后在terminal中运行一下命令
-```shell
+```bash
 $ node broadcast.js --list ./test.csv
 Dwight Schrute dwight.schrute@dundermifflin.com
 Jim Halpert jim.halpert@dundermifflin.com
@@ -200,7 +200,7 @@ stream
   })
 ```
 Inquire.js的`prompt`方法接受一个数组参数，数组里可以自定义运行时需要接受的问题参数，在这demo里面，我们想知道发送者的名字还要email还有邮件主题，所以定义了一个`questions`的数组来储存问题，从对象里面可以看到有一个`input`的参数，除此外还可以接受`password`等其他类型，具体可以查询一下[inquirer的文档](https://github.com/SBoudrias/Inquirer.js/)。此外，参数`name`保存input的key值。`prompt`方法会返还一个promise对象，promise中会返回一个`answer`变量，里面带有刚才输入的值。
-```shell
+```bash
 $ node broadcast -l input/employees.csv
 ? Sender's email address -  kitssang_demo@163.com
 ? Sender's name -  kit
@@ -256,8 +256,8 @@ const stream = fs.createReadStream(program.list)
 ```
 由于没有异步请求，`async`模块没有用上，另外使用了`chalk`模块改变了console打印结果的颜色。
 
-## 变成shell命令
-至此，整个工具已经基本完成，但是如果想像一个普通的shell命令(不加`$ node xx`)执行，还需要做以下操作。首先，添加[shebang](https://zh.wikipedia.org/wiki/Shebang)在js的头部，让shell知道如何执行这个文件。
+## 变成bash命令
+至此，整个工具已经基本完成，但是如果想像一个普通的bash命令(不加`$ node xx`)执行，还需要做以下操作。首先，添加[shebang](https://zh.wikipedia.org/wiki/Shebang)在js的头部，让bash知道如何执行这个文件。
 ```javascript
 #!/usr/bin/env node
 
@@ -279,12 +279,12 @@ const inquirer = require("inquirer")
 从代码可以看到加了一个[`bin`](https://docs.npmjs.com/files/package.json#bin)的参数，这个参数可以使broadcast命令与broadcast.js建立连接。
 
 最后一步，在全局安装一下依赖包。在项目目录运行一下下面的命令。
-```shell
+```bash
 $ npm install -g
 ```
 
 然后测试一下命令
-```shell
+```bash
 $ broadcast --help
 ```
 

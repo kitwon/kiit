@@ -62,7 +62,7 @@ var Primose = function(fn) {
 ```
 到这里就完成了promise的基础功能，然后执行一下看下有没有达到预期情况:
 ```bash
-$node promise
+$ node promise
 promise done!
 done too!
 ```

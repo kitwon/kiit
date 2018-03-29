@@ -14,10 +14,11 @@ tags:
 
 # 配置
 首先是安装jest, jset-vue-preprocessor(jest的一个插件，用来解析'.vue'文件的)。
-```shell
-$npm install jest jest-vue-preprocessor --save-dev
+```bash
+$ npm install jest jest-vue-preprocessor --save-dev
 
-$yarn add jest jest-vue-preprocessor --save
+# or use yarn
+$ yarn add jest jest-vue-preprocessor --save
 ```
 
 <!-- more -->
@@ -63,7 +64,8 @@ $yarn add jest jest-vue-preprocessor --save
 
 # 跑个测试
 首先，我有个vue组件cell，一个简单的列表item组件，代码如下
-```vue
+```html
+<!-- vue template -->
 <template>
   <a class="ui-cell" :href="href">
     <div class="ui-cell-wrapper">
@@ -85,51 +87,48 @@ $yarn add jest jest-vue-preprocessor --save
     </div>
   </a>
 </template>
+```
 
-...
-
-<script>
-  export default {
-    name: 'ui-cell',
-    props: {
-      to: [String, Object],
-      iconClass: String,
-      title: String,
-      label: String,
-      value: {
-        default: ''
-      }
-    },
-    computed: {
-      href () {
-        if (this.to && !this.added && this.$router) {
-          const resolve = this.$router.match(this.to)
-          if (resolve.matched.length <= 0) {
-            return this.to
-          }
-
-          this.$nextTick(() => {
-            this.added = true
-            this.$el.addEventListener('click', this.handleClick)
-          })
-          return resolve.path
+```javascript
+export default {
+  name: 'ui-cell',
+  props: {
+    to: [String, Object],
+    iconClass: String,
+    title: String,
+    label: String,
+    value: {
+      default: ''
+    }
+  },
+  computed: {
+    href () {
+      if (this.to && !this.added && this.$router) {
+        const resolve = this.$router.match(this.to)
+        if (resolve.matched.length <= 0) {
+          return this.to
         }
 
-        return this.to
-      },
-      isLink () {
-        return !!this.to
+        this.$nextTick(() => {
+          this.added = true
+          this.$el.addEventListener('click', this.handleClick)
+        })
+        return resolve.path
       }
+
+      return this.to
     },
-    methods: {
-      handleClick (e) {
-        e.preventDefault()
-        this.$router.push(this.href)
-      }
+    isLink () {
+      return !!this.to
+    }
+  },
+  methods: {
+    handleClick (e) {
+      e.preventDefault()
+      this.$router.push(this.href)
     }
   }
-</script>
-
+}
 ```
 
 然后编写测试文件
@@ -202,8 +201,8 @@ describe('Cell component', () => {
 ```
 
 然后跑一下命令
-```shell
-$npm run test
+```bash
+$ npm run test
 
 > jest-test@1.0.0 test /Users/kit/projects/jest-test
 > jest

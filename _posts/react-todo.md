@@ -31,7 +31,7 @@ tags:
 ### 开始
 开始需要npm安装一下等下要用的packages，如果是checkout我的demo，就动动手指头，install一下，我的demo地址是[https://github.com/kitwon/react-todo](https://github.com/kitwon/react-todo)
 ``` bash
-$npm install
+$ npm install
 ```
 
 
