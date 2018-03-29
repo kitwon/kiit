@@ -59,6 +59,9 @@ typings/
 # dotenv environment variables file
 .env
 
+# VS Code debug configuration
+.vscode
+
 .cache/
 public
 yarn-error.log
