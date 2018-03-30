@@ -1,7 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 
-import HeadImg from '../images/head.jpeg';
+import HeadImg from '../images/head.jpeg'
 
 const Wrapper = styled.div`
   display: block;
@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   border-bottom: 1px solid #e1e2e3;
   line-height: 1.5;
   color: #666c6f;
-`;
+`
 
 const Image = styled.div`
   width: 120px;
@@ -22,7 +22,7 @@ const Image = styled.div`
     vertical-align: top;
     width: 100%;
   }
-`;
+`
 
 const UserWrap = styled.div`
   text-align: center;
@@ -31,7 +31,7 @@ const UserWrap = styled.div`
     font-size: 20px;
     font-family: -apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;
   }
-`;
+`
 
 const InfoWrap = styled.div`
   margin: 20px 0 0;
@@ -55,12 +55,12 @@ const InfoWrap = styled.div`
     border-left: 1px solid #9ea4a6;
     border-right: 1px solid #9ea4a6;
   }
-`;
+`
 
 export default class UserPanel extends React.Component {
   render() {
-    if (!this.props.len) return null;
-    const { edgesLen, tagsLen, categoryLen } = this.props.len;
+    if (!this.props.len) return null
+    const { edgesLen, tagsLen, categoryLen } = this.props.len
 
     return (
       <Wrapper className={this.props.className}>
@@ -86,6 +86,6 @@ export default class UserPanel extends React.Component {
           </div>
         </InfoWrap>
       </Wrapper>
-    );
+    )
   }
 }

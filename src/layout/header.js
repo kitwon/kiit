@@ -1,12 +1,11 @@
-import React from 'react';
-import propTypes from 'prop-types';
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 
 const Wrapper = styled.div`
   position: relative;
   padding: 0;
   overflow: hidden;
-`;
+`
 
 const Background = styled.div`
   position: relative;
@@ -16,7 +15,7 @@ const Background = styled.div`
   background-size: 100%;
   background-position: top;
   background-repeat: no-repeat;
-`;
+`
 
 const TextWrapper = styled.div`
   position: absolute;
@@ -30,7 +29,7 @@ const TextWrapper = styled.div`
   color: #fff;
   line-height: 1.5;
   font-family: -apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;
-`;
+`
 
 const FirstText = styled.p`
   margin: 0;
@@ -38,13 +37,13 @@ const FirstText = styled.p`
   line-height: 1.2;
   font-weight: 700;
   font-style: italic;
-`;
+`
 
 const SecondText = styled.p`
   margin: 0;
   font-size: 32px;
   font-style: italic;
-`;
+`
 
 const ThirdText = styled.div`
   font-family: Roboto Slab,Monda,PingFang SC,Microsoft YaHei,sans-serif;
@@ -54,7 +53,7 @@ const ThirdText = styled.div`
   font-size: 32px;
   letter-spacing: 1.5px;
   background: #093848;
-`;
+`
 
 class Header extends React.Component {
   render() {
@@ -68,8 +67,8 @@ class Header extends React.Component {
 
         <Background />
       </Wrapper>
-    );
+    )
   }
 }
 
-export default Header;
+export default Header

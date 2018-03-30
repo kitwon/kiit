@@ -1,8 +1,8 @@
-import React from 'react';
-import styled from 'styled-components';
-import throttle from 'lodash/throttle';
-import getRaf from '../utils/raf';
-const requestFrame = getRaf();
+import React from 'react'
+import styled from 'styled-components'
+import throttle from 'lodash/throttle'
+import getRaf from '../utils/raf'
+const requestFrame = getRaf()
 
 const Wrapper = styled.div`
   position: fixed;
@@ -32,7 +32,7 @@ const Wrapper = styled.div`
     margin-right: 2px;
   }
 }
-`;
+`
 
 const TopButton = styled.div`
   transition: all .3s $cubic;
@@ -41,7 +41,7 @@ const TopButton = styled.div`
 
 export default class TopBtn extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       docHeight: 0,
@@ -49,18 +49,18 @@ export default class TopBtn extends React.Component {
       showTopBtn: false
     }
 
-    this.goPageTop = this.goPageTop.bind(this);
+    this.goPageTop = this.goPageTop.bind(this)
   }
 
   getScrollCount() {
     const doc = document.documentElement
-    let scrollTop = doc.scrollTop - doc.clientTop;
-    let percentage = Math.floor((scrollTop / this.state.docHeight).toFixed(3) * 100);
+    let scrollTop = doc.scrollTop - doc.clientTop
+    let percentage = Math.floor((scrollTop / this.state.docHeight).toFixed(3) * 100)
 
     this.setState({
       pagePercent: percentage > 100 ? 100 : percentage,
       showTopBtn: scrollTop > 200
-    });
+    })
   }
 
   componentDidMount() {
@@ -68,27 +68,26 @@ export default class TopBtn extends React.Component {
       this.setState({
         docHeight: document.body.scrollHeight - window.screen.availHeight
         // docHeight: document.documentElement.scrollHeight
-      });
-      this.getScrollCount();
+      })
+      this.getScrollCount()
 
       window.addEventListener('scroll', throttle(this.getScrollCount.bind(this), 180), {
         passive: true
-      });
-
-    }, this.props.delay || 0);
+      })
+    }, this.props.delay || 0)
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll');
+    window.removeEventListener('scroll')
   }
 
   goPageTop() {
-    document.documentElement.scrollTop -= 350;
-    if (document.documentElement.scrollTop > 0) requestFrame(this.goPageTop);
+    document.documentElement.scrollTop -= 350
+    if (document.documentElement.scrollTop > 0) requestFrame(this.goPageTop)
   }
 
   render() {
-    const { showTopBtn, pagePercent } = this.state;
+    const { showTopBtn, pagePercent } = this.state
     return (
       <Wrapper>
         <TopButton
@@ -99,6 +98,6 @@ export default class TopBtn extends React.Component {
           {pagePercent}%
         </TopButton>
       </Wrapper>
-    );
+    )
   }
 }

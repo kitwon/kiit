@@ -1,20 +1,20 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 
-import Header from '../layout/header';
-import Footer from '../layout/Footer';
-import { Wrapper, Container } from '../layout/container';
-import SideNav from '../components/SideNav';
-import UserPanel from '../components/UserPanel';
-import Pagination from '../components/Pagination';
-import ArchiveList from '../components/ArchiveList';
+import Header from '../layout/header'
+import Footer from '../layout/Footer'
+import { Wrapper, Container } from '../layout/container'
+import SideNav from '../components/SideNav'
+import UserPanel from '../components/UserPanel'
+import Pagination from '../components/Pagination'
+import ArchiveList from '../components/ArchiveList'
 
-import '../styles';
+import '../styles'
 
 const Row = styled.div`
   display: flex;
   margin: 0 -15px;
-`;
+`
 
 const LeftBar = styled.div`
   position: relative;
@@ -25,7 +25,7 @@ const LeftBar = styled.div`
   .user-panel {
     margin-top: 20px;
   }
-`;
+`
 
 const RightContent = styled.div`
   position: relative;
@@ -36,13 +36,13 @@ const RightContent = styled.div`
   .archive-pagination {
     margin-top: 130px;
   }
-`;
+`
 
 export default class Archive extends React.Component {
   render() {
     // console.log(this.props);
-    const {nodes, next, prev, page, pages, total, tagsLen, edgesLen, categoryLen } = this.props.pathContext;
-    const len = { edgesLen, tagsLen, categoryLen };
+    const { nodes, next, prev, page, pages, total, tagsLen, edgesLen, categoryLen } = this.props.pathContext
+    const len = { edgesLen, tagsLen, categoryLen }
 
     return (
       <div>
@@ -66,7 +66,7 @@ export default class Archive extends React.Component {
           <Footer />
         </Wrapper>
       </div>
-    );
+    )
   }
 }
 
@@ -86,4 +86,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`;
+`

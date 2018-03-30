@@ -1,8 +1,7 @@
-const visit = require(`unist-util-visit`);
-const { GraphQLString } = require('graphql');
-const remark = require('remark');
-var recommended = require('remark-preset-lint-recommended');
-var html = require('remark-html');
+const { GraphQLString } = require('graphql')
+const remark = require('remark')
+var recommended = require('remark-preset-lint-recommended')
+var html = require('remark-html')
 
 exports.setFieldsOnGraphQLNodeType = ({ type, store, pathPrefix, getNode, cache }) => {
   if (type.name !== `MarkdownRemark`) {
@@ -15,11 +14,11 @@ exports.setFieldsOnGraphQLNodeType = ({ type, store, pathPrefix, getNode, cache 
         .use(recommended)
         .use(html)
         .process(markdownNode, (err, file) => {
-          if (err) reject(err || file);
+          if (err) reject(err || file)
 
-          resolve(file);
+          resolve(file)
         })
-    });
+    })
   }
 
   return new Promise((resolve, reject) => {
@@ -27,7 +26,7 @@ exports.setFieldsOnGraphQLNodeType = ({ type, store, pathPrefix, getNode, cache 
       htmlExcerpt: {
         type: GraphQLString,
         resolve(markdownNode) {
-          return getHTML(markdownNode.excerpt);
+          return getHTML(markdownNode.excerpt)
         }
       }
     })

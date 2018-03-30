@@ -1,12 +1,12 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 
 const Wrapper = styled.div`
   margin: 40px auto 0;
   text-align: center;
   padding: 30px 0;
   border-top: 1px solid #ddd;
-`;
+`
 
 const Button = styled.a`
  display: inline-block;
@@ -33,11 +33,11 @@ const Button = styled.a`
     text-shadow: 0 1px hsla(0,0%,100%,.4);
     box-shadow: 0 2px 0 #158097;
   }
-`;
+`
 
 export default class PostPagination extends React.Component {
   render() {
-    const { prev, next } = this.props;
+    const { prev, next } = this.props
     return (
       <Wrapper>
         {prev ? <Button href={prev.path}><i className="ion-arrow-left-c" /> {prev.title}</Button> : null}

@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 
 const Wrapper = styled.div`
   position: relative;
@@ -15,7 +15,7 @@ const Wrapper = styled.div`
     width: 4px;
     background: #eeefef;
   }
-`;
+`
 
 const ArchiveItem = styled.div`
   padding-left: 30px;
@@ -71,19 +71,18 @@ const ArchivePost = ArchiveItem.extend`
   }
 `
 
-
 export default class ArchiveList extends React.Component {
   getItems() {
-    let tempYear = null;
-    const tempArr = [];
+    let tempYear = null
+    const tempArr = []
 
     this.props.listData.forEach((data, index) => {
-      const { date, path, title } = data.node.frontmatter;
-      const year = date.substring(0, 4);
+      const { date, path, title } = data.node.frontmatter
+      const year = date.substring(0, 4)
 
       if (tempYear !== year) {
-        tempYear = year;
-        tempArr.push(<ArchiveYear key={year}>{year}</ArchiveYear>);
+        tempYear = year
+        tempArr.push(<ArchiveYear key={year}>{year}</ArchiveYear>)
       }
 
       tempArr.push(
@@ -91,10 +90,10 @@ export default class ArchiveList extends React.Component {
           <span className="time">{date}</span>
           <a href={path}>{title}</a>
         </ArchivePost>
-      );
-    });
+      )
+    })
 
-    return tempArr;
+    return tempArr
   }
 
   render() {
@@ -102,6 +101,6 @@ export default class ArchiveList extends React.Component {
       <Wrapper>
         {this.getItems()}
       </Wrapper>
-    );
+    )
   }
 }

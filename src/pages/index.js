@@ -1,22 +1,21 @@
-import '../styles';
+import '../styles'
 
-import React from 'react';
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 
-import Header from '../layout/header';
-import Footer from '../layout/Footer';
-import { Wrapper, Container } from '../layout/container';
-import SideNav from '../components/SideNav';
-import UserPanel from '../components/UserPanel';
-import PostList from '../components/post/post-list';
-import Pagination from '../components/Pagination';
-import TopBtn from '../components/TopBtn';
-
+import Header from '../layout/header'
+import Footer from '../layout/Footer'
+import { Wrapper, Container } from '../layout/container'
+import SideNav from '../components/SideNav'
+import UserPanel from '../components/UserPanel'
+import PostList from '../components/post/post-list'
+import Pagination from '../components/Pagination'
+import TopBtn from '../components/TopBtn'
 
 const Row = styled.div`
   display: flex;
   margin: 0 -15px;
-`;
+`
 
 const LeftBar = styled.div`
   position: relative;
@@ -27,20 +26,20 @@ const LeftBar = styled.div`
   .user-panel {
     margin-top: 20px;
   }
-`;
+`
 
 const RightContent = styled.div`
   position: relative;
   flex: 0 0 75%;
   max-width: 75%;
   padding: 0 15px;
-`;
+`
 
 export default class Index extends React.Component {
   render() {
-    if (!this.props.pathContext.edgesLen) return null;
-    const { nodes, next, prev, page, pages, total, tagsLen, edgesLen, categoryLen } = this.props.pathContext;
-    const len = { edgesLen, tagsLen, categoryLen };
+    if (!this.props.pathContext.edgesLen) return null
+    const { nodes, next, prev, page, pages, total, tagsLen, edgesLen, categoryLen } = this.props.pathContext
+    const len = { edgesLen, tagsLen, categoryLen }
 
     return (
       <div>
@@ -65,7 +64,7 @@ export default class Index extends React.Component {
           <Footer />
         </Wrapper>
       </div>
-    );
+    )
   }
 }
 
@@ -85,4 +84,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`;
+`

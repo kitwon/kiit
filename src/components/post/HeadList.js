@@ -1,8 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 
-import getRaf from '../../utils/raf';
-const requestFrame = getRaf();
+// import getRaf from '../../utils/raf'
 
 const Wrapper = styled.div`
   display: block;
@@ -27,7 +26,7 @@ const Wrapper = styled.div`
       margin-left: -15px;
     }
   }
-`;
+`
 
 const List = styled.ul`
   margin: 0;
@@ -64,14 +63,14 @@ const List = styled.ul`
 
 export default class TitleList extends React.Component {
   onItemClick(id) {
-    const pos = document.getElementById(id).offsetTop;
-    this.scrollToPos(pos);
+    const pos = document.getElementById(id).offsetTop
+    this.scrollToPos(pos)
 
-    return false;
+    return false
   }
 
   scrollToPos(pos) {
-    document.documentElement.scrollTop = pos - 50;
+    document.documentElement.scrollTop = pos - 50
     // if (document.documentElement.scrollTop > pos) requestFrame(this.goPageTop);
   }
 
@@ -91,7 +90,7 @@ export default class TitleList extends React.Component {
                 >
                   {item.value}
                 </li>
-              );
+              )
             })}
           </List>
         </div>

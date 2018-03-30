@@ -1,12 +1,12 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 
 const List = styled.div`
   position: relative;
   top: -1px;
   border-top: 1px solid #91979a;
   text-align: center;
-`;
+`
 
 const Item = styled.a`
   position: relative;
@@ -33,8 +33,8 @@ const Item = styled.a`
 
 export default class Pagination extends React.Component {
   genItem() {
-    const { page, pages } = this.props;
-    let arr = [];
+    const { page, pages } = this.props
+    let arr = []
 
     for (let i = 1; i <= pages; i++) {
       arr.push(
@@ -42,12 +42,11 @@ export default class Pagination extends React.Component {
       )
     };
 
-    return arr;
+    return arr
   }
 
   render() {
-    const { next, prev, page, pages } = this.props;
-
+    const { next, prev } = this.props
 
     return (
       <List className={this.props.className}>
@@ -55,6 +54,6 @@ export default class Pagination extends React.Component {
         {this.genItem()}
         {next ? <Item href={next}><i className="ion-ios-arrow-forward" /></Item> : null}
       </List>
-    );
+    )
   }
 }

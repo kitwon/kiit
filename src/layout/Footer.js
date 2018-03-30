@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 
 const Wrapper = styled.div`
   margin: 100px auto 20px;
@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   a {
     color: #47c9e5;
   }
-`;
+`
 
 export default class Footer extends React.Component {
   render() {
@@ -30,6 +30,6 @@ export default class Footer extends React.Component {
           <span> Design By Kit.</span>
         </div>
       </Wrapper>
-    );
+    )
   }
 }

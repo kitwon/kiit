@@ -1,16 +1,15 @@
-import '../styles';
+import '../styles'
 
-import React from "react";
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 
-import hljs from 'highlightjs';
-import HeadList from '../components/post/HeadList';
-import TopBtn from '../components/TopBtn';
-import SideNav from '../components/SideNav';
-import Pagination from '../components/post/Pagination';
+// import hljs from 'highlightjs';
+import HeadList from '../components/post/HeadList'
+import TopBtn from '../components/TopBtn'
+import SideNav from '../components/SideNav'
+import Pagination from '../components/post/Pagination'
 
-import Footer from '../layout/Footer';
-
+import Footer from '../layout/Footer'
 
 const Wrapper = styled.div`
   width: 960px;
@@ -65,7 +64,7 @@ const InfoWrap = styled.div`
     text-align: left;
     margin: 60px 0 50px;
   }
-`;
+`
 
 const InfoItem = styled.div`
   position: relative;
@@ -92,7 +91,7 @@ const InfoItem = styled.div`
       border-right: 1px solid #9ea4a6;
     }
   }
-`;
+`
 
 const Copyright = styled.ul`
   padding: 10px 10px 10px 20px;
@@ -120,35 +119,35 @@ const Copyright = styled.ul`
 `
 
 function escape2Html(str) {
-  var arrEntities={'lt':'<','gt':'>','nbsp':' ','amp':'&','quot':'"'};
-  return str.replace(/&(lt|gt|nbsp|amp|quot);/ig,function(all,t){return arrEntities[t];});
+  var arrEntities = {'lt': '<', 'gt': '>', 'nbsp': ' ', 'amp': '&', 'quot': '"'}
+  return str.replace(/&(lt|gt|nbsp|amp|quot);/ig, function(all, t) { return arrEntities[t] })
 }
 
 export default class PostDetail extends React.Component {
   componentDidMount() {
     for (let i = 1; i <= 5; i++) {
-      let el = document.getElementsByTagName(`h${i}`);
+      let el = document.getElementsByTagName(`h${i}`)
 
       for (let j = 0; j < el.length; j++) {
-        el[j].setAttribute('id', escape2Html(el[j].innerHTML));
-        el[j].dataset.offset = el[j].offsetTop;
+        el[j].setAttribute('id', escape2Html(el[j].innerHTML))
+        el[j].dataset.offset = el[j].offsetTop
       }
     }
 
-    const leftCover = document.getElementById('leftCover');
-    leftCover.style.width = `${leftCover.offsetWidth}px`;
-    leftCover.style.position = 'fixed';
-    leftCover.style.top = 0;
-    leftCover.style.left = leftCover.offsetLeft;
+    const leftCover = document.getElementById('leftCover')
+    leftCover.style.width = `${leftCover.offsetWidth}px`
+    leftCover.style.position = 'fixed'
+    leftCover.style.top = 0
+    leftCover.style.left = leftCover.offsetLeft
   }
 
   render() {
-    if (!this.props.data.markdownRemark) return null;
+    if (!this.props.data.markdownRemark) return null
 
-    const { headings, html, frontmatter} = this.props.data.markdownRemark;
-    const { title, date, category } = frontmatter;
-    const { pathContext } = this.props;
-    const postPath = `http://kiit.wang${this.props.location.pathname}`;
+    const { headings, html, frontmatter } = this.props.data.markdownRemark
+    const { title, date, category } = frontmatter
+    const { pathContext } = this.props
+    const postPath = `http://kiit.wang${this.props.location.pathname}`
 
     return (
       <Wrapper>
@@ -192,7 +191,7 @@ export default class PostDetail extends React.Component {
         <Footer className="post-footer" />
         <TopBtn delay={2000}/>
       </Wrapper>
-    );
+    )
   }
 }
 

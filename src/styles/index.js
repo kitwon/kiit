@@ -1,3 +1,3 @@
-import 'normalize.css';
+import 'normalize.css'
 
-import './index.scss';
+import './index.scss'

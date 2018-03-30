@@ -7,7 +7,8 @@
     "develop": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
-    "deploy": "gatsby build --prefix-paths && gh-pages -d public"
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public",
+    "lint": "./node_modules/.bin/eslint --fix --ext .js src plugins"
   },
   "dependencies": {
     "gatsby": "^1.9.243",
@@ -29,5 +30,15 @@
     "remark-preset-lint-recommended": "^3.0.1",
     "styled-components": "^3.1.4",
     "vfile-reporter": "^4.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-html": "^4.0.2",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-react": "^7.7.0",
+    "eslint-plugin-standard": "^3.0.1"
   }
 }

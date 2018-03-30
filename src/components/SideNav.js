@@ -1,9 +1,9 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 
 const Nav = styled.nav`
   position: relative;
-`;
+`
 
 const Item = styled.a`
   position: relative;
@@ -79,11 +79,11 @@ const Item = styled.a`
       }
     }
   }
-`;
+`
 
 export default class SideNav extends React.Component {
   unComplete() {
-    alert('此功能暂未开放~');
+    alert('此功能暂未开放~')
   }
 
   render() {
@@ -94,6 +94,6 @@ export default class SideNav extends React.Component {
         <Item href="https://github.com/kitwon"><span>Github</span></Item>
         {/* <Item href="javascript:;" onClick={this.unComplete}><span>标签</span></Item> */}
       </Nav>
-    );
+    )
   }
 }

@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import React from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
 const Wrapper = styled.div`
   position: relative;
@@ -26,14 +26,14 @@ const Wrapper = styled.div`
     margin-left: -10%;
     border-bottom: 1px solid #d4d6d7;
   }
-`;
+`
 
 const Header = styled.p`
   font-weight: 400;
   font-size: 26px;
   text-align: center;
   margin: 0;
-`;
+`
 
 const InfoWrap = styled.div`
   margin-top: 5px;
@@ -45,7 +45,7 @@ const InfoWrap = styled.div`
     text-align: left;
     margin: 60px 0 50px;
   }
-`;
+`
 
 const InfoItem = styled.div`
   position: relative;
@@ -72,28 +72,28 @@ const InfoItem = styled.div`
       border-right: 1px solid #9ea4a6;
     }
   }
-`;
+`
 
-const ReadMoreBtn = styled.a`
-    display: block;
-    padding: 6px 0;
-    width: 8em;
-    margin: 0 auto;
-    border: 2px solid #525759;
-    text-align: center;
-    line-height: 1;
-    font-size: 15px;
-    transition: all .3s;
+// const ReadMoreBtn = styled.a`
+//     display: block;
+//     padding: 6px 0;
+//     width: 8em;
+//     margin: 0 auto;
+//     border: 2px solid #525759;
+//     text-align: center;
+//     line-height: 1;
+//     font-size: 15px;
+//     transition: all .3s;
 
-    &:hover {
-      background: #525759;
-    }
-`;
+//     &:hover {
+//       background: #525759;
+//     }
+// `
 
 export default class PostItem extends React.Component {
   render() {
-    const { postData } = this.props;
-    const data = postData.frontmatter;
+    const { postData } = this.props
+    const data = postData.frontmatter
     return (
       <Wrapper>
         <Header><a href={data.path}>{data.title}</a></Header>
