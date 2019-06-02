@@ -12,8 +12,10 @@ tags:
 
 在之前已经写过一篇关于前端单元测试的文章，相关概念就不作阐述了，有兴趣或者有需求的同学可以在往期找一下。然后这里简单介绍一下[jest](http://facebook.github.io/jest/)，这是一个[Facebook OpenSource](https://code.facebook.com/projects/)的一个开源项目。项目已经集成好了一些测试相关的框架的代码，主打的是零配置测试平台（react中应该算是零配置，其他项目还是要手动配置一下的），里面一个比较好地方是支持**快照测试**(为dom结构生成一个快照，每次测试都对比dom结构)。其他一些好用的地方可以自己查看文档，有中文。
 
-# 配置
+## 配置
+
 首先是安装jest, jset-vue-preprocessor(jest的一个插件，用来解析'.vue'文件的)。
+
 ```bash
 $ npm install jest jest-vue-preprocessor --save-dev
 
@@ -23,10 +25,12 @@ $ yarn add jest jest-vue-preprocessor --save
 
 <!-- more -->
 
-## package.json
+### package.json
+
 下面的配置都在**package.json**文件中配置。
 
 在文件最底部添加下面代码
+
 ```javascript
 {
   // ...
@@ -53,6 +57,7 @@ $ yarn add jest jest-vue-preprocessor --save
 <!-- more -->
 
 然后在上面`script`中添加一条新的命令
+
 ```javascript
 {
   // ...
@@ -62,8 +67,10 @@ $ yarn add jest jest-vue-preprocessor --save
 
 然后就配置好了，很快，很舒服。
 
-# 跑个测试
+## 跑个测试
+
 首先，我有个vue组件cell，一个简单的列表item组件，代码如下
+
 ```html
 <!-- vue template -->
 <template>

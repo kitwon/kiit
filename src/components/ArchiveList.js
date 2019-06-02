@@ -44,7 +44,7 @@ const ArchiveItem = styled.div`
   }
 `
 
-const ArchiveYear = ArchiveItem.extend`
+const ArchiveYear = styled(ArchiveItem)`
   font-size: 22px;
   color: #5e6467;
   margin: 25px 0 50px;
@@ -57,7 +57,7 @@ const ArchiveYear = ArchiveItem.extend`
   }
 `
 
-const ArchivePost = ArchiveItem.extend`
+const ArchivePost = styled(ArchiveItem)`
   padding-top: 33px;
   padding-bottom: 8px;
   border-bottom: 1px dashed #b9bdbf;

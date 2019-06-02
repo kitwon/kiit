@@ -1,12 +1,12 @@
-const path = require("path");
-const { createPaginationPages } = require('gatsby-pagination');
+const path = require('path')
+const { createPaginationPages } = require('gatsby-pagination')
 
-exports.createPages = ({ boundActionCreators, graphql }) => {
-  const { createPage } = boundActionCreators;
+exports.createPages = ({ graphql, actions }) => {
+  const { createPage } = actions
 
-  const blogPostPage = path.resolve(`src/pages/post.js`);
-  const indexPage = path.resolve('src/pages/index.js');
-  const archivePage = path.resolve('src/pages/archive.js');
+  const blogPostPage = path.resolve(`src/pages/post.js`)
+  const indexPage = path.resolve('src/pages/index.js')
+  const archivePage = path.resolve('src/pages/archive.js')
 
   return graphql(`
     {
@@ -28,21 +28,19 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
               depth
               value
             },
-            html,
-            htmlExcerpt
+            html
           }
         }
       }
     }
   `).then(result => {
     if (result.errors) {
-      return Promise.reject(result.errors);
+      return Promise.reject(result.errors)
     }
 
     const { edges } = result.data.allMarkdownRemark
-
-    const tags = createTagPages(edges, 'tags');
-    const category = createTagPages(edges, 'category');
+    const tags = createTagPages(edges, 'tags')
+    const category = createTagPages(edges, 'category')
 
     createPaginationPages({
       edges,
@@ -55,7 +53,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
         tagsLen: Object.keys(tags).length,
         categoryLen: Object.keys(category).length
       }
-    });
+    })
 
     createPaginationPages({
       edges,
@@ -68,39 +66,43 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
         tagsLen: Object.keys(tags).length,
         categoryLen: Object.keys(category).length
       }
-    });
+    })
 
-
-
-    edges.forEach(({ node }, index) => {
-      const prev = index === 0 ? false : edges[index - 1].node.frontmatter;
-      const next = index === edges.length - 1 ? false : edges[index + 1].node.frontmatter;
+    const postsPerPage = 8
+    const numPages = Math.ceil(edges.length / postsPerPage)
+    Array.from({ length: numPages }).forEach((_, index) => {
+      const prev = index === 0 ? {} : edges[index - 1].node.frontmatter
+      const next = index === edges.length - 1 ? {} : edges[index + 1].node.frontmatter
 
       createPage({
-        path: node.frontmatter.path,
+        path: index === 0 ? `/blog` : `/blog/${index + 1}`,
         component: blogPostPage,
         context: {
           prev,
-          next
+          next,
+          limit: postsPerPage,
+          skip: index * postsPerPage,
+          numPages,
+          currentPage: index + 1
         }
-      });
-    });
-  });
-};
+      })
+    })
+  })
+}
 
 function createTagPages(edges, key) {
-  const posts = {};
+  const posts = {}
 
-  edges.forEach(({node}, index) => {
+  edges.forEach(({ node }, index) => {
     if (node.frontmatter[key]) {
       node.frontmatter[key].forEach(tag => {
         if (!posts[tag]) {
           posts[tag] = []
         }
-        posts[tag].push(node);
+        posts[tag].push(node)
       })
     }
   })
 
-  return posts;
+  return posts
 }

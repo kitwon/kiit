@@ -2,6 +2,7 @@ import '../styles'
 
 import React from 'react'
 import styled from 'styled-components'
+import { graphql } from 'gatsby'
 
 import Header from '../layout/header'
 import Footer from '../layout/Footer'
@@ -37,8 +38,8 @@ const RightContent = styled.div`
 
 export default class Index extends React.Component {
   render() {
-    if (!this.props.pathContext.edgesLen) return null
-    const { nodes, next, prev, page, pages, total, tagsLen, edgesLen, categoryLen } = this.props.pathContext
+    if (!this.props.pageContext.edgesLen) return null
+    const { nodes, next, prev, page, pages, total, tagsLen, edgesLen, categoryLen } = this.props.pageContext
     const len = { edgesLen, tagsLen, categoryLen }
 
     return (

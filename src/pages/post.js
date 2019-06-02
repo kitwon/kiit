@@ -2,6 +2,7 @@ import '../styles'
 
 import React from 'react'
 import styled from 'styled-components'
+import { graphql } from 'gatsby'
 
 // import hljs from 'highlightjs';
 import HeadList from '../components/post/HeadList'
@@ -21,7 +22,12 @@ const Wrapper = styled.div`
     max-width: 100%;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     margin-top: 60px;
     margin-bottom: 35px;
   }
@@ -86,7 +92,7 @@ const InfoItem = styled.div`
       position: absolute;
       right: 0;
       top: 50%;
-      margin-top: -.4em;
+      margin-top: -0.4em;
       height: 1em;
       border-right: 1px solid #9ea4a6;
     }
@@ -98,7 +104,7 @@ const Copyright = styled.ul`
   margin: 50px 0 0;
   list-style: none;
   color: #666;
-  border-left: .25rem solid #f0ad4e;
+  border-left: 0.25rem solid #f0ad4e;
   background: #fbfcfc;
   font-size: 14px;
 
@@ -119,8 +125,10 @@ const Copyright = styled.ul`
 `
 
 function escape2Html(str) {
-  var arrEntities = {'lt': '<', 'gt': '>', 'nbsp': ' ', 'amp': '&', 'quot': '"'}
-  return str.replace(/&(lt|gt|nbsp|amp|quot);/ig, function(all, t) { return arrEntities[t] })
+  var arrEntities = { lt: '<', gt: '>', nbsp: ' ', amp: '&', quot: '"' }
+  return str.replace(/&(lt|gt|nbsp|amp|quot);/gi, function(all, t) {
+    return arrEntities[t]
+  })
 }
 
 export default class PostDetail extends React.Component {
@@ -134,11 +142,11 @@ export default class PostDetail extends React.Component {
       }
     }
 
-    const leftCover = document.getElementById('leftCover')
-    leftCover.style.width = `${leftCover.offsetWidth}px`
-    leftCover.style.position = 'fixed'
-    leftCover.style.top = 0
-    leftCover.style.left = leftCover.offsetLeft
+    // const leftCover = document.getElementById('leftCover')
+    // leftCover.style.width = `${leftCover.offsetWidth}px`
+    // leftCover.style.position = 'fixed'
+    // leftCover.style.top = 0
+    // leftCover.style.left = leftCover.offsetLeft
   }
 
   render() {
@@ -146,7 +154,7 @@ export default class PostDetail extends React.Component {
 
     const { headings, html, frontmatter } = this.props.data.markdownRemark
     const { title, date, category } = frontmatter
-    const { pathContext } = this.props
+    const { pageContext } = this.props
     const postPath = `http://kiit.wang${this.props.location.pathname}`
 
     return (
@@ -159,7 +167,7 @@ export default class PostDetail extends React.Component {
             </div>
           </LeftCol>
           <RightCol>
-            <PostHeader>{ title }</PostHeader>
+            <PostHeader>{title}</PostHeader>
             <InfoWrap>
               <InfoItem>
                 <i className="ion-android-calendar" />
@@ -170,7 +178,7 @@ export default class PostDetail extends React.Component {
                 <span>发表于 {category}</span>
               </InfoItem>
             </InfoWrap>
-            <div dangerouslySetInnerHTML={{__html: html}} />
+            <div dangerouslySetInnerHTML={{ __html: html }} />
             <Copyright>
               <li>
                 <span className="title">本文作者: </span>
@@ -178,18 +186,26 @@ export default class PostDetail extends React.Component {
               </li>
               <li>
                 <span className="title">本文链接: </span>
-                <span><a href={postPath}>{postPath}</a></span>
+                <span>
+                  <a href={postPath}>{postPath}</a>
+                </span>
               </li>
               <li>
                 <span className="title">版权声明: </span>
-                <span>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/">CC BY-NC-SA 3.0 CN</a> 许可协议。转载请注明出处！</span>
+                <span>
+                  本博客所有文章除特别声明外，均采用{' '}
+                  <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/">
+                    CC BY-NC-SA 3.0 CN
+                  </a>{' '}
+                  许可协议。转载请注明出处！
+                </span>
               </li>
             </Copyright>
-            <Pagination prev={pathContext.prev} next={pathContext.next} />
+            <Pagination prev={pageContext.prev} next={pageContext.next} />
           </RightCol>
         </Row>
         <Footer className="post-footer" />
-        <TopBtn delay={2000}/>
+        <TopBtn delay={2000} />
       </Wrapper>
     )
   }
@@ -203,11 +219,11 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         path
         title
-      },
+      }
       headings {
         depth
         value
-      },
+      }
     }
   }
 `

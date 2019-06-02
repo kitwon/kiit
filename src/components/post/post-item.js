@@ -107,7 +107,7 @@ export default class PostItem extends React.Component {
             <i className="ion-android-folder-open" />
             <span>发表于 {data.category}</span>
           </InfoItem>
-          <div className="excerpt" dangerouslySetInnerHTML={{__html: postData.htmlExcerpt}}></div>
+          <div className="excerpt" dangerouslySetInnerHTML={{ __html: postData.html }}></div>
 
         </InfoWrap>
       </Wrapper>
