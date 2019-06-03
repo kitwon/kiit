@@ -89,7 +89,7 @@ export default class SideNav extends React.Component {
   render() {
     return (
       <Nav>
-        <Item href="/blog/1"><span>首页</span></Item>
+        <Item href="/blog"><span>首页</span></Item>
         <Item href="/archive/1"><span>归档</span></Item>
         <Item href="https://github.com/kitwon"><span>Github</span></Item>
         {/* <Item href="javascript:;" onClick={this.unComplete}><span>标签</span></Item> */}

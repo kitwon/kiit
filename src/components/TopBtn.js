@@ -46,7 +46,8 @@ export default class TopBtn extends React.Component {
     this.state = {
       docHeight: 0,
       pagePercent: 0,
-      showTopBtn: false
+      showTopBtn: false,
+      scrollListener: null
     }
 
     this.goPageTop = this.goPageTop.bind(this)
@@ -66,19 +67,21 @@ export default class TopBtn extends React.Component {
   componentDidMount() {
     setTimeout(() => {
       this.setState({
-        docHeight: document.body.scrollHeight - window.screen.availHeight
+        docHeight: document.body.scrollHeight - window.screen.availHeight,
+        scrollListener: throttle(this.getScrollCount.bind(this), 180)
         // docHeight: document.documentElement.scrollHeight
       })
       this.getScrollCount()
 
-      window.addEventListener('scroll', throttle(this.getScrollCount.bind(this), 180), {
+      window.addEventListener('scroll', this.state.scrollListener, {
         passive: true
       })
     }, this.props.delay || 0)
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll')
+    console.log(this.scrollListener)
+    window.removeEventListener('scroll', this.state.scrollListener.cancel)
   }
 
   goPageTop() {

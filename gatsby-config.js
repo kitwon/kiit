@@ -32,7 +32,6 @@ module.exports = {
         implementation: require('sass')
       }
     },
-    `gatsby-transformer-html-excerpt`,
     `gatsby-plugin-styled-components`,
     `gatsby-remark-emoji`,
     `gatsby-plugin-lodash`

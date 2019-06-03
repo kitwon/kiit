@@ -1,5 +1,3 @@
-import '../styles'
-
 import React from 'react'
 import styled from 'styled-components'
 import { graphql } from 'gatsby'
@@ -9,9 +7,10 @@ import Footer from '../layout/Footer'
 import { Wrapper, Container } from '../layout/container'
 import SideNav from '../components/SideNav'
 import UserPanel from '../components/UserPanel'
-import PostList from '../components/post/post-list'
 import Pagination from '../components/Pagination'
-import TopBtn from '../components/TopBtn'
+import ArchiveList from '../components/ArchiveList'
+
+import '../styles'
 
 const Row = styled.div`
   display: flex;
@@ -34,11 +33,15 @@ const RightContent = styled.div`
   flex: 0 0 75%;
   max-width: 75%;
   padding: 0 15px;
+
+  .archive-pagination {
+    margin-top: 130px;
+  }
 `
 
-export default class Index extends React.Component {
+export default class Archive extends React.Component {
   render() {
-    if (!this.props.pageContext.edgesLen) return null
+    // console.log(this.props);
     const { nodes, next, prev, page, pages, total, tagsLen, edgesLen, categoryLen } = this.props.pageContext
     const len = { edgesLen, tagsLen, categoryLen }
 
@@ -55,13 +58,12 @@ export default class Index extends React.Component {
               </LeftBar>
 
               <RightContent>
-                <PostList postEdges={nodes || []}/>
-                <Pagination {...{next, prev, pages, total, page}}></Pagination>
+                <ArchiveList listData={nodes || []} />
+                <Pagination className="archive-pagination" {...{ next, prev, pages, total, page }}></Pagination>
               </RightContent>
             </Row>
           </Container>
 
-          <TopBtn />
           <Footer />
         </Wrapper>
       </div>
@@ -70,11 +72,10 @@ export default class Index extends React.Component {
 }
 
 export const pageQuery = graphql`
-  query IndexQuery {
+  query ArchiveQuery {
     allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
       edges {
         node {
-          excerpt
           frontmatter {
             title
             date(formatString: "YYYY-MM-DD")

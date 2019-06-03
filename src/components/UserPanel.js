@@ -68,7 +68,7 @@ export default class UserPanel extends React.Component {
 
         <UserWrap>
           <div className="name">kitwang chen</div>
-          <div style={{fontSize: '14px', color: '#848a8e'}}>frontend/UI designer</div>
+          <div style={{ fontSize: '14px', color: '#848a8e' }}>frontend/UI designer</div>
         </UserWrap>
 
         <InfoWrap>

@@ -1,21 +1,21 @@
 const path = require('path')
 const { createPaginationPages } = require('gatsby-pagination')
+const { createFilePath } = require('gatsby-source-filesystem')
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
-
-  const blogPostPage = path.resolve(`src/pages/post.js`)
-  const indexPage = path.resolve('src/pages/index.js')
-  const archivePage = path.resolve('src/pages/archive.js')
 
   return graphql(`
     {
       allMarkdownRemark(
         sort: { order: DESC, fields: [frontmatter___date] }
-        limit: 1000
+        limit: 1000,
       ) {
         edges {
           node {
+            fields {
+              slug
+            }
             frontmatter {
               title
               date(formatString: "YYYY-MM-DD")
@@ -23,7 +23,7 @@ exports.createPages = ({ graphql, actions }) => {
               tags
               path
             },
-            excerpt,
+            excerpt(format: HTML),
             headings {
               depth
               value
@@ -42,23 +42,20 @@ exports.createPages = ({ graphql, actions }) => {
     const tags = createTagPages(edges, 'tags')
     const category = createTagPages(edges, 'category')
 
-    createPaginationPages({
-      edges,
-      createPage,
-      component: indexPage,
-      limit: 5,
-      pathFormatter: path => `/blog/${path}`,
-      context: {
-        edgesLen: edges.length,
-        tagsLen: Object.keys(tags).length,
-        categoryLen: Object.keys(category).length
-      }
+    edges.forEach(({ node }) => {
+      createPage({
+        path: node.frontmatter.path,
+        component: path.resolve('./src/templates/post.js'),
+        context: {
+          slug: node.fields.slug
+        }
+      })
     })
 
     createPaginationPages({
       edges,
       createPage,
-      component: archivePage,
+      component: path.resolve('src/templates/archive.js'),
       limit: 20,
       pathFormatter: path => `/archive/${path}`,
       context: {
@@ -68,26 +65,33 @@ exports.createPages = ({ graphql, actions }) => {
       }
     })
 
-    const postsPerPage = 8
+    const postsPerPage = 5
     const numPages = Math.ceil(edges.length / postsPerPage)
     Array.from({ length: numPages }).forEach((_, index) => {
-      const prev = index === 0 ? {} : edges[index - 1].node.frontmatter
-      const next = index === edges.length - 1 ? {} : edges[index + 1].node.frontmatter
-
       createPage({
         path: index === 0 ? `/blog` : `/blog/${index + 1}`,
-        component: blogPostPage,
+        component: path.resolve('src/templates/blog.js'),
         context: {
-          prev,
-          next,
           limit: postsPerPage,
           skip: index * postsPerPage,
-          numPages,
-          currentPage: index + 1
+          currentPage: index + 1,
+          numPages
         }
       })
     })
   })
+}
+
+exports.onCreateNode = ({ node, actions, getNode }) => {
+  const { createNodeField } = actions
+  if (node.internal.type === `MarkdownRemark`) {
+    const value = createFilePath({ node, getNode })
+    createNodeField({
+      name: `slug`,
+      node,
+      value
+    })
+  }
 }
 
 function createTagPages(edges, key) {

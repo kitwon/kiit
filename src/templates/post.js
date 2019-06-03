@@ -142,11 +142,11 @@ export default class PostDetail extends React.Component {
       }
     }
 
-    // const leftCover = document.getElementById('leftCover')
-    // leftCover.style.width = `${leftCover.offsetWidth}px`
-    // leftCover.style.position = 'fixed'
-    // leftCover.style.top = 0
-    // leftCover.style.left = leftCover.offsetLeft
+    const leftCover = document.getElementById('leftCover')
+    leftCover.style.width = `${leftCover.offsetWidth}px`
+    leftCover.style.position = 'fixed'
+    leftCover.style.top = 0
+    leftCover.style.left = leftCover.offsetLeft
   }
 
   render() {
@@ -212,8 +212,8 @@ export default class PostDetail extends React.Component {
 }
 
 export const pageQuery = graphql`
-  query BlogPostByPath($path: String) {
-    markdownRemark(frontmatter: { path: { eq: $path } }) {
+  query ($slug: String!) {
+    markdownRemark(fields: { slug: { eq: $slug } }) {
       html
       frontmatter {
         date(formatString: "MMMM DD, YYYY")

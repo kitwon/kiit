@@ -42,6 +42,8 @@ const FirstText = styled.p`
 const SecondText = styled.p`
   margin: 0;
   font-size: 32px;
+  letter-spacing: 5px;
+  word-spacing: 10px;
   font-style: italic;
 `
 
@@ -60,8 +62,8 @@ class Header extends React.Component {
     return (
       <Wrapper>
         <TextWrapper>
-          <FirstText>hi Babe</FirstText>
-          <SecondText>look at this kingdom. i conquered for thee.</SecondText>
+          <FirstText>holy Shit.</FirstText>
+          <SecondText>EVERY DAY STRUGGLE.</SecondText>
           <ThirdText>kit's note</ThirdText>
         </TextWrapper>
 

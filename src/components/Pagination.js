@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'gatsby'
 
 const List = styled.div`
   position: relative;
@@ -8,7 +9,7 @@ const List = styled.div`
   text-align: center;
 `
 
-const Item = styled.a`
+const Item = styled(Link)`
   position: relative;
   display: inline-block;
   top: -1px;
@@ -33,14 +34,32 @@ const Item = styled.a`
 
 export default class Pagination extends React.Component {
   genItem() {
-    const { page, pages } = this.props
+    const { currentPage, numPages } = this.props
     let arr = []
 
-    for (let i = 1; i <= pages; i++) {
+    for (let i = 0; i < numPages; i++) {
+      const href = i === 0 ? `/blog` : `/blog/${i + 1}`
       arr.push(
-        <Item className={`${i === Number(page) ? 'active' : ''}`} href={`/blog/${i}`} key={i}>{i}</Item>
+        <Item activeClassName="active" to={href} key={i}>{i + 1}</Item>
       )
     };
+
+    if (currentPage !== 1) {
+      const href = currentPage === 2 ? `/blog` : `/blog/${currentPage - 1}`
+      arr.unshift(
+        <Item activeClassName="active" to={href} key="pagination-prev">
+          <i className="ion-ios-arrow-back" />
+        </Item>
+      )
+    }
+
+    if (currentPage !== numPages) {
+      arr.push(
+        <Item activeClassName="active" to={`/blog/${currentPage + 1}`} key="pagination-next">
+          <i className="ion-ios-arrow-forward" />
+        </Item>
+      )
+    }
 
     return arr
   }
