@@ -1,3 +1,5 @@
+import '../styles'
+
 import React from 'react'
 import styled from 'styled-components'
 import { graphql } from 'gatsby'
@@ -7,10 +9,9 @@ import Footer from '../layout/Footer'
 import { Wrapper, Container } from '../layout/container'
 import SideNav from '../components/SideNav'
 import UserPanel from '../components/UserPanel'
+import PostList from '../components/post/post-list'
 import Pagination from '../components/Pagination'
-import ArchiveList from '../components/ArchiveList'
-
-import '../styles'
+import TopBtn from '../components/TopBtn'
 
 const Row = styled.div`
   display: flex;
@@ -33,21 +34,18 @@ const RightContent = styled.div`
   flex: 0 0 75%;
   max-width: 75%;
   padding: 0 15px;
-
-  .archive-pagination {
-    margin-top: 130px;
-  }
 `
 
-export default class Archive extends React.Component {
+export default class Index extends React.Component {
   render() {
-    // console.log(this.props);
-    const { nodes, next, prev, page, pages, total, tagsLen, edgesLen, categoryLen } = this.props.pageContext
-    const len = { edgesLen, tagsLen, categoryLen }
+    // if (!this.props.pageContext.edgesLen) return null
+    const { numPages, currentPage } = this.props.pageContext
+    const { edges } = this.props.data.allMarkdownRemark
+    const len = { numPages }
 
     return (
       <div>
-        <Header />
+        <Header></Header>
 
         <Wrapper>
           <Container>
@@ -58,12 +56,13 @@ export default class Archive extends React.Component {
               </LeftBar>
 
               <RightContent>
-                <ArchiveList listData={nodes || []} />
-                <Pagination className="archive-pagination" {...{ next, prev, pages, total, page }}></Pagination>
+                <PostList postEdges={edges || []}/>
+                <Pagination {...{ numPages, currentPage }}></Pagination>
               </RightContent>
             </Row>
           </Container>
 
+          <TopBtn />
           <Footer />
         </Wrapper>
       </div>
@@ -71,11 +70,16 @@ export default class Archive extends React.Component {
   }
 }
 
-export const pageQuery = graphql`
-  query ArchiveQuery {
-    allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+export const PageQuery = graphql`
+  query IndexQuery($skip: Int!, $limit: Int!) {
+    allMarkdownRemark(
+      sort: { order: DESC, fields: [frontmatter___date] }
+      limit: $limit
+      skip: $skip
+    ) {
       edges {
         node {
+          excerpt(format: HTML)
           frontmatter {
             title
             date(formatString: "YYYY-MM-DD")

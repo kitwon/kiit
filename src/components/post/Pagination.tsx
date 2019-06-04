@@ -35,7 +35,12 @@ const Button = styled.a`
   }
 `
 
-export default class PostPagination extends React.Component {
+interface PropTypes {
+  next: any
+  prev: any
+}
+
+export default class PostPagination extends React.Component<PropTypes> {
   render() {
     const { prev, next } = this.props
     return (

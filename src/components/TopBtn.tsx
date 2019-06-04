@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import throttle from 'lodash/throttle'
+import { throttle } from 'lodash'
 import getRaf from '../utils/raf'
 const requestFrame = getRaf()
 
@@ -39,7 +39,11 @@ const TopButton = styled.div`
   transform: translate3d(0, ${props => props.active ? 0 : 130}px, 0);
 `
 
-export default class TopBtn extends React.Component {
+interface PropTypes {
+  delay: number
+}
+
+export default class TopBtn extends React.Component<PropTypes> {
   constructor(props) {
     super(props)
 

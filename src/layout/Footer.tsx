@@ -13,7 +13,11 @@ const Wrapper = styled.div`
   }
 `
 
-export default class Footer extends React.Component {
+interface PropTypes {
+  className: string
+}
+
+export default class Footer extends React.Component<PropTypes> {
   render() {
     return (
       <Wrapper>

@@ -31,21 +31,29 @@ const Item = styled(Link)`
       border-top: 1px solid #47c9e5;
   }
 `
+interface PropTypes {
+  currentPage: number
+  numPages: number
+  pageName: string
+  className: string
+  prev: any
+  next: any
+}
 
-export default class Pagination extends React.Component {
+export default class Pagination extends React.Component<PropTypes> {
   genItem() {
-    const { currentPage, numPages } = this.props
+    const { currentPage, numPages, pageName } = this.props
     let arr = []
 
     for (let i = 0; i < numPages; i++) {
-      const href = i === 0 ? `/blog` : `/blog/${i + 1}`
+      const href = i === 0 ? `/${pageName}` : `/${pageName}/${i + 1}`
       arr.push(
         <Item activeClassName="active" to={href} key={i}>{i + 1}</Item>
       )
     };
 
     if (currentPage !== 1) {
-      const href = currentPage === 2 ? `/blog` : `/blog/${currentPage - 1}`
+      const href = currentPage === 2 ? `/${pageName}` : `/${pageName}/${currentPage - 1}`
       arr.unshift(
         <Item activeClassName="active" to={href} key="pagination-prev">
           <i className="ion-ios-arrow-back" />
@@ -55,7 +63,7 @@ export default class Pagination extends React.Component {
 
     if (currentPage !== numPages) {
       arr.push(
-        <Item activeClassName="active" to={`/blog/${currentPage + 1}`} key="pagination-next">
+        <Item activeClassName="active" to={`/${pageName}/${currentPage + 1}`} key="pagination-next">
           <i className="ion-ios-arrow-forward" />
         </Item>
       )
@@ -69,9 +77,9 @@ export default class Pagination extends React.Component {
 
     return (
       <List className={this.props.className}>
-        {prev ? <Item href={prev}><i className="ion-ios-arrow-back" /></Item> : null}
+        {prev ? <Item to={prev}><i className="ion-ios-arrow-back" /></Item> : null}
         {this.genItem()}
-        {next ? <Item href={next}><i className="ion-ios-arrow-forward" /></Item> : null}
+        {next ? <Item to={next}><i className="ion-ios-arrow-forward" /></Item> : null}
       </List>
     )
   }

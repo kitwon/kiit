@@ -61,15 +61,19 @@ const List = styled.ul`
   }
 `
 
-export default class TitleList extends React.Component {
-  onItemClick(id) {
-    const pos = document.getElementById(id).offsetTop
+interface Props {
+  listData: any
+}
+
+export default class TitleList extends React.Component<Props> {
+  onItemClick(id: string) {
+    const pos = document.getElementById(id).offsetTop || 0
     this.scrollToPos(pos)
 
     return false
   }
 
-  scrollToPos(pos) {
+  scrollToPos(pos: number) {
     document.documentElement.scrollTop = pos - 50
     // if (document.documentElement.scrollTop > pos) requestFrame(this.goPageTop);
   }

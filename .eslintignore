@@ -1,2 +1,5 @@
 docs/*.js
 public/*
+node_modules/
+
+/gatsby-*.js
