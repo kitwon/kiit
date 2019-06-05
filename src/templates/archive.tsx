@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FunctionComponentElement } from 'react'
 import styled from 'styled-components'
 import { graphql } from 'gatsby'
 
@@ -9,6 +9,7 @@ import SideNav from '../components/SideNav'
 import UserPanel from '../components/UserPanel'
 import Pagination from '../components/Pagination'
 import ArchiveList from '../components/ArchiveList'
+import PostDefaultData from '../types/post';
 
 import '../styles'
 
@@ -39,41 +40,42 @@ const RightContent = styled.div`
   }
 `
 
-export default class Archive extends React.Component {
-  render() {
-    // console.log(this.props);
-    const { numPages, currentPage } = this.props.pageContext
-    const { edges } = this.props.data.allMarkdownRemark
-    const len = { numPages }
+const Archive = ({ pageContext, data }: PostDefaultData): FunctionComponentElement<PostDefaultData> => {
+  // console.log(this.props);
+  const { numPages, currentPage } = pageContext
+  const { edges } = data.allMarkdownRemark
+  const len = { numPages }
 
-    return (
-      <div>
-        <Header />
+  return (
+    <div>
+      <Header />
 
-        <Wrapper>
-          <Container>
-            <Row>
-              <LeftBar>
-                <SideNav />
-                <UserPanel len={len} className="user-panel"/>
-              </LeftBar>
+      <Wrapper>
+        <Container>
+          <Row>
+            <LeftBar>
+              <SideNav />
+              <UserPanel len={len} className="user-panel" />
+            </LeftBar>
 
-              <RightContent>
-                <ArchiveList listData={edges || []} />
-                <Pagination
-                  className="archive-pagination"
-                  pageName="archive"
-                  {...{ numPages, currentPage }} />
-              </RightContent>
-            </Row>
-          </Container>
+            <RightContent>
+              <ArchiveList listData={edges || []} />
+              <Pagination
+                className="archive-pagination"
+                pageName="archive"
+                {...{ numPages, currentPage }}
+              />
+            </RightContent>
+          </Row>
+        </Container>
 
-          <Footer />
-        </Wrapper>
-      </div>
-    )
-  }
+        <Footer />
+      </Wrapper>
+    </div>
+  )
 }
+
+export default Archive
 
 export const pageQuery = graphql`
   query ArchiveQuery {

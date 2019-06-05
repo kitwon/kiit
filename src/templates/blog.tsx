@@ -1,6 +1,6 @@
 import '../styles'
 
-import React from 'react'
+import React, { ReactElement } from 'react'
 import styled from 'styled-components'
 import { graphql } from 'gatsby'
 
@@ -35,40 +35,44 @@ const RightContent = styled.div`
   max-width: 75%;
   padding: 0 15px;
 `
-
-export default class Index extends React.Component {
-  render() {
-    // if (!this.props.pageContext.edgesLen) return null
-    const { numPages, currentPage } = this.props.pageContext
-    const { edges } = this.props.data.allMarkdownRemark
-    const len = { numPages }
-
-    return (
-      <div>
-        <Header></Header>
-
-        <Wrapper>
-          <Container>
-            <Row>
-              <LeftBar>
-                <SideNav />
-                <UserPanel len={len} className="user-panel"/>
-              </LeftBar>
-
-              <RightContent>
-                <PostList postEdges={edges || []}/>
-                <Pagination {...{ numPages, currentPage }}></Pagination>
-              </RightContent>
-            </Row>
-          </Container>
-
-          <TopBtn />
-          <Footer />
-        </Wrapper>
-      </div>
-    )
-  }
+interface PropTypes {
+  pageContext: any
+  data: any
 }
+
+const Index = ({ pageContext, data }: PropTypes): ReactElement => {
+  // if (!this.props.pageContext.edgesLen) return null
+  const { numPages, currentPage } = pageContext
+  const { edges } = data.allMarkdownRemark
+  const len = { numPages }
+
+  return (
+    <div>
+      <Header />
+
+      <Wrapper>
+        <Container>
+          <Row>
+            <LeftBar>
+              <SideNav />
+              <UserPanel len={len} className="user-panel" />
+            </LeftBar>
+
+            <RightContent>
+              <PostList postEdges={edges || []} />
+              <Pagination {...{ numPages, currentPage }} />
+            </RightContent>
+          </Row>
+        </Container>
+
+        <TopBtn />
+        <Footer />
+      </Wrapper>
+    </div>
+  )
+}
+
+export default Index
 
 export const PageQuery = graphql`
   query IndexQuery($skip: Int!, $limit: Int!) {

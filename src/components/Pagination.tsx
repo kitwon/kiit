@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 import styled from 'styled-components'
 import { Link } from 'gatsby'
 
@@ -34,18 +34,18 @@ const Item = styled(Link)`
 interface PropTypes {
   currentPage: number
   numPages: number
-  pageName: string
-  className: string
-  prev: any
-  next: any
+  pageName?: string
+  className?: string
+  prev?: any
+  next?: any
 }
 
 export default class Pagination extends React.Component<PropTypes> {
-  genItem() {
+  genItem(): ReactElement[] {
     const { currentPage, numPages, pageName } = this.props
-    let arr = []
+    const arr = []
 
-    for (let i = 0; i < numPages; i++) {
+    for (let i = 0; i < numPages; i += 1) {
       const href = i === 0 ? `/${pageName}` : `/${pageName}/${i + 1}`
       arr.push(
         <Item activeClassName="active" to={href} key={i}>{i + 1}</Item>
@@ -72,11 +72,11 @@ export default class Pagination extends React.Component<PropTypes> {
     return arr
   }
 
-  render() {
-    const { next, prev } = this.props
+  render(): ReactElement {
+    const { next, prev, className } = this.props
 
     return (
-      <List className={this.props.className}>
+      <List className={className}>
         {prev ? <Item to={prev}><i className="ion-ios-arrow-back" /></Item> : null}
         {this.genItem()}
         {next ? <Item to={next}><i className="ion-ios-arrow-forward" /></Item> : null}

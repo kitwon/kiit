@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FunctionComponentElement } from 'react'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
@@ -40,14 +40,26 @@ interface PropTypes {
   prev: any
 }
 
-export default class PostPagination extends React.Component<PropTypes> {
-  render() {
-    const { prev, next } = this.props
-    return (
-      <Wrapper>
-        {prev ? <Button href={prev.path}><i className="ion-arrow-left-c" /> {prev.title}</Button> : null}
-        {next ? <Button href={next.path}>{next.title} <i className="ion-arrow-right-c" /></Button> : null}
-      </Wrapper>
-    )
-  }
+const PostPagination = ({ prev, next }: PropTypes): FunctionComponentElement<PropTypes> => {
+  return (
+    <Wrapper>
+      {prev ? (
+        <Button href={prev.path}>
+          <i className="ion-arrow-left-c" />
+          {prev.title}
+        </Button>
+      )
+      : null}
+
+      {next ? (
+        <Button href={next.path}>
+          {next.title}
+          <i className="ion-arrow-right-c" />
+        </Button>
+      )
+      : null}
+    </Wrapper>
+  )
 }
+
+export default PostPagination

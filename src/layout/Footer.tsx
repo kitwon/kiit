@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FunctionComponentElement } from 'react'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
@@ -17,23 +17,21 @@ interface PropTypes {
   className: string
 }
 
-export default class Footer extends React.Component<PropTypes> {
-  render() {
-    return (
-      <Wrapper>
-        <div>
-          <span>© 2015 - 2018</span>
-          &nbsp;
-          <i className="icon ion-ios-nutrition" />
-          &nbsp;
-          <span>Kit</span>
-        </div>
-        <div>
-          <span>power by </span>
-          <span><a href="https://www.gatsbyjs.org">Gatsby.</a></span>
-          <span> Design By Kit.</span>
-        </div>
-      </Wrapper>
-    )
-  }
-}
+const Footer = (): FunctionComponentElement<PropTypes> => (
+  <Wrapper>
+    <div>
+      <span>© 2015 - 2018</span>
+      &nbsp;
+      <i className="icon ion-ios-nutrition" />
+      &nbsp;
+      <span>Kit</span>
+    </div>
+    <div>
+      <span>power by </span>
+      <span><a href="https://www.gatsbyjs.org">Gatsby.</a></span>
+      <span> Design By Kit.</span>
+    </div>
+  </Wrapper>
+)
+
+export default Footer;

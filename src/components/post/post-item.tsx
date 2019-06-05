@@ -1,5 +1,4 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { FunctionComponentElement } from 'react'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
@@ -74,50 +73,29 @@ const InfoItem = styled.div`
   }
 `
 
-// const ReadMoreBtn = styled.a`
-//     display: block;
-//     padding: 6px 0;
-//     width: 8em;
-//     margin: 0 auto;
-//     border: 2px solid #525759;
-//     text-align: center;
-//     line-height: 1;
-//     font-size: 15px;
-//     transition: all .3s;
-
-//     &:hover {
-//       background: #525759;
-//     }
-// `
-
-export default class PostItem extends React.Component {
-  render() {
-    const { postData } = this.props
-    const data = postData.frontmatter
-    return (
-      <Wrapper>
-        <Header><a href={data.path}>{data.title}</a></Header>
-
-        <InfoWrap>
-          <InfoItem>
-            <i className="ion-android-calendar" />
-            <span>发表于 {data.date}</span>
-          </InfoItem>
-          <InfoItem>
-            <i className="ion-android-folder-open" />
-            <span>发表于 {data.category}</span>
-          </InfoItem>
-          <div className="excerpt" dangerouslySetInnerHTML={{ __html: postData.excerpt }}></div>
-
-        </InfoWrap>
-      </Wrapper>
-    )
-  }
+interface Props {
+  postData: any
 }
 
-PostItem.propTypes = {
-  postData: PropTypes.object
-}
-// export const pageQuery = graphql`
+const PostItem = ({ postData }: Props): FunctionComponentElement<Props> => {
+  const data = postData.frontmatter
+  return (
+    <Wrapper>
+      <Header><a href={data.path}>{data.title}</a></Header>
 
-// `;
+      <InfoWrap>
+        <InfoItem>
+          <i className="ion-android-calendar" />
+          <span>{`发表于 ${data.date}`}</span>
+        </InfoItem>
+        <InfoItem>
+          <i className="ion-android-folder-open" />
+          <span>{`发表于 ${data.category}`}</span>
+        </InfoItem>
+        <div className="excerpt" dangerouslySetInnerHTML={{ __html: postData.excerpt }} />
+      </InfoWrap>
+    </Wrapper>
+  )
+}
+
+export default PostItem

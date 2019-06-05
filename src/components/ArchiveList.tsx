@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { FunctionComponentElement, ReactElement } from 'react'
 import styled from 'styled-components'
+// import Archive from 'src/templates/archive';
 
 const Wrapper = styled.div`
   position: relative;
@@ -71,36 +72,32 @@ const ArchivePost = styled(ArchiveItem)`
   }
 `
 
-export default class ArchiveList extends React.Component {
-  getItems() {
-    let tempYear = null
-    const tempArr = []
-
-    this.props.listData.forEach((data, index) => {
-      const { date, path, title } = data.node.frontmatter
-      const year = date.substring(0, 4)
-
-      if (tempYear !== year) {
-        tempYear = year
-        tempArr.push(<ArchiveYear key={year}>{year}</ArchiveYear>)
-      }
-
-      tempArr.push(
-        <ArchivePost key={index}>
-          <span className="time">{date}</span>
-          <a href={path}>{title}</a>
-        </ArchivePost>
-      )
-    })
-
-    return tempArr
-  }
-
-  render() {
-    return (
-      <Wrapper>
-        {this.getItems()}
-      </Wrapper>
-    )
-  }
+interface Props {
+  listData: any
 }
+
+const ArchiveList = ({ listData }: Props): FunctionComponentElement<Props> => {
+  let tempYear: any = null
+  const tempArr: ReactElement[] = []
+
+  listData.forEach((data: any): void => {
+    const { date, path, title } = data.node.frontmatter
+    const year = date.substring(0, 4)
+
+    if (tempYear !== year) {
+      tempYear = year
+      tempArr.push(<ArchiveYear key={year}>{year}</ArchiveYear>)
+    }
+
+    tempArr.push(
+      <ArchivePost key={data.name}>
+        <span className="time">{date}</span>
+        <a href={path}>{title}</a>
+      </ArchivePost>
+    )
+  })
+
+  return <Wrapper>{tempArr}</Wrapper>
+}
+
+export default ArchiveList

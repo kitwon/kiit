@@ -1,6 +1,6 @@
 import '../styles'
 
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { graphql } from 'gatsby'
 
 // import hljs from 'highlightjs';
@@ -9,22 +9,19 @@ import TopBtn from '../components/TopBtn'
 import SideNav from '../components/SideNav'
 import Pagination from '../components/post/Pagination'
 import Footer from '../layout/Footer'
+import PostDefaultData from '../types/post'
 
-import { PostDefaultData } from '../types/post'
-
-function escape2Html(str: string): any {
+function escape2Html(str: string): string {
   const arrEntities: any = { lt: '<', gt: '>', nbsp: ' ', amp: '&', quot: '"' }
-  return str.replace(/&(lt|gt|nbsp|amp|quot);/gi, function(all, t) {
-    return arrEntities[t]
-  })
+  return str.replace(/&(lt|gt|nbsp|amp|quot);/gi, (_, t): string => arrEntities[t])
 }
 
 export default class PostDetail extends React.Component<PostDefaultData> {
-  componentDidMount() {
-    for (let i = 1; i <= 5; i++) {
+  componentDidMount(): void {
+    for (let i = 1; i <= 5; i += 1) {
       const el: any = document.getElementsByTagName(`h${i}`)
 
-      for (let j = 0; j < el.length; j++) {
+      for (let j = 0; j < el.length; j += 1) {
         el[j].setAttribute('id', escape2Html(el[j].innerHTML))
         el[j].dataset.offset = String(el[j].offsetTop)
       }
@@ -37,11 +34,12 @@ export default class PostDetail extends React.Component<PostDefaultData> {
     leftCover.style.left = String(leftCover.offsetLeft)
   }
 
-  render() {
-    const { headings, html, frontmatter } = this.props.data.markdownRemark
+  render(): ReactNode {
+    const { data, location } = this.props;
+    const { headings, html, frontmatter } = data.markdownRemark
     const { title, date, category } = frontmatter
     const { pageContext } = this.props
-    const postPath = `http://kiit.wang${this.props.location.pathname}`
+    const postPath = `http://kiit.wang${location.pathname}`
 
     return (
       <div className="post-detail">
@@ -58,11 +56,11 @@ export default class PostDetail extends React.Component<PostDefaultData> {
             <div className="post-detail__meta">
               <div className="post-detail__meta-item">
                 <i className="ion-android-calendar" />
-                <span>发表于 {date}</span>
+                <span>{`发表于 ${date}`}</span>
               </div>
               <div className="post-detail__meta-item">
                 <i className="ion-android-folder-open" />
-                <span>发表于 {category}</span>
+                <span>{`发表于 ${category}`}</span>
               </div>
             </div>
             <div dangerouslySetInnerHTML={{ __html: html }} />
@@ -81,10 +79,10 @@ export default class PostDetail extends React.Component<PostDefaultData> {
               <li>
                 <span className="title">版权声明: </span>
                 <span>
-                  本博客所有文章除特别声明外，均采用{' '}
+                  本博客所有文章除特别声明外，均采用
                   <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/">
                     CC BY-NC-SA 3.0 CN
-                  </a>{' '}
+                  </a>
                   许可协议。转载请注明出处！
                 </span>
               </li>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FunctionComponentElement } from 'react'
 import styled from 'styled-components'
 
 const Nav = styled.nav`
@@ -81,19 +81,12 @@ const Item = styled.a`
   }
 `
 
-export default class SideNav extends React.Component {
-  unComplete() {
-    alert('此功能暂未开放~')
-  }
-
-  render() {
-    return (
-      <Nav>
-        <Item href="/blog"><span>首页</span></Item>
-        <Item href="/archive"><span>归档</span></Item>
-        <Item href="https://github.com/kitwon"><span>Github</span></Item>
-        {/* <Item href="javascript:;" onClick={this.unComplete}><span>标签</span></Item> */}
-      </Nav>
-    )
-  }
-}
+const SideNav = (): FunctionComponentElement<{}> => (
+  <Nav>
+    <Item href="/blog"><span>首页</span></Item>
+    <Item href="/archive"><span>归档</span></Item>
+    <Item href="https://github.com/kitwon"><span>Github</span></Item>
+    {/* <Item href="javascript:;" onClick={this.unComplete}><span>标签</span></Item> */}
+  </Nav>
+)
+export default SideNav

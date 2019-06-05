@@ -1,5 +1,5 @@
-import React from 'react'
-import styled from 'styled-components'
+import React, { ReactElement } from 'react';
+import styled from 'styled-components';
 
 // import getRaf from '../../utils/raf'
 
@@ -26,15 +26,15 @@ const Wrapper = styled.div`
       margin-left: -15px;
     }
   }
-`
+`;
 
-const List = styled.ul`
+const List = styled.div`
   margin: 0;
   padding: 0;
   list-style: none;
   font-size: 14px;
 
-  li {
+  span {
     color: #6b7174;
     cursor: pointer;
 
@@ -59,46 +59,48 @@ const List = styled.ul`
   .l4 {
     padding-left: 3em;
   }
-`
+`;
 
 interface Props {
   listData: any
 }
 
+function scrollToPos(pos: number): void {
+  document.documentElement.scrollTop = pos - 50;
+  // if (document.documentElement.scrollTop > pos) requestFrame(this.goPageTop);
+}
+
 export default class TitleList extends React.Component<Props> {
-  onItemClick(id: string) {
-    const pos = document.getElementById(id).offsetTop || 0
-    this.scrollToPos(pos)
-
-    return false
+  // eslint-disable-next-line class-methods-use-this
+  onItemClick(id: string): void {
+    const pos = document.getElementById(id) as HTMLElement
+    scrollToPos(pos.offsetTop)
   }
 
-  scrollToPos(pos: number) {
-    document.documentElement.scrollTop = pos - 50
-    // if (document.documentElement.scrollTop > pos) requestFrame(this.goPageTop);
-  }
 
-  render() {
+  render(): ReactElement {
+    const { listData } = this.props;
     return (
       <Wrapper>
         <div>
           <div className="title">文章目录</div>
 
           <List>
-            {this.props.listData.map((item, index) => {
-              return (
-                <li
-                  className={`l${item.depth}`}
-                  key={index}
-                  onClick={this.onItemClick.bind(this, item.value)}
-                >
-                  {item.value}
-                </li>
-              )
-            })}
+            {listData.map((item: any): ReactElement => (
+              <span
+                className={`l${item.depth}`}
+                key={item.name}
+                role="button"
+                tabIndex={0}
+                onClick={(): void => this.onItemClick(item.value)}
+                onKeyDown={(): void => this.onItemClick(item.value)}
+              >
+                {item.value}
+              </span>
+              ))}
           </List>
         </div>
       </Wrapper>
-    )
+    );
   }
 }

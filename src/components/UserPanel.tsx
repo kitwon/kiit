@@ -57,35 +57,40 @@ const InfoWrap = styled.div`
   }
 `
 
-export default class UserPanel extends React.Component {
-  render() {
-    if (!this.props.len) return null
-    const { edgesLen, tagsLen, categoryLen } = this.props.len
-
-    return (
-      <Wrapper className={this.props.className}>
-        <Image><img src={HeadImg} alt="kit"/></Image>
-
-        <UserWrap>
-          <div className="name">kitwang chen</div>
-          <div style={{ fontSize: '14px', color: '#848a8e' }}>frontend/UI designer</div>
-        </UserWrap>
-
-        <InfoWrap>
-          <div>
-            <div className="num">{edgesLen}</div>
-            <div>日志</div>
-          </div>
-          <div className="m">
-            <div className="num">{categoryLen}</div>
-            <div>分类</div>
-          </div>
-          <div>
-            <div className="num">{tagsLen}</div>
-            <div>标签</div>
-          </div>
-        </InfoWrap>
-      </Wrapper>
-    )
-  }
+interface PropTypes {
+  className: string
+  len: any
 }
+
+const UserPanel = ({ len, className }: PropTypes): any => {
+  if (!len) return null
+  const { edgesLen, tagsLen, categoryLen } = len
+
+  return (
+    <Wrapper className={className}>
+      <Image><img src={HeadImg} alt="kit" /></Image>
+
+      <UserWrap>
+        <div className="name">kitwang chen</div>
+        <div style={{ fontSize: '14px', color: '#848a8e' }}>frontend/UI designer</div>
+      </UserWrap>
+
+      <InfoWrap>
+        <div>
+          <div className="num">{edgesLen}</div>
+          <div>日志</div>
+        </div>
+        <div className="m">
+          <div className="num">{categoryLen}</div>
+          <div>分类</div>
+        </div>
+        <div>
+          <div className="num">{tagsLen}</div>
+          <div>标签</div>
+        </div>
+      </InfoWrap>
+    </Wrapper>
+  )
+}
+
+export default UserPanel

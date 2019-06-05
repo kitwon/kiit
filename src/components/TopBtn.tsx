@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { Props } from 'react'
 import styled from 'styled-components'
 import { throttle } from 'lodash'
 import getRaf from '../utils/raf'
+
 const requestFrame = getRaf()
 
 const Wrapper = styled.div`
@@ -36,15 +37,22 @@ const Wrapper = styled.div`
 
 const TopButton = styled.div`
   transition: all .3s $cubic;
-  transform: translate3d(0, ${props => props.active ? 0 : 130}px, 0);
+  transform: translate3d(0, ${(props): number => props.active ? 0 : 130}px, 0);
 `
 
 interface PropTypes {
-  delay: number
+  delay?: number
 }
 
-export default class TopBtn extends React.Component<PropTypes> {
-  constructor(props) {
+interface States {
+  docHeight: number
+  pagePercent: number
+  showTopBtn: boolean
+  scrollListener: throttle<EventListenerOrEventListenerObject>
+}
+
+export default class TopBtn extends React.Component<PropTypes, States> {
+  constructor(props: Props) {
     super(props)
 
     this.state = {
@@ -57,19 +65,11 @@ export default class TopBtn extends React.Component<PropTypes> {
     this.goPageTop = this.goPageTop.bind(this)
   }
 
-  getScrollCount() {
-    const doc = document.documentElement
-    let scrollTop = doc.scrollTop - doc.clientTop
-    let percentage = Math.floor((scrollTop / this.state.docHeight).toFixed(3) * 100)
+  componentDidMount(): void {
+    const { delay } = this.props;
 
-    this.setState({
-      pagePercent: percentage > 100 ? 100 : percentage,
-      showTopBtn: scrollTop > 200
-    })
-  }
-
-  componentDidMount() {
-    setTimeout(() => {
+    setTimeout((): void => {
+      const { scrollListener } = this.state;
       this.setState({
         docHeight: document.body.scrollHeight - window.screen.availHeight,
         scrollListener: throttle(this.getScrollCount.bind(this), 180)
@@ -77,23 +77,35 @@ export default class TopBtn extends React.Component<PropTypes> {
       })
       this.getScrollCount()
 
-      window.addEventListener('scroll', this.state.scrollListener, {
+      window.addEventListener('scroll', scrollListener, {
         passive: true
       })
-    }, this.props.delay || 0)
+    }, delay || 0)
   }
 
-  componentWillUnmount() {
-    console.log(this.scrollListener)
-    window.removeEventListener('scroll', this.state.scrollListener.cancel)
+  componentWillUnmount(): void {
+    const { scrollListener } = this.state;
+    window.removeEventListener('scroll', scrollListener.cancel)
   }
 
-  goPageTop() {
+  getScrollCount(): void {
+    const { docHeight } = this.state;
+    const doc = document.documentElement
+    const scrollTop = doc.scrollTop - doc.clientTop
+    const percentage = Math.floor((scrollTop / docHeight).toFixed(3) * 100)
+
+    this.setState({
+      pagePercent: percentage > 100 ? 100 : percentage,
+      showTopBtn: scrollTop > 200
+    })
+  }
+
+  goPageTop(): void {
     document.documentElement.scrollTop -= 350
     if (document.documentElement.scrollTop > 0) requestFrame(this.goPageTop)
   }
 
-  render() {
+  render(): ReactElement {
     const { showTopBtn, pagePercent } = this.state
     return (
       <Wrapper>
@@ -102,7 +114,7 @@ export default class TopBtn extends React.Component<PropTypes> {
           onClick={this.goPageTop}
         >
           <i className="ion-arrow-up-c" />
-          {pagePercent}%
+          {`${pagePercent}%`}
         </TopButton>
       </Wrapper>
     )

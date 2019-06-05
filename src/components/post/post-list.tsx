@@ -1,19 +1,18 @@
-import React from 'react'
-// import styled from 'styled-components'
-
+import React, { FunctionComponentElement, ReactElement } from 'react'
 import Item from './post-item'
 
-export default class PostList extends React.Component {
-  render() {
-    const { postEdges } = this.props
-    return (
-      <div>
-        {
-          postEdges.map((item, key) => {
-            return <Item postData={item.node} key={key} />
-          })
-        }
-      </div>
-    )
-  }
+interface PropTypes {
+  postEdges: any
 }
+
+const PostList = ({ postEdges }: PropTypes): FunctionComponentElement<PropTypes> => {
+  return (
+    <div>
+      {
+        postEdges.map((item: any): ReactElement => <Item postData={item.node} key={item.name} />)
+      }
+    </div>
+  )
+}
+
+export default PostList;

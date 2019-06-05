@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FunctionComponentElement } from 'react'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
@@ -57,20 +57,16 @@ const ThirdText = styled.div`
   background: #093848;
 `
 
-class Header extends React.Component {
-  render() {
-    return (
-      <Wrapper>
-        <TextWrapper>
-          <FirstText>holy Shit.</FirstText>
-          <SecondText>EVERY DAY STRUGGLE.</SecondText>
-          <ThirdText>kit's note</ThirdText>
-        </TextWrapper>
+const Header = (): FunctionComponentElement<{}> => (
+  <Wrapper>
+    <TextWrapper>
+      <FirstText>holy Shit.</FirstText>
+      <SecondText>EVERY DAY STRUGGLE.</SecondText>
+      <ThirdText>kit&apos;s note</ThirdText>
+    </TextWrapper>
 
-        <Background />
-      </Wrapper>
-    )
-  }
-}
+    <Background />
+  </Wrapper>
+)
 
 export default Header
