@@ -60,7 +60,7 @@ const Index = ({ pageContext, data }: PropTypes): ReactElement => {
 
             <RightContent>
               <PostList postEdges={edges || []} />
-              <Pagination {...{ numPages, currentPage }} />
+              <Pagination pageName="blog" {...{ numPages, currentPage }} />
             </RightContent>
           </Row>
         </Container>

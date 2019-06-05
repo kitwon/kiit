@@ -14,7 +14,7 @@ const Wrapper = styled.div`
 `
 
 interface PropTypes {
-  className: string
+  className?: string
 }
 
 const Footer = (): FunctionComponentElement<PropTypes> => (

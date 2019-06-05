@@ -1,0 +1,38 @@
+
+.top-btn-wrap {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  margin-left: 960 / 2 + 30px;
+  z-index: 99;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+
+  > * {
+    cursor: pointer;
+    transition: all .3s;
+    display: block;
+    color: #1993ad;
+
+    &:hover {
+        color: #47c9e5;
+    }
+  }
+
+  i {
+    position: relative;
+    font-size: 20px;
+    bottom: -1px;
+    margin-right: 2px;
+  }
+}
+
+.top-btn {
+  transition: all .3s cubic-bezier(.55,0,.1,1);
+  transform: translate3d(0, 130px, 0);
+
+  &.is-active {
+    transform: translate3d(0, 0, 0)
+  }
+}
