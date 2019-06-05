@@ -7,7 +7,6 @@ category:
 tags:
 - chrome
 - develop tool
-- javascript
 ---
 
 > 这篇文章大概5500字体左右，可能需要浪费5-10分钟去阅读。

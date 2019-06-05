@@ -2,6 +2,10 @@
 path: /post/js-scope
 date: 2017-05-31T23:11:26.000Z
 title: 深入学习javascript--作用域
+tag:
+- javascript
+category:
+- 前端
 ---
 
 ## 前言

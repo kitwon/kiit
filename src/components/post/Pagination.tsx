@@ -46,6 +46,7 @@ const PostPagination = ({ prev, next }: PropTypes): FunctionComponentElement<Pro
       {prev ? (
         <Button href={prev.path}>
           <i className="ion-arrow-left-c" />
+          &nbsp;
           {prev.title}
         </Button>
       )
@@ -54,6 +55,7 @@ const PostPagination = ({ prev, next }: PropTypes): FunctionComponentElement<Pro
       {next ? (
         <Button href={next.path}>
           {next.title}
+          &nbsp;
           <i className="ion-arrow-right-c" />
         </Button>
       )

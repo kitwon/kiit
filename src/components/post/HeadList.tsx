@@ -1,8 +1,6 @@
 import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 
-// import getRaf from '../../utils/raf'
-
 const Wrapper = styled.div`
   display: block;
   padding: 30px 5px;
@@ -87,16 +85,16 @@ export default class TitleList extends React.Component<Props> {
 
           <List>
             {listData.map((item: any): ReactElement => (
-              <span
+              <div
                 className={`l${item.depth}`}
-                key={item.name}
+                key={item.value}
                 role="button"
                 tabIndex={0}
                 onClick={(): void => this.onItemClick(item.value)}
                 onKeyDown={(): void => this.onItemClick(item.value)}
               >
                 {item.value}
-              </span>
+              </div>
               ))}
           </List>
         </div>

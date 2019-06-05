@@ -3,7 +3,7 @@ path: /post/pre-commit-hook
 title: 使用pre-commit实现提交前验证或自动部署代码
 date: 2018-03-29 10:20:55
 category:
-- tools
+- 前端
 tags:
 - 自动化
 - 前端工具

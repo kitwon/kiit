@@ -1,9 +1,9 @@
 import '../styles'
+import './post.scss';
 
 import React, { ReactNode } from 'react'
 import { graphql } from 'gatsby'
 
-// import hljs from 'highlightjs';
 import HeadList from '../components/post/HeadList'
 import TopBtn from '../components/TopBtn'
 import SideNav from '../components/SideNav'
@@ -30,15 +30,15 @@ export default class PostDetail extends React.Component<PostDefaultData> {
     const leftCover = document.getElementById('leftCover') as HTMLElement
     leftCover.style.width = `${leftCover.offsetWidth}px`
     leftCover.style.position = 'fixed'
-    leftCover.style.top = '0'
+    leftCover.style.top = '80px'
     leftCover.style.left = String(leftCover.offsetLeft)
   }
 
   render(): ReactNode {
-    const { data, location } = this.props;
+    const { data, location, pageContext } = this.props;
     const { headings, html, frontmatter } = data.markdownRemark
     const { title, date, category } = frontmatter
-    const { pageContext } = this.props
+
     const postPath = `http://kiit.wang${location.pathname}`
 
     return (
@@ -91,7 +91,7 @@ export default class PostDetail extends React.Component<PostDefaultData> {
             <Pagination prev={pageContext.prev} next={pageContext.next} />
           </div>
         </div>
-        <Footer className="post-footer" />
+        <Footer />
         <TopBtn delay={2000} />
       </div>
     )
@@ -106,11 +106,13 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         path
         title
+        category
       }
       headings {
         depth
         value
-      }
+      },
+      tableOfContents
     }
   }
 `

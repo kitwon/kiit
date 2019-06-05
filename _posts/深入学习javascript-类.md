@@ -2,6 +2,10 @@
 path: /post/js-class
 date: 2017-07-20T14:47:47.000Z
 title: 深入学习javascript-类
+tag:
+- javascript
+category:
+- 前端
 ---
 
 ## 类理论

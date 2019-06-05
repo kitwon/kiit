@@ -2,6 +2,10 @@
 path: /post/js-closures
 date: 2017-06-14T21:54:18.000Z
 title: 深入学习javascript-闭包
+tag:
+- javascript
+category:
+- 前端
 ---
 
 ## 什么是闭包

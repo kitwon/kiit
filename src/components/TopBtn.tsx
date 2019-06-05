@@ -59,7 +59,6 @@ export default class TopBtn extends React.Component<PropTypes, States> {
     const doc = document.documentElement
     const scrollTop: number = doc.scrollTop - doc.clientTop
     const percentage = Number(Math.floor((scrollTop / docHeight) * 100).toFixed(3))
-    console.log(scrollTop)
 
     this.setState({
       pagePercent: percentage > 100 ? 100 : percentage,

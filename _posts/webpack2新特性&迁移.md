@@ -3,7 +3,7 @@ path: /post/webpack2
 title: webpack2新特性&迁移
 date: 2017-06-24 11:38:53
 category:
-- 前端工具
+- 前端
 tags:
 - webpack
 ---

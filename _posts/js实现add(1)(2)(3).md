@@ -3,8 +3,9 @@ path: /post/add-chain
 title: js实现add(1)(2)(3)
 date: 2017-05-28 14:25:44
 tags:
-category:
 - javascript
+category:
+- 前端
 ---
 
 ## 题目

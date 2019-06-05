@@ -3,7 +3,7 @@ path: /post/vue-jest-test
 title: 在vue项目中使用jest进行单元测试
 date: 2017-08-18 17:10:36
 category:
-- 前端工具
+- 前端
 tags:
 - unit test
 - vue
