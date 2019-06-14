@@ -35,9 +35,10 @@ export default class PostDetail extends React.Component<PostDefaultData> {
   }
 
   render(): ReactNode {
-    const { data, location, pageContext } = this.props;
+    const { data, location, pageContext } = this.props
     const { headings, html, frontmatter } = data.markdownRemark
     const { title, date, category } = frontmatter
+    console.log(data.markdownRemark.tableOfContents)
 
     const postPath = `http://kiit.wang${location.pathname}`
 
@@ -88,7 +89,7 @@ export default class PostDetail extends React.Component<PostDefaultData> {
               </li>
             </div>
 
-            <Pagination prev={pageContext.prev} next={pageContext.next} />
+            <Pagination prev={pageContext.previous} next={pageContext.next} />
           </div>
         </div>
         <Footer />

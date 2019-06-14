@@ -44,17 +44,17 @@ const PostPagination = ({ prev, next }: PropTypes): FunctionComponentElement<Pro
   return (
     <Wrapper>
       {prev ? (
-        <Button href={prev.path}>
+        <Button href={prev.frontmatter.path}>
           <i className="ion-arrow-left-c" />
           &nbsp;
-          {prev.title}
+          {prev.frontmatter.title}
         </Button>
       )
       : null}
 
       {next ? (
-        <Button href={next.path}>
-          {next.title}
+        <Button href={next.frontmatter.path}>
+          {next.frontmatter.title}
           &nbsp;
           <i className="ion-arrow-right-c" />
         </Button>

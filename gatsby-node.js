@@ -6,6 +6,14 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
 
   return graphql(`
+    fragment FrontmatterFields on MarkdownRemarkFrontmatter {
+      title
+      date(formatString: "YYYY-MM-DD")
+      category
+      tags
+      path
+    }
+
     {
       allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }, limit: 1000) {
         edges {
@@ -14,18 +22,25 @@ exports.createPages = ({ graphql, actions }) => {
               slug
             }
             frontmatter {
-              title
-              date(formatString: "YYYY-MM-DD")
-              category
-              tags
-              path
+              ...FrontmatterFields
             }
             excerpt(format: HTML)
             headings {
               depth
               value
             }
-            html
+            html,
+            tableOfContents
+          },
+          next {
+            frontmatter {
+              ...FrontmatterFields
+            }
+          }
+          previous {
+            frontmatter {
+              ...FrontmatterFields
+            }
           }
         }
       }
@@ -39,16 +54,14 @@ exports.createPages = ({ graphql, actions }) => {
     const createPaginationPages = paginationPages(edges, createPage);
 
     // create post pages
-    edges.forEach(({ node }, index) => {
-      const nextNode = edges[index+1] ? edges[index+1].node : {}
-      const prevNode = edges[index-1] ? edges[index-1].node : {}
+    edges.forEach(({ node, previous, next }, index) => {
       createPage({
         path: node.fields.slug,
         component: path.resolve('./src/templates/post.tsx'),
         context: {
           slug: node.fields.slug,
-          next: nextNode ? nextNode.frontmatter : {},
-          prev: prevNode ? prevNode.frontmatter : {}
+          next,
+          previous
         },
       });
     });
@@ -59,10 +72,17 @@ exports.createPages = ({ graphql, actions }) => {
       path: 'archive',
     });
 
+    const blogInfo = {
+      edgesCount: edges.length
+    }
+
     createPaginationPages({
-      limit: 8,
+      limit: 6,
       path: 'blog',
       component: path.resolve('src/templates/blog.tsx'),
+      context: {
+        blogInfo
+      }
     });
   });
 };
