@@ -40,7 +40,7 @@ export default class PostDetail extends React.Component<PostDefaultData> {
     const { title, date, category } = frontmatter
     console.log(data.markdownRemark.tableOfContents)
 
-    const postPath = `http://kiit.wang${location.pathname}`
+    const postPath = `https://blog.kiit.wang${location.pathname}`
 
     return (
       <div className="post-detail">

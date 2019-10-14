@@ -28,7 +28,7 @@ tags:
 ### pixel pipeline
 
 影响浏览器渲染有很多因素，但是下面这5个关键的地方是我们可以控制的，也是像素至屏幕管道中关键的地方。
-![pixel pipeline](http://kiit-1253813979.cosgz.myqcloud.com/%25E6%259E%2584%25E5%25BB%25BA60fps-web-app/pixel-pipline.jpg)
+![pixel pipeline](https://kiit-1253813979.cosgz.myqcloud.com/%25E6%259E%2584%25E5%25BB%25BA60fps-web-app/pixel-pipline.jpg)
 
 * Javascript。 js中的动画效果和一些dom操作。
 * 样式计算(style)。 css匹配器的计算过程。例如`.nav__item > .slot`。
@@ -52,7 +52,7 @@ tags:
 ### 触发layout、paint的关键操作
 
 我们知道一帧中就包含了上面的操作，但并不是所有改变网页外观操作都会触发上面的行为。回到**pipeline**，看看什么操作会分别触发什么行为。(下面会用数字代表对应图片上的位置)
-![pixel pipeline](http://kiit-1253813979.cosgz.myqcloud.com/%25E6%259E%2584%25E5%25BB%25BA60fps-web-app/pixel-pipline.jpg)
+![pixel pipeline](https://kiit-1253813979.cosgz.myqcloud.com/%25E6%259E%2584%25E5%25BB%25BA60fps-web-app/pixel-pipline.jpg)
 
 * 第一种，通过css或者js进行了外观的更改(1)，这时浏览器就要重新计算元素的样式(2)，如果还更改了布局属性，元素的大小改变，必定会影响其他元素的位置，这时就要重新布局(3)，然后受影响的区域就需要重新绘制(4)，最后将所有东西合成在一起(5)。
 * 第二种，仅改变绘制属性(1)，例如背景、文字颜色、阴影等(2)，由于这些操作没有改变布局，所以会跳过(3)，直接进行(4)(5)的操作。
@@ -65,7 +65,7 @@ tags:
 ### performance panel
 
 性能分析面板是chrome中开发者工具自带的一个功能，我们能在上面看到录制实践中，**pipeline**的具体运行情况。
-![performance panel](http://kiit-1253813979.cosgz.myqcloud.com/%25E6%259E%2584%25E5%25BB%25BA60fps-web-app/performance.jpg)
+![performance panel](https://kiit-1253813979.cosgz.myqcloud.com/%25E6%259E%2584%25E5%25BB%25BA60fps-web-app/performance.jpg)
 
 1. 在(1)**overview**中，我们可以看到程序中大概的性能状况，fps、cpu、网络使用情况，还有对应的截图。一般情况，看到**cpu**部分一大片一大片的颜色就证明你的程序需要优化了。
 2. (2)中的**main**部分，可以看到主进程中的活动，所有时间点执行的操作及渲染行为都能在这个部分找到，主要的性能分析也是围绕这里展开，一半看到**飙红**的地方就证明那里是要下手的地方。

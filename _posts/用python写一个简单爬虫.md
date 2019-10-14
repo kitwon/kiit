@@ -63,7 +63,7 @@ class SpiderMain(object):
     self.outputer.output_html()
 
 if __name__ == '__main__':
-  root_url = 'http://baike.baidu.com/item/Python'
+  root_url = 'https://baike.baidu.com/item/Python'
   obj_spider = SpiderMain()
   obj_spider.crawl(root_url)
 ```

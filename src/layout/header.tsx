@@ -11,7 +11,7 @@ const Background = styled.div`
   position: relative;
   z-index: 1;
   padding-top: ${470 / 1920 * 100}%;
-  background-image: url(http://kiit-1253813979.file.myqcloud.com/header.jpg);
+  background-image: url(https://kiit-1253813979.file.myqcloud.com/header.jpg);
   background-size: 100%;
   background-position: top;
   background-repeat: no-repeat;

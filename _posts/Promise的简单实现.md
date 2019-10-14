@@ -288,7 +288,7 @@ var Promise = function(fn) {
 
 ## 总结
 
-找资料的时候看到[美团技术团队博客的实现方式](http://tech.meituan.com/promise-insight.html)采用了另外一种解决方式解决串行promise，后面接着研究下，有兴趣也可以自行看下。
+找资料的时候看到[美团技术团队博客的实现方式](//tech.meituan.com/promise-insight.html)采用了另外一种解决方式解决串行promise，后面接着研究下，有兴趣也可以自行看下。
 实现promise应该有下面几个要点：
 
 1. 函数的顺序执行
@@ -299,5 +299,5 @@ var Promise = function(fn) {
 ### 参考
 
 * [Promises/A+](https://promisesaplus.com/#requirements)
-* [剖析 Promise 之基础篇](http://tech.meituan.com/promise-insight.html)
-* [Javascript异步编程的4种方法](http://www.ruanyifeng.com/blog/2012/12/asynchronous%EF%BC%BFjavascript.html)
+* [剖析 Promise 之基础篇](//tech.meituan.com/promise-insight.html)
+* [Javascript异步编程的4种方法](//www.ruanyifeng.com/blog/2012/12/asynchronous%EF%BC%BFjavascript.html)

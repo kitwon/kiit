@@ -27,18 +27,18 @@ console.error(‘Something horrible happened…’); // 打印错误信息
 
 如果你想知道日志的函数执行位置，使用`console.trace()`可以打印栈堆跟踪信息。
 
-![trace](http://kiit-1253813979.file.myqcloud.com/10tips-for-console/trace.png)
+![trace](https://kiit-1253813979.file.myqcloud.com/10tips-for-console/trace.png)
 
 ## Tip #2 console.time() && console.timeEnd()
 
 如果你想知道某段程序的执行时间，可以使用`console.time()`和`console.timeEnd()`打印时间间隔。
 
-![time](http://kiit-1253813979.file.myqcloud.com/10tips-for-console/time.png)
+![time](https://kiit-1253813979.file.myqcloud.com/10tips-for-console/time.png)
 
 ## Tip #3 console.memory()
 
 如果遇到一个相当棘手的性能问题，或者在寻找一个内存泄露的位置，可以尝试使用`console.memory(// property, not a function)`查看栈大小信息。
-![memory](http://kiit-1253813979.file.myqcloud.com/10tips-for-console/memory.png)
+![memory](https://kiit-1253813979.file.myqcloud.com/10tips-for-console/memory.png)
 
 ## Tip #4 console.profile(‘profileName’) & console.profileEnd(‘profileName’)
 
@@ -47,37 +47,37 @@ console.error(‘Something horrible happened…’); // 打印错误信息
 ## Tip #5 console.count("STUFF I COUNT")
 
 在一些经常重复调用的代码中，使用`console.count()`可以记录该函数的执行次数。
-![count](http://kiit-1253813979.file.myqcloud.com/10tips-for-console/count.png)
+![count](https://kiit-1253813979.file.myqcloud.com/10tips-for-console/count.png)
 
 ## Tip #6 console.assert(false, “Log me!”)
 
 当需要条件判断打印日志时候，可以使用`console.assert(condition, msg)`代替if-else。当`condition` 为false的时候就会打印出信息。
 ⚠️在Node.js中使用会抛出断言错误。
 
-![assert](http://kiit-1253813979.file.myqcloud.com/10tips-for-console/assert.png)
+![assert](https://kiit-1253813979.file.myqcloud.com/10tips-for-console/assert.png)
 
 ## Tip  #7 console.group(‘group’) & console.groupEnd(‘group’)
 
 在一些写很多`console.log()`的情况下，你可能需要将日志分组。这时候就可以使用`console.group(name)` 去将日志分组，使用这个函数后，日志就会按层级打印。使用`console.groupEnd()`就能结束掉当前分组，在同级重新新建一个分组。
 
-![group](http://kiit-1253813979.file.myqcloud.com/10tips-for-console/group.png)
+![group](https://kiit-1253813979.file.myqcloud.com/10tips-for-console/group.png)
 
 ## Tip #8 字符串替换
 
 使用`console`的时候可以使用字符串替换去合并变量，引用类型有下面几个**(%s = string, %i = integer, %o = object, %f = float)**
 
-![substitutions](http://kiit-1253813979.file.myqcloud.com/10tips-for-console/substitutions.png)
+![substitutions](https://kiit-1253813979.file.myqcloud.com/10tips-for-console/substitutions.png)
 
 ## Tip #9 console.clear()
 
 当代码里面很多`console`的时候，你可能会需要`console.clear()`清理一下前面的log
 
-![clear](http://kiit-1253813979.file.myqcloud.com/10tips-for-console/clear.png)
+![clear](https://kiit-1253813979.file.myqcloud.com/10tips-for-console/clear.png)
 
 ## Tip #10 console.table()
 
 好东西留到最后。使用`console.table()`，可以把对象打印成一个好看的表格。
 
-![table](http://kiit-1253813979.file.myqcloud.com/10tips-for-console/table.png)
+![table](https://kiit-1253813979.file.myqcloud.com/10tips-for-console/table.png)
 
 希望这几个能让你平时的调试工作能更高效和有趣。

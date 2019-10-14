@@ -157,5 +157,5 @@ function route(path, query) {
 ### 参考
 
 * [Migrating from v1 to v2](https://webpack.js.org/guides/migrating/)
-* [升级到 webpack2](http://www.tuicool.com/articles/aieAnan)
-* [webpack2 的 tree-shaking 好用吗？](http://imweb.io/topic/58666d57b3ce6d8e3f9f99b0)
+* [升级到 webpack2](//www.tuicool.com/articles/aieAnan)
+* [webpack2 的 tree-shaking 好用吗？](//imweb.io/topic/58666d57b3ce6d8e3f9f99b0)
