@@ -7,7 +7,7 @@
     "develop": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
-    "deploy": "gatsby build --prefix-paths && gh-pages -d public -r https://$GH_TOKEN@/github.com/kitwon/kiit.git",
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public -r https://$GH_TOKEN@github.com/kitwon/kiit.git",
     "lint": "eslint .",
     "test:unit": "jest --config test/jest.config.js",
     "test": "npm run lint && npm run test:unit"
