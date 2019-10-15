@@ -11,7 +11,7 @@ tags:
 
 > 原文译自[Smashing Magazine](https://www.smashingmagazine.com/) -- [How To Develop An Interactive Command Line Application Using Node.js](https://www.smashingmagazine.com/2017/03/interactive-command-line-application-node-js/)
 
-相信很多前端都听说过或者使用过[Gulp](http://www.gulpjs.com.cn/), [Angular CLI](https://cli.angular.io/), [Cordova](https://cordova.apache.org/), [Yeoman](http://yeoman.io/)或其他类似的命令行工具。但有想过这些程序是怎么实现的吗？例如在Angular CLI中使用`ng new <project-name>`后会建立一个已经有基本配置的angular项目；又或者像Yeoman，也能运行时候输入或者选择配置项，让用户能够自定义项目配置，快速搭建好开发时候需要用到的开发环境。下面的教程，就是讲如何使用node写一个像这样的命令行工具。
+相信很多前端都听说过或者使用过[Gulp](https://www.gulpjs.com.cn/), [Angular CLI](https://cli.angular.io/), [Cordova](https://cordova.apache.org/), [Yeoman](https://yeoman.io/)或其他类似的命令行工具。但有想过这些程序是怎么实现的吗？例如在Angular CLI中使用`ng new <project-name>`后会建立一个已经有基本配置的angular项目；又或者像Yeoman，也能运行时候输入或者选择配置项，让用户能够自定义项目配置，快速搭建好开发时候需要用到的开发环境。下面的教程，就是讲如何使用node写一个像这样的命令行工具。
 
 在这篇教程中，我们会开发一个命令行工具，用户能够输入一个CSV文件地址，从而获取到文件里面的用户信息，然后模拟群发邮件（原文是使用[SendGrid Api](https://github.com/sendgrid/sendgrid-nodejs)模拟发送）
 文章目录：
@@ -73,7 +73,7 @@ well done, 根据[package.json文档](https://docs.npmjs.com/files/package.json)
 }
 ```
 
-这几个模块 [Chalk](https://github.com/chalk/chalk), [Commander](https://github.com/tj/commander.js), [Inquirer](https://github.com/sboudrias/Inquirer.js), [CSV](http://www.adaltas.com/en/2012/08/21/node-csv-stable-version-0-1-0/)的具体用处跟其他参数，可以自行查看。
+这几个模块 [Chalk](https://github.com/chalk/chalk), [Commander](https://github.com/tj/commander.js), [Inquirer](https://github.com/sboudrias/Inquirer.js), [CSV](https://www.adaltas.com/en/2012/08/21/node-csv-stable-version-0-1-0/)的具体用处跟其他参数，可以自行查看。
 
 ### 处理命令行参数
 
@@ -125,7 +125,7 @@ $ node broadcast --help
     -l, --list <list>          list of customers in CSV file
 ```
 
-现在我们已经能够接收到命令行传递过来的参数了，下面我们会利用接收到的CSV文件地址，并使用[CSV](http://www.adaltas.com/en/2012/08/21/node-csv-stable-version-0-1-0/)模块处理CSV文件的内容。
+现在我们已经能够接收到命令行传递过来的参数了，下面我们会利用接收到的CSV文件地址，并使用[CSV](https://www.adaltas.com/en/2012/08/21/node-csv-stable-version-0-1-0/)模块处理CSV文件的内容。
 我们会使用下面的比哦啊哥内容作为CSV文件的内容。使用CSV模块，会读取内容，并显示各列的内容。
 
 | First name | Last name | Email                            |

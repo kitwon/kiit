@@ -39,7 +39,7 @@ npm install
 
 ### 配置webpack
 
-所有东西安装完成之后首先就是配置[webpack](http://webpack.github.io/docs/)
+所有东西安装完成之后首先就是配置[webpack](https://webpack.github.io/docs/)
 
 ``` javascript
 var path = require('path');

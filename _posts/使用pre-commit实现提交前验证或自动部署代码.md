@@ -60,7 +60,7 @@ $ yarn add husky lint-stage -D
 **2.**    然后随便找个文件删掉两个缩进空格，然后跑下提交命令`git commit -am 'test precommit'`，此时应该可以看到下图的运行及报错。
 
 ⚠️ 这里的错误大家可以看到是preiiter抛出的，是因为我的配置文件已经集成了prettier，如何集成下方有介绍。
-![pre-commit-error](http://kiit-1253813979.file.myqcloud.com/pre-commit-hook/lint-error.jpg)
+![pre-commit-error](https://kiit-1253813979.file.myqcloud.com/pre-commit-hook/lint-error.jpg)
 
 如果想使用eslint自动修复错误，可以修改成如下配置
 
