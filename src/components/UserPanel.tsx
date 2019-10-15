@@ -1,8 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import HeadImg from '../images/head.jpeg'
-
 const Wrapper = styled.div`
   display: block;
   padding: 30px 20px;
@@ -68,7 +66,7 @@ const UserPanel = ({ len, className }: PropTypes): any => {
 
   return (
     <Wrapper className={className}>
-      <Image><img src={HeadImg} alt="kit" /></Image>
+      <Image><img src="https://kiit-1253813979.cos.ap-guangzhou.myqcloud.com/header.jpg" alt="kit" /></Image>
 
       <UserWrap>
         <div className="name">kitwang chen</div>

@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserPanel renders correctly 1`] = `
+<div
+  className="sc-bdVaJa brQBtt test"
+>
+  <div
+    className="sc-bwzfXH fsbcrR"
+  >
+    <img
+      alt="kit"
+      src="https://kiit-1253813979.cos.ap-guangzhou.myqcloud.com/header.jpg"
+    />
+  </div>
+  <div
+    className="sc-htpNat cAEWNP"
+  >
+    <div
+      className="name"
+    >
+      kitwang chen
+    </div>
+    <div
+      style={
+        Object {
+          "color": "#848a8e",
+          "fontSize": "14px",
+        }
+      }
+    >
+      frontend/UI designer
+    </div>
+  </div>
+  <div
+    className="sc-bxivhb kMwpVD"
+  >
+    <div>
+      <div
+        className="num"
+      />
+      <div>
+        日志
+      </div>
+    </div>
+    <div
+      className="m"
+    >
+      <div
+        className="num"
+      />
+      <div>
+        分类
+      </div>
+    </div>
+    <div>
+      <div
+        className="num"
+      />
+      <div>
+        标签
+      </div>
+    </div>
+  </div>
+</div>
+`;
