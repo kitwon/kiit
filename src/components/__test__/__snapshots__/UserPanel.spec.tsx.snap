@@ -9,7 +9,7 @@ exports[`UserPanel renders correctly 1`] = `
   >
     <img
       alt="kit"
-      src="https://kiit-1253813979.cos.ap-guangzhou.myqcloud.com/header.jpg"
+      src="https://kiit-1253813979.cos.ap-guangzhou.myqcloud.com/profile.jpeg"
     />
   </div>
   <div
