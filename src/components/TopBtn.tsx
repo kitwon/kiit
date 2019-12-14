@@ -51,7 +51,8 @@ export default class TopBtn extends React.Component<PropTypes, States> {
 
   componentWillUnmount(): void {
     const { scrollListener } = this.state;
-    window.removeEventListener('scroll', scrollListener.cancel)
+    if (scrollListener.cancel)
+      window.removeEventListener('scroll', scrollListener.cancel)
   }
 
   getScrollCount(): void {

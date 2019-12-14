@@ -63,7 +63,8 @@ const Archive = ({ pageContext, data }: PostDefaultData): FunctionComponentEleme
               <Pagination
                 className="archive-pagination"
                 pageName="archive"
-                {...{ numPages, currentPage }}
+                numPages={numPages}
+                currentPage={currentPage}
               />
             </RightContent>
           </Row>

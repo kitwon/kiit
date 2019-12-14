@@ -23,6 +23,7 @@ module.exports = {
     'import/no-unresolved': 0,
     'react/no-danger': 0,
     'react/jsx-filename-extension': [1, { 'extensions': ['.js', '.jsx', 'ts', 'tsx'] }],
+    'import/extensions': [1, { extensions: ['.ts', '.tsx', '.js', '.jsx' ] }],
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     '@typescript-eslint/no-explicit-any': 'off',
